@@ -96,6 +96,7 @@
 [시연 연상](https://youtu.be)
 
 [화면 설계서](https://docs.google.com/presentation/d/12mBOJ3qdnA5tRf_UqlA_nJANNIcfJNgknbsgitQzUrA/edit#slide=id.g11716dcbee3_1_5)
+
 [화면 설계서](https://www.figma.com/file/LN3ELSLElG8cokJ2vBIYLV/%EC%8B%A4%EC%A0%84-5%EC%A1%B0-%EC%8A%A4%ED%86%A0%EB%A6%AC%EB%B3%B4%EB%93%9C?node-id=0%3A1)
 
 <details>
