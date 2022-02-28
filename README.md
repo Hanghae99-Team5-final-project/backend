@@ -1,6 +1,5 @@
 <!-- 서비스 간략설명  -->
 
-<img width="80" alt="modal1" src="https://user-images.githubusercontent.com/87928719/151091148-ea42c383-d8b0-453f-a2da-e852340e3cdc.png" align="left">
 <h1 align="left"> webRTC와 socketIO를 활용한 뽀모도로 타이머 기반<br/>화상스터디 플랫폼</h1>
 
 
@@ -94,10 +93,8 @@
 
 # more info
 
-![Group 3475](https://user-images.githubusercontent.com/63698668/151095485-db07f9d7-a895-4a60-85f1-d214a0ee8b15.png)
 [시연 연상](https://youtu.be)
 
-![Group 3474](https://user-images.githubusercontent.com/63698668/151095484-0d54cb7c-b35a-4f4f-947a-ce50e45489fa.png)
 [화면 설계서](https://docs.google.com/presentation/d/12mBOJ3qdnA5tRf_UqlA_nJANNIcfJNgknbsgitQzUrA/edit#slide=id.g11716dcbee3_1_5)
 [화면 설계서](https://www.figma.com/file/LN3ELSLElG8cokJ2vBIYLV/%EC%8B%A4%EC%A0%84-5%EC%A1%B0-%EC%8A%A4%ED%86%A0%EB%A6%AC%EB%B3%B4%EB%93%9C?node-id=0%3A1)
 
