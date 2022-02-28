@@ -1,6 +1,6 @@
 <!-- 서비스 간략설명  -->
 
-<h1 align="left"> webRTC와 socketIO를 활용한 뽀모도로 타이머 기반<br/>화상스터디 플랫폼</h1>
+<h1 align="left"> 5조는 죽지않는다.<br/>5조 가즈아</h1>
 
 
 
