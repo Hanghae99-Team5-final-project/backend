@@ -1,7 +1,7 @@
 package com.sparta.team5finalproject.security;
 
-import com.sparta.springcore.model.User;
-import com.sparta.springcore.repository.UserRepository;
+import com.sparta.team5finalproject.model.User;
+import com.sparta.team5finalproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

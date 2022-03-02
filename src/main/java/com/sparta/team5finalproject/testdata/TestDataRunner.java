@@ -1,14 +1,14 @@
 package com.sparta.team5finalproject.testdata;
 
 
-import com.sparta.springcore.dto.ItemDto;
-import com.sparta.springcore.model.Product;
-import com.sparta.springcore.model.User;
-import com.sparta.springcore.model.UserRoleEnum;
-import com.sparta.springcore.repository.ProductRepository;
-import com.sparta.springcore.repository.UserRepository;
-import com.sparta.springcore.service.ItemSearchService;
-import com.sparta.springcore.service.UserService;
+import com.sparta.team5finalproject.dto.ItemDto;
+import com.sparta.team5finalproject.model.Product;
+import com.sparta.team5finalproject.model.User;
+import com.sparta.team5finalproject.model.UserRoleEnum;
+import com.sparta.team5finalproject.repository.ProductRepository;
+import com.sparta.team5finalproject.repository.UserRepository;
+import com.sparta.team5finalproject.service.ItemSearchService;
+import com.sparta.team5finalproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.sparta.springcore.service.ProductService.MIN_MY_PRICE;
+import static com.sparta.team5finalproject.service.ProductService.MIN_MY_PRICE;
 
 @Component
 public class TestDataRunner implements ApplicationRunner {

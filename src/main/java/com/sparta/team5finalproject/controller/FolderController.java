@@ -1,12 +1,12 @@
 package com.sparta.team5finalproject.controller;
 
 
-import com.sparta.springcore.dto.FolderRequestDto;
-import com.sparta.springcore.model.Folder;
-import com.sparta.springcore.model.Product;
-import com.sparta.springcore.model.User;
-import com.sparta.springcore.security.UserDetailsImpl;
-import com.sparta.springcore.service.FolderService;
+import com.sparta.team5finalproject.dto.FolderRequestDto;
+import com.sparta.team5finalproject.model.Folder;
+import com.sparta.team5finalproject.model.Product;
+import com.sparta.team5finalproject.model.User;
+import com.sparta.team5finalproject.security.UserDetailsImpl;
+import com.sparta.team5finalproject.service.FolderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

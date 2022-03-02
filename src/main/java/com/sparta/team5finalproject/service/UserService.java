@@ -1,9 +1,9 @@
 package com.sparta.team5finalproject.service;
 
-import com.sparta.springcore.dto.SignupRequestDto;
-import com.sparta.springcore.model.User;
-import com.sparta.springcore.model.UserRoleEnum;
-import com.sparta.springcore.repository.UserRepository;
+import com.sparta.team5finalproject.dto.SignupRequestDto;
+import com.sparta.team5finalproject.model.User;
+import com.sparta.team5finalproject.model.UserRoleEnum;
+import com.sparta.team5finalproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

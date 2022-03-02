@@ -1,13 +1,13 @@
 package com.sparta.team5finalproject.integration;
 
-import com.sparta.springcore.dto.ProductMypriceRequestDto;
-import com.sparta.springcore.dto.ProductRequestDto;
-import com.sparta.springcore.dto.SignupRequestDto;
-import com.sparta.springcore.model.Product;
-import com.sparta.springcore.model.User;
-import com.sparta.springcore.model.UserRoleEnum;
-import com.sparta.springcore.service.ProductService;
-import com.sparta.springcore.service.UserService;
+import com.sparta.team5finalproject.dto.ProductMypriceRequestDto;
+import com.sparta.team5finalproject.dto.ProductRequestDto;
+import com.sparta.team5finalproject.dto.SignupRequestDto;
+import com.sparta.team5finalproject.model.Product;
+import com.sparta.team5finalproject.model.User;
+import com.sparta.team5finalproject.model.UserRoleEnum;
+import com.sparta.team5finalproject.service.ProductService;
+import com.sparta.team5finalproject.service.UserService;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

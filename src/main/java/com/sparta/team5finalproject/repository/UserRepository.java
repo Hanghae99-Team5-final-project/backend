@@ -1,6 +1,6 @@
 package com.sparta.team5finalproject.repository;
 
-import com.sparta.springcore.model.User;
+import com.sparta.team5finalproject.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

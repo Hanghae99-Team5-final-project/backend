@@ -1,7 +1,7 @@
 package com.sparta.team5finalproject.repository;
 
 
-import com.sparta.springcore.model.Product;
+import com.sparta.team5finalproject.model.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,13 +1,13 @@
 package com.sparta.team5finalproject.service;
 
 
-import com.sparta.springcore.dto.ProductMypriceRequestDto;
-import com.sparta.springcore.dto.ProductRequestDto;
-import com.sparta.springcore.model.Folder;
-import com.sparta.springcore.model.Product;
-import com.sparta.springcore.model.User;
-import com.sparta.springcore.repository.FolderRepository;
-import com.sparta.springcore.repository.ProductRepository;
+import com.sparta.team5finalproject.dto.ProductMypriceRequestDto;
+import com.sparta.team5finalproject.dto.ProductRequestDto;
+import com.sparta.team5finalproject.model.Folder;
+import com.sparta.team5finalproject.model.Product;
+import com.sparta.team5finalproject.model.User;
+import com.sparta.team5finalproject.repository.FolderRepository;
+import com.sparta.team5finalproject.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

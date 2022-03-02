@@ -2,9 +2,9 @@ package com.sparta.team5finalproject.controller;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.sparta.springcore.dto.SignupRequestDto;
-import com.sparta.springcore.service.KakaoUserService;
-import com.sparta.springcore.service.UserService;
+import com.sparta.team5finalproject.dto.SignupRequestDto;
+import com.sparta.team5finalproject.service.KakaoUserService;
+import com.sparta.team5finalproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

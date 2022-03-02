@@ -1,10 +1,10 @@
 package com.sparta.team5finalproject.controller;
 
 
-import com.sparta.springcore.model.Folder;
-import com.sparta.springcore.model.UserRoleEnum;
-import com.sparta.springcore.security.UserDetailsImpl;
-import com.sparta.springcore.service.FolderService;
+import com.sparta.team5finalproject.model.Folder;
+import com.sparta.team5finalproject.model.UserRoleEnum;
+import com.sparta.team5finalproject.security.UserDetailsImpl;
+import com.sparta.team5finalproject.service.FolderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
