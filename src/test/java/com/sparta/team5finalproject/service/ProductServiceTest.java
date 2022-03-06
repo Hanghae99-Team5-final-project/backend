@@ -3,7 +3,6 @@ package com.sparta.team5finalproject.service;
 
 import com.sparta.team5finalproject.dto.ProductMypriceRequestDto;
 import com.sparta.team5finalproject.dto.ProductRequestDto;
-import com.sparta.team5finalproject.model.Product;
 import com.sparta.team5finalproject.repository.FolderRepository;
 import com.sparta.team5finalproject.repository.ProductRepository;
 import org.junit.jupiter.api.DisplayName;

@@ -3,7 +3,6 @@ package com.sparta.team5finalproject.integration;
 import com.sparta.team5finalproject.dto.ProductMypriceRequestDto;
 import com.sparta.team5finalproject.dto.ProductRequestDto;
 import com.sparta.team5finalproject.dto.SignupRequestDto;
-import com.sparta.team5finalproject.model.Product;
 import com.sparta.team5finalproject.model.User;
 import com.sparta.team5finalproject.model.UserRoleEnum;
 import com.sparta.team5finalproject.service.ProductService;

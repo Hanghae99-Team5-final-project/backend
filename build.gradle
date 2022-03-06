@@ -31,6 +31,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     // Thymeleaf (뷰 템플릿 엔진)
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // 파일 처리 관련 의존성 주입
+    implementation 'commons-io:commons-io:2.6'
+
+    //s3
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.0.1.RELEASE'
 }
 
 tasks.named('test') {

@@ -1,12 +1,12 @@
-package com.sparta.team5finalproject.repository;
-
-import com.sparta.team5finalproject.model.Folder;
-import com.sparta.team5finalproject.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
-
-public interface FolderRepository extends JpaRepository<Folder, Long> {
-    List<Folder> findAllByUser(User user);
-    List<Folder> findAllByUserAndNameIn(User user, List<String> names);
-}
+//package com.sparta.team5finalproject.repository;
+//
+//import com.sparta.team5finalproject.model.Comment;
+//import com.sparta.team5finalproject.model.User;
+//import org.springframework.data.jpa.repository.JpaRepository;
+//
+//import java.util.List;
+//
+//public interface FolderRepository extends JpaRepository<Comment, Long> {
+//    List<Comment> findAllByUser(User user);
+//    List<Comment> findAllByUserAndNameIn(User user, List<String> names);
+//}
