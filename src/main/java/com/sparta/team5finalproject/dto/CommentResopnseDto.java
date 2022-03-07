@@ -1,4 +1,4 @@
-package com.sparta.mbti.dto.response;
+package com.sparta.team5finalproject.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -14,10 +14,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CommentResopnseDto {
     private Long commentId;             // 댓글 ID
-    private String nickname;            // 닉네임
-    private String image;               // 이미지
-    private String mbti;                // mbti
-    private String comment;             // 댓글
+    private String commentUser;         // 댓글작성자
+    private String commentContent;      // 댓글
+
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",  timezone = "Asia/Seoul")
     private LocalDateTime createdAt;   // 생성날짜

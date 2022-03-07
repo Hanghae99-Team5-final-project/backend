@@ -1,2 +1,33 @@
-package com.sparta.team5finalproject.dto;public class CodyResponseDto {
+package com.sparta.team5finalproject.dto;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sparta.team5finalproject.model.Cody;
+import com.sparta.team5finalproject.model.Comment;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class CodyResponseDto {
+    private Long codyId;            // 코디글 ID
+//    private Long userId;            // 작성자 ID
+    private String codyTitle;
+    private String watchBrand;
+    private String watchModel;
+    private String codyContent;
+    private String imageUrl;
+    private String star;
+    private List<CommentResopnseDto> commentResopnseDtoList;
+
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",  timezone = "Asia/Seoul")
+    private LocalDateTime createdAt; // 생성날짜
+
 }
