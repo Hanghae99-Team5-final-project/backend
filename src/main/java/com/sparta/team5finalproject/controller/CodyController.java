@@ -3,6 +3,7 @@ package com.sparta.team5finalproject.controller;
 
 //import com.sparta.team5finalproject.dto.CodyMypriceRequestDto;
 import com.sparta.team5finalproject.dto.CodyRequestDto;
+import com.sparta.team5finalproject.dto.CodyResponseDto;
 import com.sparta.team5finalproject.model.Cody;
 import com.sparta.team5finalproject.model.User;
 import com.sparta.team5finalproject.model.UserRoleEnum;
@@ -12,6 +13,9 @@ import com.sparta.team5finalproject.service.CodyService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -32,26 +36,35 @@ public class CodyController {
         this.codyRepository = codyRepository;
     }
 
-    // 신규 상품 등록
+    // 신규 코디 글 등록
     @PostMapping("/api/cody")
     public void createCody(@RequestBody CodyRequestDto codyRequestDto,
                            @AuthenticationPrincipal UserDetailsImpl userDetails,
-                           @RequestPart(value = "multipartFile", required = false) List<MultipartFile> multipartFile) {
-
+                           @RequestPart(value = "multipartFile", required = false) MultipartFile multipartFile) throws IOException {
         codyService.createCody(codyRequestDto, userDetails.getUser(), multipartFile);
     }
 
 
-    // 게시글 작성
-    @PostMapping("/api/post")
-    public void createPost(@AuthenticationPrincipal UserDetailsImpl userDetails,
-                           @RequestPart(value = "data") PostRequestDto postRequestDto,
-                           @RequestPart(value = "multipartFile", required = false) List<MultipartFile> multipartFile
-    ) throws IOException {
-        postService.createPost(userDetails.getUser(), postRequestDto, multipartFile);
+
+    // 코디 상세게시글 조회
+    @GetMapping("/api/cody/{codyId}")
+    public CodyResponseDto readDetailCody(@PathVariable Long codyId,
+                                      @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return codyService.readDetailCody(codyId, userDetails.getUser());
     }
 
+    // 시계 코디 게시글 수정
+    @PutMapping("/api/cody/{codyId}")
 
+
+    // 코디 목록 불러오기
+    @GetMapping("/api/cody")
+    public List<CodyResponseDto> getIntCody(@RequestParam int page,
+                                            @RequestParam int size,
+                                            @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
+        return codyService.getIntCody(pageable, userDetails.getUser());
+    }
 
 
 

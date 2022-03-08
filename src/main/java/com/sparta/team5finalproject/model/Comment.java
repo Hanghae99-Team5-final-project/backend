@@ -1,5 +1,6 @@
 package com.sparta.team5finalproject.model;
 
+import com.sparta.team5finalproject.dto.CommentRequestDto;
 import com.sparta.team5finalproject.util.Timestamped;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,9 +32,15 @@ public abstract class Comment extends Timestamped {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    public Comment(Long id, String commentUser, String commentContent, User user) {
+        this.id = id;
+        this.commentUser = commentUser;
+        this.commentContent = commentContent;
+        this.user = user;
+    }
 
-//    public Comment(String name, User user) {
-//        this.name = name;
-//        this.user = user;
-//    }
+    public void update(CommentRequestDto commentRequestDto) {
+        this.commentContent = commentRequestDto.getCommentContent();
+    }
+
 }

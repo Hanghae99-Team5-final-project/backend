@@ -1,6 +1,7 @@
 package com.sparta.team5finalproject.model;
 
 import com.sparta.team5finalproject.dto.CodyRequestDto;
+import com.sparta.team5finalproject.util.Timestamped;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 //@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cody {
+public class Cody extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
