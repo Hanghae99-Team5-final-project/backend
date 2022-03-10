@@ -22,7 +22,7 @@ public abstract class Comment extends Timestamped {
     private Long id;
 
     @Column(nullable = false)
-    private String commentUser;
+    private String commentUsername;
 
     @Column(nullable = false)
     private String commentContent;
