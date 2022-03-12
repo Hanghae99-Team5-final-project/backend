@@ -16,7 +16,6 @@ import java.util.List;
 public class User extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -90,11 +89,5 @@ public class User extends Timestamped {
             this.naverId = naverId;
         }
     }
-
-
-// new User(a, 1234, aa@aa.com, ADMIN, abc)
-
-    // --------------------------------------------------------------------------------------------성원
-
 
 }

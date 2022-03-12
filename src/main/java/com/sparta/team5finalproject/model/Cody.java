@@ -5,18 +5,18 @@ import com.sparta.team5finalproject.util.Timestamped;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity
+//@Builder
 @Getter
 @Setter
-//@Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Cody extends Timestamped {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -35,11 +35,25 @@ public class Cody extends Timestamped {
     @Column(nullable = false)
     private String codyContent;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String imageUrl;
 
     @Column(nullable = false)
     private String star;
 
+    @OneToMany(mappedBy = "cody", cascade = CascadeType.ALL)    // 게시글 삭제 => 해당 게시글 댓글 모두 삭제
+    private final List<CodyComment> codyCommentList = new ArrayList<>();
+
+
+
+    //--------------------성원
+    public void update(CodyRequestDto codyRequestDto) {
+        this.codyTitle = codyRequestDto.getCodyTitle();
+        this.watchBrand = codyRequestDto.getWatchBrand();
+        this.watchModel = codyRequestDto.getWatchModel();
+        this.codyContent = codyRequestDto.getCodyContent();
+//        this.imageUrl = codyRequestDto.getImageUrl();
+        this.star = codyRequestDto.getStar();
+    }
 
 }

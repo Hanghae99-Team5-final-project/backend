@@ -1,7 +1,9 @@
 package com.sparta.team5finalproject.dto;
 
-import lombok.Getter;
+import lombok.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 public class CodyRequestDto {
     private Long userId;
@@ -9,6 +11,6 @@ public class CodyRequestDto {
     private String watchBrand;
     private String watchModel;
     private String codyContent;
-    private String imageUrl;
+//    private String imageUrl;
     private String star;
 }

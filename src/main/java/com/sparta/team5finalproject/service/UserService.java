@@ -24,7 +24,7 @@ public class UserService {
 //        this.passwordEncoder = passwordEncoder;
 //    }
 
-    public User registerUser(SignupRequestDto requestDto) {
+    public void registerUser(SignupRequestDto requestDto) {
         // 회원 ID 중복 확인
         String username = requestDto.getUsername();
         Optional<User> found = userRepository.findByUsername(username);
@@ -33,23 +33,28 @@ public class UserService {
         }
 
         // 패스워드 암호화
+<<<<<<< HEAD
 //        String password = passwordEncoder.encode(requestDto.getPassword());
         String password = requestDto.getPassword();
+=======
+        String password = passwordEncoder.encode(requestDto.getPassword());
+//        String password = requestDto.getPassword();
+>>>>>>> 84b6353e75f8e26db9ab1a16ecf6572eddd4bfd1
         String email = requestDto.getEmail();
 
         // 사용자 ROLE 확인
         UserRoleEnum role = UserRoleEnum.USER;
-        if (requestDto.isAdmin()) {
-            if (!requestDto.getAdminToken().equals(ADMIN_TOKEN)) {
-                throw new IllegalArgumentException("관리자 암호가 틀려 등록이 불가능합니다.");
-            }
-            role = UserRoleEnum.ADMIN;
-        }
+//        if (requestDto.getAdmin()==true) {
+//            if (!requestDto.getAdminToken().equals(ADMIN_TOKEN)) {
+//                throw new IllegalArgumentException("관리자 암호가 틀려 등록이 불가능합니다.");
+//            }
+//            role = UserRoleEnum.ADMIN;
+//        }
 
         User user = new User(username, password, email, role);
         userRepository.save(user);
 
-        return user;
+//        return user;
     }
 
     public User userService(SignupRequestDto signupRequestDto) {
