@@ -1,4 +1,4 @@
-package com.sparta.mbti.dto.request;
+package com.sparta.team5finalproject.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

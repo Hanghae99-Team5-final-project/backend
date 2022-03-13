@@ -16,9 +16,7 @@ import javax.persistence.ManyToOne;
 //@DiscriminatorValue : 엔티티 저장 시 구분 컬럼에 입력할 값을 지정
 @DiscriminatorValue("WATCH")
 public class WatchComment extends Comment{
-
     @ManyToOne
     @JoinColumn(name = "watch_id", nullable = true) // name = watch_id
     private Watch watch;
-
 }

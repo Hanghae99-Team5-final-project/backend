@@ -1,4 +1,4 @@
-package com.sparta.springcore.security.jwt;
+package com.sparta.team5finalproject.security.jwt;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 

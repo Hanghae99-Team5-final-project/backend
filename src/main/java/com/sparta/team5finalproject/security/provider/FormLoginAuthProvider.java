@@ -1,6 +1,6 @@
-package com.sparta.springcore.security.provider;
+package com.sparta.team5finalproject.security.provider;
 
-import com.sparta.springcore.security.UserDetailsImpl;
+import com.sparta.team5finalproject.security.UserDetailsImpl;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

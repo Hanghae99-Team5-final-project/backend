@@ -19,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,6 +29,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController // JSON으로 데이터를 주고받음을 선언합니다.
+//@Controller
 public class CodyController {
     private final UserRepository userRepository;
     private final CodyService codyService;
@@ -38,28 +40,31 @@ public class CodyController {
 //        this.codyService = codyService;
 //    }
 
+    // 신규 코디 글 등록
+    @PostMapping("/api/cody")
+    public void createCody(@ModelAttribute CodyRequestDto codyRequestDto,
+                           @AuthenticationPrincipal UserDetailsImpl userDetails,
+                           @RequestPart(value = "multipartFile", required = false) MultipartFile multipartFile) throws IOException {
+        System.out.println("코디컨트롤의유저="+userDetails.getUser().getUsername());
+        System.out.println("코디컨트롤 코디리퀘스트DTO의타이틀="+codyRequestDto.getCodyTitle());
+        codyService.createCody(codyRequestDto, userDetails.getUser(), multipartFile);
+    }
+
+
+
+//////////////////////////////////////시큐리티 없이 테스트용///////////////////////////////////////////////////////////
 //    // 신규 코디 글 등록
 //    @PostMapping("/api/cody")
 //    public void createCody(@RequestBody CodyRequestDto codyRequestDto,
-//                           @AuthenticationPrincipal UserDetailsImpl userDetails,
 //                           @RequestPart(value = "multipartFile", required = false) MultipartFile multipartFile) throws IOException {
-//        codyService.createCody(codyRequestDto, userDetails.getUser(), multipartFile);
+//        System.out.println("11111111111111111111111");
+//        User userDetails;
+//        Optional<User> optUser = userRepository.findByUsername("bbb");
+//        userDetails = optUser.get();
+//        System.out.println("222222222222222222222="+userDetails.getUsername());
+//        codyService.createCody(codyRequestDto, userDetails, multipartFile);
 //    }
-
-
-////////////////////////////////////시큐리티 없이 테스트용///////////////////////////////////////////////////////////
-    // 신규 코디 글 등록
-    @PostMapping("/api/cody")
-    public void createCody(@RequestBody CodyRequestDto codyRequestDto,
-                           @RequestPart(value = "multipartFile", required = false) MultipartFile multipartFile) throws IOException {
-        System.out.println("11111111111111111111111");
-        User userDetails;
-        Optional<User> optUser = userRepository.findByUsername("bbb");
-        userDetails = optUser.get();
-        System.out.println("222222222222222222222="+userDetails.getUsername());
-        codyService.createCody(codyRequestDto, userDetails, multipartFile);
-    }
-///////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 

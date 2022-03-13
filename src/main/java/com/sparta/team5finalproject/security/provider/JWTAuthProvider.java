@@ -1,10 +1,10 @@
-package com.sparta.springcore.security.provider;
+package com.sparta.team5finalproject.security.provider;
 
-import com.sparta.springcore.model.User;
-import com.sparta.springcore.repository.UserRepository;
-import com.sparta.springcore.security.UserDetailsImpl;
-import com.sparta.springcore.security.jwt.JwtDecoder;
-import com.sparta.springcore.security.jwt.JwtPreProcessingToken;
+import com.sparta.team5finalproject.model.User;
+import com.sparta.team5finalproject.repository.UserRepository;
+import com.sparta.team5finalproject.security.UserDetailsImpl;
+import com.sparta.team5finalproject.security.jwt.JwtDecoder;
+import com.sparta.team5finalproject.security.jwt.JwtPreProcessingToken;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

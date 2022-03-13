@@ -18,33 +18,33 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final CodyRepository codyRepository;
 
-//    //댓글 생성
-//    public void createComment(CommentRequestDto commentRequestDto, UserDetailsImpl userDetails){
-//        Cody cody = codyRepository.findById(commentRequestDto.getCodyId()).orElseThrow(
-//                ()->new NullPointerException("존재하지 않는 게시글 입니다."));
-//        CodyComment codyComment = new CodyComment();
-//        codyComment.setCommentContent(commentRequestDto.getCommentContent());
-//        codyComment.setUser(userDetails.getUser());
-//        codyComment.setCommentUsername(userDetails.getUsername());
-//        codyComment.setCody(cody);
-//
-//        commentRepository.save(codyComment);
-//    }
-
-
-    ////////////////////////////////////시큐리티 없이 테스트용///////////////////////////////////////////////////////////
-    public void createComment(CommentRequestDto commentRequestDto, User user){
+    //댓글 생성
+    public void createComment(CommentRequestDto commentRequestDto, UserDetailsImpl userDetails){
         Cody cody = codyRepository.findById(commentRequestDto.getCodyId()).orElseThrow(
                 ()->new NullPointerException("존재하지 않는 게시글 입니다."));
         CodyComment codyComment = new CodyComment();
         codyComment.setCommentContent(commentRequestDto.getCommentContent());
-        codyComment.setUser(user);
-        codyComment.setCommentUsername(user.getUsername());
+        codyComment.setUser(userDetails.getUser());
+        codyComment.setCommentUsername(userDetails.getUsername());
         codyComment.setCody(cody);
 
         commentRepository.save(codyComment);
     }
-    ////////////////////////////////////시큐리티 없이 테스트용///////////////////////////////////////////////////////////
+
+
+//    ////////////////////////////////////시큐리티 없이 테스트용///////////////////////////////////////////////////////////
+//    public void createComment(CommentRequestDto commentRequestDto, User user){
+//        Cody cody = codyRepository.findById(commentRequestDto.getCodyId()).orElseThrow(
+//                ()->new NullPointerException("존재하지 않는 게시글 입니다."));
+//        CodyComment codyComment = new CodyComment();
+//        codyComment.setCommentContent(commentRequestDto.getCommentContent());
+//        codyComment.setUser(user);
+//        codyComment.setCommentUsername(user.getUsername());
+//        codyComment.setCody(cody);
+//
+//        commentRepository.save(codyComment);
+//    }
+//    ////////////////////////////////////시큐리티 없이 테스트용///////////////////////////////////////////////////////////
 
 
 

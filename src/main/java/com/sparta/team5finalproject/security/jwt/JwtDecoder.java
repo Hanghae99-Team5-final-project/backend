@@ -1,4 +1,4 @@
-package com.sparta.springcore.security.jwt;
+package com.sparta.team5finalproject.security.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.Optional;
 
-import static com.sparta.springcore.security.jwt.JwtTokenUtils.*;
+import static com.sparta.team5finalproject.security.jwt.JwtTokenUtils.*;
 
 @Component
 public class JwtDecoder {

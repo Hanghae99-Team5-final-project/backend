@@ -1,10 +1,10 @@
-package com.sparta.springcore.security;
+package com.sparta.team5finalproject.security;
 
-import com.sparta.springcore.security.filter.FormLoginFilter;
-import com.sparta.springcore.security.filter.JwtAuthFilter;
-import com.sparta.springcore.security.jwt.HeaderTokenExtractor;
-import com.sparta.springcore.security.provider.FormLoginAuthProvider;
-import com.sparta.springcore.security.provider.JWTAuthProvider;
+import com.sparta.team5finalproject.security.filter.FormLoginFilter;
+import com.sparta.team5finalproject.security.filter.JwtAuthFilter;
+import com.sparta.team5finalproject.security.jwt.HeaderTokenExtractor;
+import com.sparta.team5finalproject.security.provider.FormLoginAuthProvider;
+import com.sparta.team5finalproject.security.provider.JWTAuthProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -123,6 +123,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // 회원 관리 API 허용
         skipPathList.add("GET,/user/**");
         skipPathList.add("POST,/user/signup");
+        skipPathList.add("POST,/user/login");
+
 
         skipPathList.add("GET,/");
         skipPathList.add("GET,/basic.js");

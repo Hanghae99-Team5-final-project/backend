@@ -18,27 +18,27 @@ public class CommentController {
     private final CommentService commentService;
     private final UserRepository userRepository;
 
-//    //댓글 생성
-//    @PostMapping("/comment/write/")
-//    public void createComment(
-//            @RequestBody CommentRequestDto commentRequestDto,
-//            @AuthenticationPrincipal UserDetailsImpl userDetails){
-//            commentService.createComment(commentRequestDto, userDetails);
-//    }
-
-    ////////////////////////////////////시큐리티 없이 테스트용///////////////////////////////////////////////////////////
     //댓글 생성
-    @PostMapping("/comment/write")
+    @PostMapping("/comment/write/")
     public void createComment(
-            @RequestBody CommentRequestDto commentRequestDto){
-        System.out.println("11111111111111111111111");
-        User userDetails;
-        Optional<User> optUser = userRepository.findByUsername("bbb");
-        userDetails = optUser.get();
-        System.out.println("222222222222222222222="+userDetails.getUsername());
-        commentService.createComment(commentRequestDto, userDetails);
+            @RequestBody CommentRequestDto commentRequestDto,
+            @AuthenticationPrincipal UserDetailsImpl userDetails){
+            commentService.createComment(commentRequestDto, userDetails);
     }
-    ////////////////////////////////////시큐리티 없이 테스트용///////////////////////////////////////////////////////////
+
+//    ////////////////////////////////////시큐리티 없이 테스트용///////////////////////////////////////////////////////////
+//    //댓글 생성
+//    @PostMapping("/comment/write")
+//    public void createComment(
+//            @RequestBody CommentRequestDto commentRequestDto){
+//        System.out.println("11111111111111111111111");
+//        User userDetails;
+//        Optional<User> optUser = userRepository.findByUsername("bbb");
+//        userDetails = optUser.get();
+//        System.out.println("222222222222222222222="+userDetails.getUsername());
+//        commentService.createComment(commentRequestDto, userDetails);
+//    }
+//    ////////////////////////////////////시큐리티 없이 테스트용///////////////////////////////////////////////////////////
 
 
 

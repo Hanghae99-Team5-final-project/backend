@@ -1,8 +1,8 @@
-package com.sparta.springcore.security.jwt;
+package com.sparta.team5finalproject.security.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.sparta.springcore.security.UserDetailsImpl;
+import com.sparta.team5finalproject.security.UserDetailsImpl;
 
 import java.util.Date;
 

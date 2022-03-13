@@ -61,12 +61,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 // 토큰이름?
                 .withSubject("jwtToken : "+userDetails.getUser().getUsername())
                 // 유효시간
-                .withClaim("expireDate", new Date(System.currentTimeMillis()+ com.sparta.team5finalproject.security.JwtProperties.tokenValidTime))
+                .withClaim("expireDate", new Date(System.currentTimeMillis()+ JwtProperties.tokenValidTime))
                 // jwt확인용 username
                 .withClaim("username", userDetails.getUser().getUsername())
                 // secretkey와 함께 HMAC256 복호화
-                .sign(Algorithm.HMAC256(com.sparta.team5finalproject.security.JwtProperties.secretKey));
+                .sign(Algorithm.HMAC256(JwtProperties.secretKey));
 
-        response.addHeader(com.sparta.team5finalproject.security.JwtProperties.HEADER_STRING, com.sparta.team5finalproject.security.JwtProperties.TOKEN_PREFIX + jwtToken);
+        response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX + jwtToken);
     }
 }

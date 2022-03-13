@@ -36,19 +36,19 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         System.out.println("인증이나 권한이 필요한 주소 요청임");
 
-        String jwtHeader = request.getHeader(com.sparta.team5finalproject.security.JwtProperties.HEADER_STRING);
+        String jwtHeader = request.getHeader(JwtProperties.HEADER_STRING);
         System.out.println("jwtHeader : " + jwtHeader);
 
         // header에서 jwt토큰이 없거나 Bearer 타입이 아니면 다시 필터를 타게함.
-        if(jwtHeader == null || !jwtHeader.startsWith(com.sparta.team5finalproject.security.JwtProperties.TOKEN_PREFIX)) {
+        if(jwtHeader == null || !jwtHeader.startsWith(JwtProperties.TOKEN_PREFIX)) {
             chain.doFilter(request,response);
             return;
         }
 
         //헤더에서 토큰 가져오기
-        String jwtToken = request.getHeader(com.sparta.team5finalproject.security.JwtProperties.HEADER_STRING).replace(com.sparta.team5finalproject.security.JwtProperties.TOKEN_PREFIX,"");
+        String jwtToken = request.getHeader(JwtProperties.HEADER_STRING).replace(JwtProperties.TOKEN_PREFIX,"");
         // 토큰에서 유효시간 빼기
-        Date expireDate = JWT.require(Algorithm.HMAC256(com.sparta.team5finalproject.security.JwtProperties.secretKey)).build().verify(jwtToken).getClaim("expireDate").asDate();
+        Date expireDate = JWT.require(Algorithm.HMAC256(JwtProperties.secretKey)).build().verify(jwtToken).getClaim("expireDate").asDate();
         System.out.println("토큰 유효시간 : " + expireDate);
         Date now = new Date();
         System.out.println("현재시간 : " + now);
@@ -60,7 +60,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         }
 
         // JWT토큰에서 username 빼기
-        String username = JWT.require(Algorithm.HMAC256(com.sparta.team5finalproject.security.JwtProperties.secretKey)).build().verify(jwtToken).getClaim("username").asString();
+        String username = JWT.require(Algorithm.HMAC256(JwtProperties.secretKey)).build().verify(jwtToken).getClaim("username").asString();
 
         // 서명이 정상적으로 됨
         if(username != null){

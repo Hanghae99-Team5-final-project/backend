@@ -53,14 +53,14 @@ public class CodyService {
     //코디 글 생성
     @Transactional
     public void createCody(CodyRequestDto codyRequestDto, User user, MultipartFile multipartFile) throws IOException {
-        System.out.println("33333333333333333333333="+user.getUsername());
+        System.out.println("코디서비스 코디리퀘스트DTO의타이틀="+codyRequestDto.getCodyTitle());
 
         if (user != null) {
             System.out.println("44444444444444444444444");
             String imgUrl = "";
-//            if (multipartFile.getSize() != 0) {
-//                imgUrl = s3Uploader.upload(multipartFile, imageDirName);
-//            }
+            if (multipartFile.getSize() != 0) {
+                imgUrl = s3Uploader.upload(multipartFile, imageDirName);
+            }
 
             System.out.println("4444444444444444422222222222222");
 
@@ -74,7 +74,7 @@ public class CodyService {
             cody.setStar(codyRequestDto.getStar());
             cody.setUser(user);
 
-            System.out.println("55555555555555555555555555");
+            System.out.println("55555555555555555555555555="+cody.getCodyTitle());
 
 
             // DB 저장

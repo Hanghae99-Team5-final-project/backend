@@ -1,7 +1,7 @@
-package com.sparta.springcore.security;
+package com.sparta.team5finalproject.security;
 
-import com.sparta.springcore.model.User;
-import com.sparta.springcore.model.UserRoleEnum;
+import com.sparta.team5finalproject.model.User;
+import com.sparta.team5finalproject.model.UserRoleEnum;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

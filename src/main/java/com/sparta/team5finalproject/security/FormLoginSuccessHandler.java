@@ -1,7 +1,7 @@
-package com.sparta.springcore.security;
+package com.sparta.team5finalproject.security;
 
-import com.sparta.springcore.security.UserDetailsImpl;
-import com.sparta.springcore.security.jwt.JwtTokenUtils;
+import com.sparta.team5finalproject.security.UserDetailsImpl;
+import com.sparta.team5finalproject.security.jwt.JwtTokenUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;

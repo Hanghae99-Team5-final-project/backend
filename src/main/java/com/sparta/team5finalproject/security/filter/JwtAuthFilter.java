@@ -1,7 +1,7 @@
-package com.sparta.springcore.security.filter;
+package com.sparta.team5finalproject.security.filter;
 
-import com.sparta.springcore.security.jwt.HeaderTokenExtractor;
-import com.sparta.springcore.security.jwt.JwtPreProcessingToken;
+import com.sparta.team5finalproject.security.jwt.HeaderTokenExtractor;
+import com.sparta.team5finalproject.security.jwt.JwtPreProcessingToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
