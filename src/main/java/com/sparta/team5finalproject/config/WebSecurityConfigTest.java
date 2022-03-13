@@ -1,15 +1,14 @@
-package com.sparta.springcore.security;
+package com.sparta.team5finalproject.config;
 
-import com.sparta.springcore.security.filter.FormLoginFilter;
-import com.sparta.springcore.security.filter.JwtAuthFilter;
-import com.sparta.springcore.security.jwt.HeaderTokenExtractor;
-import com.sparta.springcore.security.provider.FormLoginAuthProvider;
-import com.sparta.springcore.security.provider.JWTAuthProvider;
+import com.sparta.team5finalproject.security.FilterSkipMatcher;
+import com.sparta.team5finalproject.security.filter.JwtAuthFilter;
+import com.sparta.team5finalproject.security.jwt.HeaderTokenExtractor;
+import com.sparta.team5finalproject.security.provider.JWTAuthProvider;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,25 +16,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-@EnableWebSecurity // 스프링 Security 지원을 가능하게 함
-@EnableGlobalMethodSecurity(securedEnabled = true) // @Secured 어노테이션 활성화
+@RequiredArgsConstructor
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
     private final JWTAuthProvider jwtAuthProvider;
     private final HeaderTokenExtractor headerTokenExtractor;
-
-    public WebSecurityConfig(
-            JWTAuthProvider jwtAuthProvider,
-            HeaderTokenExtractor headerTokenExtractor
-    ) {
-        this.jwtAuthProvider = jwtAuthProvider;
-        this.headerTokenExtractor = headerTokenExtractor;
-    }
 
     @Bean
     public BCryptPasswordEncoder encodePassword() {
@@ -44,41 +37,47 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) {
+        // CustomAuthenticationProvider()를 호출하기 위해서 Overriding
         auth
-                .authenticationProvider(formLoginAuthProvider())
                 .authenticationProvider(jwtAuthProvider);
     }
 
     @Override
     public void configure(WebSecurity web) {
         // h2-console 사용에 대한 허용 (CSRF, FrameOptions 무시)
+        // nginx: /profile, /actuator/**, /health, /version 추가
         web
                 .ignoring()
-                .antMatchers("/h2-console/**");
+                .antMatchers("/h2-console/**", "/profile", "/actuator/**", "/health", "/version");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
 
+        // cors설정 추가
+        http
+                .cors()
+                .configurationSource(corsConfigurationSource());
+
         // 서버에서 인증은 JWT로 인증하기 때문에 Session의 생성을 막습니다.
         http
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-/*
+        /*
          * 1.
-         * UsernamePasswordAuthenticationFilter 이전에 FormLoginFilter, JwtFilter 를 등록합니다.
-         * FormLoginFilter : 로그인 인증을 실시합니다.
+         * UsernamePasswordAuthenticationFilter 이전에 JwtFilter 를 등록합니다.
          * JwtFilter       : 서버에 접근시 JWT 확인 후 인증을 실시합니다.
          */
+
         http
-                .addFilterBefore(formLoginFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
 
         http.authorizeRequests()
-                .anyRequest()
-                .permitAll()
+                // 어떤 요청이든 허용
+                //.antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .anyRequest().permitAll()
                 .and()
                 // [로그아웃 기능]
                 .logout()
@@ -86,48 +85,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/user/logout")
                 .permitAll()
                 .and()
-                .exceptionHandling()
-                // "접근 불가" 페이지 URL 설정
-                .accessDeniedPage("/forbidden.html");
-    }
-
-    @Bean
-    public FormLoginFilter formLoginFilter() throws Exception {
-        FormLoginFilter formLoginFilter = new FormLoginFilter(authenticationManager());
-        formLoginFilter.setFilterProcessesUrl("/user/login");
-        formLoginFilter.setAuthenticationSuccessHandler(formLoginSuccessHandler());
-        formLoginFilter.afterPropertiesSet();
-        return formLoginFilter;
-    }
-
-    @Bean
-    public FormLoginSuccessHandler formLoginSuccessHandler() {
-        return new FormLoginSuccessHandler();
-    }
-
-    @Bean
-    public FormLoginAuthProvider formLoginAuthProvider() {
-        return new FormLoginAuthProvider(encodePassword());
+                .exceptionHandling();
     }
 
     private JwtAuthFilter jwtFilter() throws Exception {
         List<String> skipPathList = new ArrayList<>();
+        // 이 부분은 JWT 토큰이 불필요한 API 만 넣어주는 곳 (JWT 필터를 안거치므로 토큰 생성안됨)
 
-        // Static 정보 접근 허용
-        skipPathList.add("GET,/images/**");
-        skipPathList.add("GET,/css/**");
+        // 카카오 로그인 페이지 허용
+        skipPathList.add("GET,/user/kakao/callback");
 
-        // h2-console 허용
-        skipPathList.add("GET,/h2-console/**");
-        skipPathList.add("POST,/h2-console/**");
-        // 회원 관리 API 허용
-        skipPathList.add("GET,/user/**");
-        skipPathList.add("POST,/user/signup");
+        // 로그인 페이지 허용
+        skipPathList.add("POST,/user/login");
 
-        skipPathList.add("GET,/");
-        skipPathList.add("GET,/basic.js");
+        // 둘러보기 허용
+        skipPathList.add("GET,/api/chemy/guest");
 
-        skipPathList.add("GET,/favicon.ico");
+        // 채팅
+        skipPathList.add("GET,/chat/room/**");
+        skipPathList.add("GET,/sub/chat/room/**");
+        skipPathList.add("GET,/pub/chat/room/**");
+        skipPathList.add("GET,/ws-stomp/pub/chat/room/**");
+        skipPathList.add("GET,/ws-stompAlarm/pub/chat/room/**");
+        skipPathList.add("GET,**/pub/chat/room/**");
+        skipPathList.add("GET,**/sub/chat/room/**");
+        skipPathList.add("GET,/ws-stomp/**");
 
         FilterSkipMatcher matcher = new FilterSkipMatcher(
                 skipPathList,
@@ -147,5 +129,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+//        configuration.addAllowedOrigin("http://localhost:3000"); // 배포 주소
+        configuration.addAllowedOrigin("*"); // 배포 주소
+        configuration.setAllowCredentials(true);
+        configuration.addAllowedMethod("*");
+        configuration.addAllowedHeader("*");
+        configuration.addExposedHeader("Authorization");
+        configuration.addAllowedOriginPattern("*");
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }
