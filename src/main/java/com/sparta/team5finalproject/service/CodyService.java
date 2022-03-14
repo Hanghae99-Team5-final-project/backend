@@ -80,9 +80,9 @@ public class CodyService {
             // DB 저장
             codyRepository.save(cody);
 
-            } else {
-                throw new NullPointerException("로그인하지 않았습니다.");
-            }
+        } else {
+            throw new NullPointerException("로그인하지 않았습니다.");
+        }
 
     }
 

@@ -75,7 +75,7 @@ public class CodyController {
     // 코디 상세게시글 조회
     @GetMapping("/api/cody/{codyId}")
     public CodyResponseDto readDetailCody(@PathVariable Long codyId,
-                                      @AuthenticationPrincipal UserDetailsImpl userDetails) {
+                                          @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return codyService.readDetailCody(codyId, userDetails.getUser());
     }
 

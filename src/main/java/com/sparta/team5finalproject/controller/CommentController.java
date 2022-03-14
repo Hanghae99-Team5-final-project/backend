@@ -46,8 +46,8 @@ public class CommentController {
     //댓글 수정
     @PutMapping("/comment/update/{commentId}")
     public void updateComment(@PathVariable Long commentId,
-                                            @RequestBody CommentRequestDto commentRequestDto,
-                                            @AuthenticationPrincipal UserDetailsImpl userDetails){
+                              @RequestBody CommentRequestDto commentRequestDto,
+                              @AuthenticationPrincipal UserDetailsImpl userDetails){
         commentService.updateComment(commentId, commentRequestDto,userDetails);
     }
 
