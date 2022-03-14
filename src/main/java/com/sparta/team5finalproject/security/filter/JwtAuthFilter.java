@@ -1,6 +1,9 @@
 package com.sparta.team5finalproject.security.filter;
 
+import com.sparta.team5finalproject.security.FilterSkipMatcher;
 import com.sparta.team5finalproject.security.jwt.HeaderTokenExtractor;
+import org.json.JSONObject;
+import org.springframework.http.HttpStatus;
 import com.sparta.team5finalproject.security.jwt.JwtPreProcessingToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -14,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Token 을 내려주는 Filter 가 아닌  client 에서 받아지는 Token 을 서버 사이드에서 검증하는 클레스 SecurityContextHolder 보관소에 해당
@@ -24,7 +28,7 @@ public class JwtAuthFilter extends AbstractAuthenticationProcessingFilter {
     private final HeaderTokenExtractor extractor;
 
     public JwtAuthFilter(
-            RequestMatcher requiresAuthenticationRequestMatcher,
+            FilterSkipMatcher requiresAuthenticationRequestMatcher,
             HeaderTokenExtractor extractor
     ) {
         super(requiresAuthenticationRequestMatcher);
@@ -41,9 +45,20 @@ public class JwtAuthFilter extends AbstractAuthenticationProcessingFilter {
         // JWT 값을 담아주는 변수 TokenPayload
         String tokenPayload = request.getHeader("Authorization");
         if (tokenPayload == null) {
-            response.sendRedirect("/user/loginView");
-            return null;
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setContentType("application/json;charset=utf-8");
+            JSONObject json = new JSONObject();
+            String message = "토큰이 존재하지 않습니다.";
+            json.put("httpStatus", HttpStatus.UNAUTHORIZED);
+            json.put("errorMessage", message);
+
+            PrintWriter out = response.getWriter();
+            out.print(json);
+
+//            response.sendRedirect("/user/login");
+//            return null;
         }
+        System.out.println("tokenPayload :"+tokenPayload);
 
         JwtPreProcessingToken jwtToken = new JwtPreProcessingToken(
                 extractor.extract(tokenPayload, request));
