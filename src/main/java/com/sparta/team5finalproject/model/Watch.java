@@ -1,40 +1,39 @@
 package com.sparta.team5finalproject.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
-@Entity
-@Getter
-@Setter
-//@Builder
+@Data
+@AllArgsConstructor
 @NoArgsConstructor
-public class  Watch {
+@Builder
+@Accessors(chain = true)
+@Getter
+@Entity
+public class Watch {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long watchId;
 
     @Column(nullable = false)
-    private String watchImage;
+    private String watchImageUrl; // 이미지
 
     @Column(nullable = false)
-    private String watchBrand;
+    private String watchBrand; // 브랜드
 
     @Column(nullable = false)
-    private String watchModel;
+    private String lowestPrice; // 가격
 
-    @Column(nullable = false)
-    private Long lowestPrice;
+    @Column(nullable = true)
+    private String category; // 남성 시계
 
-    @Column(nullable = false)
-    private String link;
-
-    @Column(nullable = false)
-    private String category;
-
+    public Watch(String s, String s1, String s2) {
+        this.watchImageUrl = s;
+        this.watchBrand = s1;
+        this.lowestPrice = s2;
+        this.category = "남성시계";
+    }
 }
