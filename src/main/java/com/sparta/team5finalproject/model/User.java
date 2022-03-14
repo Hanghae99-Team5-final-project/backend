@@ -52,20 +52,6 @@ public class User extends Timestamped {
     //CascadeType.ALL : 모든 Cascade 적용
 
 
-//    public User(SignUpRequestDto signUpRequestDto, String encodedPassword) {
-//        this.username = signUpRequestDto.getUsername();
-//        this.nickname = signUpRequestDto.getNickname();
-//        this.password = encodedPassword;
-//    }
-//
-//    @Builder
-//    public User(String username, String password, String nickname, Long kakaoId) {
-//        this.username = username;
-//        this.password = password;
-//        this.nickname = nickname;
-//        this.kakaoId = kakaoId;
-//    }
-
     // --------------------------------------------------------------------------------------------용만
     public User(String username, String password, String email, UserRoleEnum role){
         this.username = username;
@@ -75,6 +61,7 @@ public class User extends Timestamped {
         this.kakaoId = null;
         this.naverId = null;
     }
+
 
     public User(String username, String password, String email, UserRoleEnum role, Long kakaoId, Long naverId) {
         this.username = username;
