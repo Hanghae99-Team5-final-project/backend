@@ -38,7 +38,7 @@ public class Cody extends Timestamped {
     @Column(nullable = true)
     private String imageUrl;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String star;
 
     @OneToMany(mappedBy = "cody", cascade = CascadeType.ALL)    // 게시글 삭제 => 해당 게시글 댓글 모두 삭제

@@ -33,6 +33,7 @@ public class UserController {
     // 회원 가입 페이지
     @GetMapping("/user/signup")
     public String signup() {
+        System.out.println("회원가입");
         return "signup";
     }
 
