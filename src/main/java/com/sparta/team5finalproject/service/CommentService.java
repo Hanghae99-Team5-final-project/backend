@@ -7,7 +7,7 @@ import com.sparta.team5finalproject.model.Comment;
 import com.sparta.team5finalproject.model.User;
 import com.sparta.team5finalproject.repository.CodyRepository;
 import com.sparta.team5finalproject.repository.CommentRepository;
-import com.sparta.team5finalproject.security.UserDetailsImpl;
+import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

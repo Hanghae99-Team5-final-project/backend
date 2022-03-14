@@ -1,15 +1,16 @@
 package com.sparta.team5finalproject.security.filter;
 
+import com.sparta.team5finalproject.security.FilterSkipMatcher;
 import com.sparta.team5finalproject.security.jwt.HeaderTokenExtractor;
-import com.sparta.team5finalproject.security.jwt.JwtPreProcessingToken;
-import com.sparta.team5finalproject.security.provider.FilterSkipMatcher;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
+import com.sparta.team5finalproject.security.jwt.JwtPreProcessingToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

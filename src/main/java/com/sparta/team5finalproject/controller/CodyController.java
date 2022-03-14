@@ -7,7 +7,7 @@ import com.sparta.team5finalproject.model.User;
 import com.sparta.team5finalproject.model.UserRoleEnum;
 import com.sparta.team5finalproject.repository.CodyRepository;
 import com.sparta.team5finalproject.repository.UserRepository;
-import com.sparta.team5finalproject.security.UserDetailsImpl;
+import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import com.sparta.team5finalproject.service.CodyService;
 
 import jdk.nashorn.internal.runtime.options.Option;

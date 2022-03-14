@@ -3,7 +3,7 @@ package com.sparta.team5finalproject.controller;
 import com.sparta.team5finalproject.dto.commentDto.CommentRequestDto;
 import com.sparta.team5finalproject.model.User;
 import com.sparta.team5finalproject.repository.UserRepository;
-import com.sparta.team5finalproject.security.UserDetailsImpl;
+import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import com.sparta.team5finalproject.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

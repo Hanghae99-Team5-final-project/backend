@@ -2,7 +2,7 @@ package com.sparta.team5finalproject.security.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
+import com.sparta.team5finalproject.security.UserDetailsImpl;
 
 import java.util.Date;
 
@@ -15,7 +15,6 @@ public final class JwtTokenUtils {
 
     // JWT 토큰의 유효기간: 3일 (단위: seconds)
     private static final int JWT_TOKEN_VALID_SEC = 3 * DAY;
-    //    private static final int JWT_TOKEN_VALID_SEC = 5 * SEC;
     // JWT 토큰의 유효기간: 3일 (단위: milliseconds)
     private static final int JWT_TOKEN_VALID_MILLI_SEC = JWT_TOKEN_VALID_SEC * 1000;
 
@@ -29,7 +28,7 @@ public final class JwtTokenUtils {
             token = JWT.create()
                     .withIssuer("sparta")
                     .withClaim(CLAIM_USER_NAME, userDetails.getUsername())
-                    // 토큰 만료 일시 = 현재 시간 + 토큰 유효기간)
+                     // 토큰 만료 일시 = 현재 시간 + 토큰 유효기간)
                     .withClaim(CLAIM_EXPIRED_DATE, new Date(System.currentTimeMillis() + JWT_TOKEN_VALID_MILLI_SEC))
                     .sign(generateAlgorithm());
         } catch (Exception e) {

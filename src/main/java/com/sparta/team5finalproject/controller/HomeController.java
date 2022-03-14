@@ -3,7 +3,7 @@
 //
 //import com.sparta.team5finalproject.model.Comment;
 //import com.sparta.team5finalproject.model.UserRoleEnum;
-//import com.sparta.team5finalproject.security.UserDetailsImpl;
+//import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 //import com.sparta.team5finalproject.service.FolderService;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.annotation.AuthenticationPrincipal;
