@@ -14,7 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class UserService {
-//    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private static final String ADMIN_TOKEN = "AAABnv/xRVklrnYxKZ0aHgTBcXukeZygoC";
 
@@ -33,13 +33,8 @@ public class UserService {
         }
 
         // 패스워드 암호화
-<<<<<<< HEAD
-//        String password = passwordEncoder.encode(requestDto.getPassword());
-        String password = requestDto.getPassword();
-=======
         String password = passwordEncoder.encode(requestDto.getPassword());
 //        String password = requestDto.getPassword();
->>>>>>> 84b6353e75f8e26db9ab1a16ecf6572eddd4bfd1
         String email = requestDto.getEmail();
 
         // 사용자 ROLE 확인
@@ -56,11 +51,4 @@ public class UserService {
 
 //        return user;
     }
-
-    public User userService(SignupRequestDto signupRequestDto) {
-        User user = new User(signupRequestDto);
-        userRepository.save(user);
-        return user;
-    }
-
 }

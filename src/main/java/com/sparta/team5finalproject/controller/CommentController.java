@@ -1,29 +1,5 @@
 package com.sparta.team5finalproject.controller;
 
-<<<<<<< HEAD
-import com.sparta.team5finalproject.repository.CommentRepository;
-import com.sparta.team5finalproject.service.CommentService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class CommentController {
-    private final CommentRepository commentRepository;
-    private final CommentService commentService;
-
-    @Autowired
-    public CommentController(
-            CommentRepository commentRepository,
-            CommentService commentService) {
-        this.commentRepository = commentRepository;
-        this.commentService = commentService;
-    }
-
-    @PostMapping("/comment/write/{codyId}")
-
-    @PostMapping("/comment/write/{watchId}")
-=======
 import com.sparta.team5finalproject.dto.commentDto.CommentRequestDto;
 import com.sparta.team5finalproject.model.User;
 import com.sparta.team5finalproject.repository.UserRepository;
@@ -70,8 +46,8 @@ public class CommentController {
     //댓글 수정
     @PutMapping("/comment/update/{commentId}")
     public void updateComment(@PathVariable Long commentId,
-                                            @RequestBody CommentRequestDto commentRequestDto,
-                                            @AuthenticationPrincipal UserDetailsImpl userDetails){
+                              @RequestBody CommentRequestDto commentRequestDto,
+                              @AuthenticationPrincipal UserDetailsImpl userDetails){
         commentService.updateComment(commentId, commentRequestDto,userDetails);
     }
 
@@ -81,5 +57,4 @@ public class CommentController {
         commentService.deletecomment(commentId,userDetails);
     }
 
->>>>>>> 84b6353e75f8e26db9ab1a16ecf6572eddd4bfd1
 }

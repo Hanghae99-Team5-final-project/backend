@@ -47,7 +47,7 @@ public class CodyController {
 //    }
 
 
-////////////////////////////////////시큐리티 없이 테스트용///////////////////////////////////////////////////////////
+    ////////////////////////////////////시큐리티 없이 테스트용///////////////////////////////////////////////////////////
     // 신규 코디 글 등록
     @PostMapping("/api/cody")
     public void createCody(@RequestBody CodyRequestDto codyRequestDto,
@@ -70,7 +70,7 @@ public class CodyController {
     // 코디 상세게시글 조회
     @GetMapping("/api/cody/{codyId}")
     public CodyResponseDto readDetailCody(@PathVariable Long codyId,
-                                      @AuthenticationPrincipal UserDetailsImpl userDetails) {
+                                          @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return codyService.readDetailCody(codyId, userDetails.getUser());
     }
 

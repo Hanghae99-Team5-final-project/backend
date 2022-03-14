@@ -80,9 +80,9 @@ public class CodyService {
             // DB 저장
             codyRepository.save(cody);
 
-            } else {
-                throw new NullPointerException("로그인하지 않았습니다.");
-            }
+        } else {
+            throw new NullPointerException("로그인하지 않았습니다.");
+        }
 
     }
 
@@ -158,8 +158,6 @@ public class CodyService {
 
 
 
-<<<<<<< HEAD
-=======
     // 코디 상세글 수정
     @Transactional
     public void updateCody(Long codyId, User user, CodyRequestDto codyRequestDto) {
@@ -178,67 +176,10 @@ public class CodyService {
         // DB 저장
         codyRepository.save(cody);
     }
->>>>>>> 84b6353e75f8e26db9ab1a16ecf6572eddd4bfd1
 
 
 
 
-<<<<<<< HEAD
-//    public Cody updateCody(Long id, CodyMypriceRequestDto requestDto) {
-//        int myprice = requestDto.getMyprice();
-//        if (myprice < MIN_MY_PRICE) {
-//            throw new IllegalArgumentException("유효하지 않은 관심 가격입니다. 최소 " + MIN_MY_PRICE + " 원 이상으로 설정해 주세요.");
-//        }
-//
-//        Cody product = productRepository.findById(id)
-//                .orElseThrow(() -> new NullPointerException("해당 아이디가 존재하지 않습니다."));
-//
-//        product.setMyprice(myprice);
-//        productRepository.save(product);
-//
-//        return product;
-//    }
-//
-//    // 회원 ID 로 등록된 상품 조회
-//    public Page<Cody> getCodys(Long userId, int page, int size, String sortBy, boolean isAsc) {
-//        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
-//        Sort sort = Sort.by(direction, sortBy);
-//        Pageable pageable = PageRequest.of(page, size, sort);
-//
-//        return productRepository.findAllByUserId(userId, pageable);
-//    }
-//
-//    // (관리자용) 상품 전체 조회
-//    public Page<Cody> getAllCodys(int page, int size, String sortBy, boolean isAsc) {
-//        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
-//        Sort sort = Sort.by(direction, sortBy);
-//        Pageable pageable = PageRequest.of(page, size, sort);
-//
-//        return productRepository.findAll(pageable);
-//    }
-//
-//    @Transactional
-//    public Cody addFolder(Long productId, Long folderId, User user) {
-//        // 1) 상품을 조회합니다.
-//        Cody product = productRepository.findById(productId)
-//                .orElseThrow(() -> new NullPointerException("해당 상품 아이디가 존재하지 않습니다."));
-//
-//        // 2) 관심상품을 조회합니다.
-//        Comment folder = folderRepository.findById(folderId)
-//                .orElseThrow(() -> new NullPointerException("해당 폴더 아이디가 존재하지 않습니다."));
-//
-//        // 3) 조회한 폴더와 관심상품이 모두 로그인한 회원의 소유인지 확인합니다.
-//        Long loginUserId = user.getId();
-//        if (!product.getUserId().equals(loginUserId) || !folder.getUser().getId().equals(loginUserId)) {
-//            throw new IllegalArgumentException("회원님의 관심상품이 아니거나, 회원님의 폴더가 아닙니다~^^");
-//        }
-//
-//        // 4) 상품에 폴더를 추가합니다.
-//        product.addFolder(folder);
-//
-//        return product;
-//    }
-=======
     // 코디글 삭제
     @Transactional
     public void deleteCody(Long codyId, User user) {
@@ -255,5 +196,4 @@ public class CodyService {
         codyRepository.deleteById(codyId);
     }
 
->>>>>>> 84b6353e75f8e26db9ab1a16ecf6572eddd4bfd1
 }
