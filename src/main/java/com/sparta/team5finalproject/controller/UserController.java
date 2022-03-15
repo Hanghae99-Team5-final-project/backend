@@ -1,14 +1,18 @@
 package com.sparta.team5finalproject.controller;
 
+import com.sparta.team5finalproject.dto.KakaoUserInfoDto;
 import com.sparta.team5finalproject.model.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sparta.team5finalproject.dto.SignupRequestDto;
 //import com.sparta.team5finalproject.service.KakaoUserService;
+import com.sparta.team5finalproject.service.KakaoUserService;
 import com.sparta.team5finalproject.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
 
 @RequiredArgsConstructor
 //@Controller
@@ -16,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
-//    private final KakaoUserService kakaoUserService;
+    private final KakaoUserService kakaoUserService;
 
 //    @Autowired
 //    public UserController(UserService userService, KakaoUserService kakaoUserService) {
@@ -54,9 +58,8 @@ public class UserController {
     ////////////////////////////////////////////////////////////
 
 
-//    @GetMapping("/user/kakao/callback")
-//    public String kakaoLogin(@RequestParam String code) throws JsonProcessingException {
-//        kakaoUserService.kakaoLogin(code);
-//        return "redirect:/";
-//    }
+    @GetMapping("/user/kakao/callback")
+    public KakaoUserInfoDto kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
+        return kakaoUserService.kakaoLogin(code, response);
+    }
 }

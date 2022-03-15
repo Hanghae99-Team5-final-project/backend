@@ -52,7 +52,6 @@ public class User extends Timestamped {
     //CascadeType.ALL : 모든 Cascade 적용
 
 
-    // --------------------------------------------------------------------------------------------용만
     public User(String username, String password, String email, UserRoleEnum role){
         this.username = username;
         this.password = password;
@@ -76,5 +75,4 @@ public class User extends Timestamped {
             this.naverId = naverId;
         }
     }
-
 }

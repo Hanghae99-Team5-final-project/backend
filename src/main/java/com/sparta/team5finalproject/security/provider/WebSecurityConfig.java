@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-@EnableWebSecurity // 스프링 Security 지원을 가능하게 함
+@EnableWebSecurity // 스프링 Security 설정들을 활성화
 @EnableGlobalMethodSecurity(securedEnabled = true) // @Secured 어노테이션 활성화
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -58,14 +58,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        // h2-console 사용에 대한 허용 (CSRF, FrameOptions 무시)
 //        web
 //                .ignoring()
-//                .antMatchers("/h2-console/**");
+//                .antMatchers("/h2-console/**"); // 권한 관리 대상을 지정하는 옵션. URL, HTTP 메소드별로 관리가 가능.
 //    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic().disable() // Http basic Auth  기반으로 로그인 인증창이 뜸.  disable 시에 인증창 뜨지 않음.
                 .csrf().disable() // rest api이므로 csrf 보안이 필요없으므로 disable처리.
-                .authorizeRequests() //시큐리티 처리에 HttpServletRequest를 이용한다는 것을 의미
+                .authorizeRequests() //시큐리티 처리에 HttpServletRequest를 이용한다는 것을 의미. URL 별 권한 관리를 설정하는 옵션의 시작점. antMatchers 옵션을 사용하려면 선언되어야 함.
                 //.antMatchers();
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll(); //preflight request에 대해, 인증을 하지 않고 요청을 모두 허용
 
