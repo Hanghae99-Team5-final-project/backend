@@ -4,6 +4,8 @@ import lombok.*;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -28,12 +30,22 @@ public class Watch {
     private String lowestPrice; // 가격
 
     @Column(nullable = true)
-    private String category; // 남성 시계
+    private Long likeCount; //좋아요 수
 
-    public Watch(String s, String s1, String s2) {
+    @Column
+    @Enumerated(value = EnumType.STRING)
+    private WatchCategory watchCategory;
+
+    @OneToMany(mappedBy = "watch", cascade = CascadeType.ALL)    // 게시글 삭제 => 해당 게시글 댓글 모두 삭제
+    private List<WatchComment> watchCommentLists = new ArrayList<>();
+
+    @OneToMany(mappedBy = "watch", cascade = CascadeType.ALL)    // 게시글 삭제 => 해당 좋아요 모두 삭제
+    private List<Likes> likesList = new ArrayList<>();
+
+    public Watch(String s, String s1, String s2, WatchCategory watchCategory) {
         this.watchImageUrl = s;
         this.watchBrand = s1;
         this.lowestPrice = s2;
-        this.category = "남성시계";
+        this.watchCategory = watchCategory;
     }
 }

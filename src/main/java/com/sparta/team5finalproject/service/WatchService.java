@@ -1,23 +1,32 @@
 package com.sparta.team5finalproject.service;
 
+import com.sparta.team5finalproject.model.Likes;
 import com.sparta.team5finalproject.model.Watch;
+import com.sparta.team5finalproject.model.WatchCategory;
+import com.sparta.team5finalproject.repository.LikesRepository;
 import com.sparta.team5finalproject.repository.WatchRepository;
+import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
 public class WatchService {
 
     private final WatchRepository watchRepository;
+    private final LikesRepository likesRepository;
 
+    // 모바일 쿠팡에서 손목시계로 검색 결과
     private static String cpWatchUrl1 = "https://m.coupang.com/nm/search?q=%EC%86%90%EB%AA%A9%EC%8B%9C%EA%B3%84&page=1";
     private static String cpWatchUrl2 = "https://m.coupang.com/nm/search?q=%EC%86%90%EB%AA%A9%EC%8B%9C%EA%B3%84&page=2";
     private static String cpWatchUrl3 = "https://m.coupang.com/nm/search?q=%EC%86%90%EB%AA%A9%EC%8B%9C%EA%B3%84&page=3";
@@ -70,55 +79,56 @@ public class WatchService {
     private static String cpWatchUrl50 = "https://m.coupang.com/nm/search?q=%EC%86%90%EB%AA%A9%EC%8B%9C%EA%B3%84&page=50";
 //    private static String cpWatchUrl;
 
-    public void total() throws IOException {
-//        String[] abc;
-//        for (int i=1; i<51; i++) {
-//            cpWatchUrl = "https://m.coupang.com/nm/search?q=%EC%86%90%EB%AA%A9%EC%8B%9C%EA%B3%84&page="+i;
-//            abc.
-//        }
+    // 쿠팡 손목시계 검색 결과 크롤링 메서드
+    public void cpWatchCrawling() throws IOException {
+
         String[] urlList = {cpWatchUrl1,cpWatchUrl2,cpWatchUrl3,cpWatchUrl4,cpWatchUrl5,cpWatchUrl6,cpWatchUrl7,cpWatchUrl8,cpWatchUrl9,cpWatchUrl10
                 ,cpWatchUrl11,cpWatchUrl12,cpWatchUrl13,cpWatchUrl14,cpWatchUrl15,cpWatchUrl16,cpWatchUrl17,cpWatchUrl18,cpWatchUrl19,cpWatchUrl20
                 ,cpWatchUrl21,cpWatchUrl22,cpWatchUrl23,cpWatchUrl24,cpWatchUrl25,cpWatchUrl26,cpWatchUrl27,cpWatchUrl28,cpWatchUrl29,cpWatchUrl30
                 ,cpWatchUrl31,cpWatchUrl32,cpWatchUrl33,cpWatchUrl34,cpWatchUrl35,cpWatchUrl36,cpWatchUrl37,cpWatchUrl38,cpWatchUrl39,cpWatchUrl40
                 ,cpWatchUrl41,cpWatchUrl42,cpWatchUrl43,cpWatchUrl44,cpWatchUrl45,cpWatchUrl46,cpWatchUrl47,cpWatchUrl48,cpWatchUrl49,cpWatchUrl50};
-        for (String temp : urlList) {
-            cpWatchData(temp);
-            System.out.println(temp);
+        for (String url : urlList) {
+            insertDatabase(url);
+            System.out.println(url);
         }
     }
 
-    public void cpWatchData (String z) throws IOException {
-        Document doc = Jsoup.connect(z).get();
-        Elements img = doc.getElementsByClass("loading");
+    public void insertDatabase (String url) throws IOException {
+        Document doc = Jsoup.connect(url).get();
+        Elements classLoading = doc.getElementsByClass("loading");
 
         // 손목시계 이미지
         ArrayList<String> watchImage = new ArrayList<>();
-        for (Element thumnail : img) {
-            System.out.println(thumnail.attr("abs:src"));
-            watchImage.add(thumnail.attr("abs:src"));
+        for (Element imgSrc : classLoading) {
+            System.out.println(imgSrc.attr("abs:src"));
+            watchImage.add(imgSrc.attr("abs:src"));
         }
 
         // 손목시계 제목
-        Elements title = doc.getElementsByClass("title");
+        Elements classTitle = doc.getElementsByClass("title");
         ArrayList<String> watchTitle = new ArrayList<>();
-        for (Element info : title) {
-            System.out.println(info.text());
-            watchTitle.add(info.text());
+        for (Element title : classTitle) {
+            System.out.println(title.text());
+            watchTitle.add(title.text());
         }
 
         // 손목시계 가격
-        Elements price = doc.getElementsByClass("discount-price");
+        Elements classDiscountPrice = doc.getElementsByClass("discount-price");
         ArrayList<String> watchPrice = new ArrayList<>();
-        for (Element temp : price) {
-            System.out.println(temp.text());
-            watchPrice.add(temp.text());
+        for (Element discountPrice : classDiscountPrice) {
+            System.out.println(discountPrice.text());
+            watchPrice.add(discountPrice.text());
         }
 
+
+        // watch Db에 저장
         for (int i=0; i<watchImage.size(); i++){
-            Watch watch =new Watch(watchImage.get(i),watchTitle.get(i),watchPrice.get(i));
+            Watch watch =new Watch(watchImage.get(i),watchTitle.get(i),watchPrice.get(i), WatchCategory.DIGITAL);
+            watch.setLikeCount(0L);
             watchRepository.save(watch);
         }
 
     }
+
 
 }

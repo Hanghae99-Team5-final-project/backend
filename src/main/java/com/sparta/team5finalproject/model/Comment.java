@@ -1,5 +1,6 @@
 package com.sparta.team5finalproject.model;
 
+import com.sparta.team5finalproject.dto.commentDto.CommentRequestDto;
 import com.sparta.team5finalproject.util.Timestamped;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,4 +36,9 @@ public abstract class Comment extends Timestamped {
 //        this.name = name;
 //        this.user = user;
 //    }
+
+    public void update(CommentRequestDto commentRequestDto){
+        this.commentContent = commentRequestDto.getCommentContent();
+    }
+
 }

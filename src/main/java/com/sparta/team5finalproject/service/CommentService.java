@@ -1,12 +1,10 @@
 package com.sparta.team5finalproject.service;
 
 import com.sparta.team5finalproject.dto.commentDto.CommentRequestDto;
-import com.sparta.team5finalproject.model.Cody;
-import com.sparta.team5finalproject.model.CodyComment;
-import com.sparta.team5finalproject.model.Comment;
-import com.sparta.team5finalproject.model.User;
+import com.sparta.team5finalproject.model.*;
 import com.sparta.team5finalproject.repository.CodyRepository;
 import com.sparta.team5finalproject.repository.CommentRepository;
+import com.sparta.team5finalproject.repository.WatchRepository;
 import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,10 +15,14 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
     private final CodyRepository codyRepository;
+    private final WatchRepository watchRepository;
 
-    //댓글 생성
-    public void createComment(CommentRequestDto commentRequestDto, UserDetailsImpl userDetails){
-        Cody cody = codyRepository.findById(commentRequestDto.getCodyId()).orElseThrow(
+    //댓글 생성 - cody
+    public void createCodyComment(Long codyId,CommentRequestDto commentRequestDto, UserDetailsImpl userDetails){
+        System.out.println("받은 Watch Id 값 : " + codyId);
+        System.out.println("등록하려는 댓글 내용 : "+commentRequestDto.getCommentContent());
+        System.out.println("로그인한 유저정보 " + userDetails.getUsername());
+        Cody cody = codyRepository.findById(codyId).orElseThrow(
                 ()->new NullPointerException("존재하지 않는 게시글 입니다."));
         CodyComment codyComment = new CodyComment();
         codyComment.setCommentContent(commentRequestDto.getCommentContent());
@@ -28,7 +30,23 @@ public class CommentService {
         codyComment.setCommentUsername(userDetails.getUsername());
         codyComment.setCody(cody);
 
+        System.out.println("댓글 내용 나와라 ? 아? " + codyComment);
         commentRepository.save(codyComment);
+    }
+
+    //댓글 생성 - watch
+    public void createWatchComment(Long watchId,CommentRequestDto commentRequestDto, UserDetailsImpl userDetails){
+        System.out.println("등록하려는 댓글 내용 : "+commentRequestDto.getCommentContent());
+        System.out.println("로그인한 유저정보 " + userDetails.getUsername());
+        Watch watch = watchRepository.findById(watchId).orElseThrow(
+                ()->new NullPointerException("존재하지 않는 게시글 입니다."));
+        WatchComment watchComment = new WatchComment();
+        watchComment.setCommentContent(commentRequestDto.getCommentContent());
+        watchComment.setUser(userDetails.getUser());
+        watchComment.setCommentUsername(userDetails.getUsername());
+        watchComment.setWatch(watch);
+        System.out.println("댓글 내용 나와라 ? 아? " + watchComment);
+        commentRepository.save(watchComment);
     }
 
 
@@ -61,9 +79,9 @@ public class CommentService {
         Comment comment= commentRepository.findById(commentId).orElseThrow(
                 ()-> new NullPointerException("코멘트를 찾을 수 없습니다."));
 
-        comment.setCommentContent(commentRequestDto.getCommentContent());
+        comment.update(commentRequestDto);
+//        comment.setCommentContent(commentRequestDto.getCommentContent());
         commentRepository.save(comment);
-
     }
 
     //댓글 삭제

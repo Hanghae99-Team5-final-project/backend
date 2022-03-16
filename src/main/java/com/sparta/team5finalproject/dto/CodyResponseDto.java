@@ -1,8 +1,7 @@
 package com.sparta.team5finalproject.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sparta.team5finalproject.model.Cody;
-import com.sparta.team5finalproject.model.Comment;
+import com.sparta.team5finalproject.dto.commentDto.CommentResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,7 +23,7 @@ public class CodyResponseDto {
     private String codyContent;
     private String imageUrl;
     private String star;
-    private List<CommentResopnseDto> commentResopnseDtoList;
+    private List<CommentResponseDto> commentResponseDtoList;
 
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",  timezone = "Asia/Seoul")
