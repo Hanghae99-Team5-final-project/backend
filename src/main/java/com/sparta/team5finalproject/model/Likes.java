@@ -1,7 +1,12 @@
 package com.sparta.team5finalproject.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+@Getter
+@NoArgsConstructor
 @Entity
 public class Likes {
 
@@ -16,4 +21,11 @@ public class Likes {
     @ManyToOne
     @JoinColumn(name = "watchId")
     private Watch watch;
+
+
+    public Likes(User user, Watch watch) {
+        this.user = user;
+        this.watch = watch;
+
+    }
 }

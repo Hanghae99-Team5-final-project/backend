@@ -3,7 +3,7 @@ package com.sparta.team5finalproject.service;
 
 import com.sparta.team5finalproject.dto.CodyRequestDto;
 import com.sparta.team5finalproject.dto.CodyResponseDto;
-import com.sparta.team5finalproject.dto.CommentResopnseDto;
+import com.sparta.team5finalproject.dto.commentDto.CommentResponseDto;
 
 import com.sparta.team5finalproject.model.Cody;
 import com.sparta.team5finalproject.model.CodyComment;
@@ -12,28 +12,17 @@ import com.sparta.team5finalproject.model.User;
 import com.sparta.team5finalproject.repository.CodyRepository;
 import com.sparta.team5finalproject.repository.CommentRepository;
 
-import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import com.sparta.team5finalproject.util.S3Uploader;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
-import java.awt.*;
 import java.io.IOException;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -93,9 +82,9 @@ public class CodyService {
                 () -> new NullPointerException("존재하지 않는 글입니다."));
 
         List<CodyComment> codyCommentList = commentRepository.findAllByCodyOrderByCreatedAtAsc(cody);
-        List<CommentResopnseDto> commentResopnseDtoList = new ArrayList<>();
+        List<CommentResponseDto> commentResponseDtoList = new ArrayList<>();
         for(Comment oneComment : codyCommentList) {
-            commentResopnseDtoList.add(CommentResopnseDto.builder()
+            commentResponseDtoList.add(CommentResponseDto.builder()
                     .commentId(oneComment.getId())
                     .commentUser(user.getUsername())
                     .commentContent(oneComment.getCommentContent())
@@ -110,7 +99,7 @@ public class CodyService {
         codyResponseDto.setWatchModel(cody.getWatchModel());
         codyResponseDto.setImageUrl(cody.getImageUrl());
         codyResponseDto.setStar(cody.getStar());
-        codyResponseDto.setCommentResopnseDtoList(commentResopnseDtoList);
+        codyResponseDto.setCommentResponseDtoList(commentResponseDtoList);
         return codyResponseDto;
     }
 
@@ -129,9 +118,9 @@ public class CodyService {
             // 코디에 달린 댓글 리스트 (작성일자 오름차순)
             List<CodyComment> commentList = commentRepository.findAllByCodyOrderByCreatedAtAsc(oneCody);
             // 반환할 댓글 리스트
-            List<CommentResopnseDto> commentResopnseDtoList = new ArrayList<>();
+            List<CommentResponseDto> commentResponseDtoList = new ArrayList<>();
             for (Comment oneComment : commentList) {
-                commentResopnseDtoList.add(CommentResopnseDto.builder()
+                commentResponseDtoList.add(CommentResponseDto.builder()
                         .commentId(oneComment.getId())
                         .commentUser(user.getUsername())
                         .commentContent(oneComment.getCommentContent())
@@ -148,7 +137,7 @@ public class CodyService {
                     .codyContent(oneCody.getCodyContent())
                     .imageUrl(oneCody.getImageUrl())
                     .star(oneCody.getStar())
-                    .commentResopnseDtoList(commentResopnseDtoList)
+                    .commentResponseDtoList(commentResponseDtoList)
                     .createdAt(oneCody.getCreatedAt())
                     .build());
         }

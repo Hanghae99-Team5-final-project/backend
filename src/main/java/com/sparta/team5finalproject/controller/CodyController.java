@@ -29,16 +29,10 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController // JSON으로 데이터를 주고받음을 선언합니다.
-//@Controller
+
+
 public class CodyController {
-    private final UserRepository userRepository;
     private final CodyService codyService;
-
-
-//    @Autowired
-//    public CodyController(CodyService codyService) {
-//        this.codyService = codyService;
-//    }
 
     // 신규 코디 글 등록
     @PostMapping("/api/cody")

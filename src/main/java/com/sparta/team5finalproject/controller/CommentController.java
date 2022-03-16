@@ -18,13 +18,24 @@ public class CommentController {
     private final CommentService commentService;
     private final UserRepository userRepository;
 
-    //댓글 생성
-    @PostMapping("/comment/write/")
-    public void createComment(
+    //댓글 생성 - cody
+    @PostMapping("/comment/write/cody/{codyId}")
+    public void createCodyComment(
+            @PathVariable Long codyId,
             @RequestBody CommentRequestDto commentRequestDto,
             @AuthenticationPrincipal UserDetailsImpl userDetails){
-            commentService.createComment(commentRequestDto, userDetails);
+            commentService.createCodyComment(codyId,commentRequestDto, userDetails);
     }
+
+    //댓글 생성 - watch
+    @PostMapping("/comment/write/watch/{watchId}")
+    public void createWatchComment(
+            @PathVariable Long watchId,
+            @RequestBody CommentRequestDto commentRequestDto,
+            @AuthenticationPrincipal UserDetailsImpl userDetails){
+        commentService.createWatchComment(watchId,commentRequestDto, userDetails);
+    }
+
 
 //    ////////////////////////////////////시큐리티 없이 테스트용///////////////////////////////////////////////////////////
 //    //댓글 생성
@@ -51,6 +62,7 @@ public class CommentController {
         commentService.updateComment(commentId, commentRequestDto,userDetails);
     }
 
+    //댓글 삭제
     @DeleteMapping("/comment/delete/{commentId}")
     public void deleteComment(@PathVariable Long commentId,
                               @AuthenticationPrincipal UserDetailsImpl userDetails) throws Exception {
