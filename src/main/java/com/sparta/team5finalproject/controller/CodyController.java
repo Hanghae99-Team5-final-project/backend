@@ -41,7 +41,7 @@ public class CodyController {
                            @RequestPart(value = "multipartFile", required = false) MultipartFile multipartFile) throws IOException {
         System.out.println("코디컨트롤의유저="+userDetails.getUser().getUsername());
         System.out.println("코디컨트롤 코디리퀘스트DTO의타이틀="+codyRequestDto.getCodyTitle());
-        codyService.createCody(codyRequestDto, userDetails.getUser(), multipartFile);
+        codyService.createCody(codyRequestDto, userDetails, multipartFile);
     }
 
 
@@ -66,11 +66,10 @@ public class CodyController {
 
 
 
-    // 코디 상세게시글 조회
-    @GetMapping("/api/cody/{codyId}")
-    public CodyResponseDto readDetailCody(@PathVariable Long codyId,
-                                          @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return codyService.readDetailCody(codyId, userDetails.getUser());
+//    // 코디 상세게시글 조회
+    @GetMapping("/api/cody/detail/{codyId}")
+    public CodyResponseDto readDetailCody(@PathVariable Long codyId) {
+        return codyService.readDetailCody(codyId);
     }
 
 
@@ -78,21 +77,21 @@ public class CodyController {
     @PutMapping("/api/cody/{codyId}")
     public void updateCody(@PathVariable Long codyId,
                            @AuthenticationPrincipal UserDetailsImpl userDetails,
-                           @RequestBody CodyRequestDto codyRequestDto) {
-        codyService.updateCody(codyId, userDetails.getUser(), codyRequestDto);
+                           @ModelAttribute CodyRequestDto codyRequestDto,
+                           @RequestPart(value = "multipartFile", required = false) MultipartFile multipartFile) throws IOException {
+        codyService.updateCody(codyId, userDetails.getUser(), codyRequestDto, multipartFile);
     }
 
 
     // 코디 목록 불러오기
-    @GetMapping("/api/cody")
+    @GetMapping("/api/cody") //localhost:8080/?page==0&size==5
     public List<CodyResponseDto> getIntCody(@RequestParam int page,
-                                            @RequestParam int size,
-                                            @AuthenticationPrincipal UserDetailsImpl userDetails) {
+                                            @RequestParam int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
-        return codyService.getIntCody(pageable, userDetails.getUser());
+        return codyService.getIntCody(pageable);
     }
 
-    // 코디글 삭제
+//    // 코디글 삭제
     @DeleteMapping("/api/cody/{codyId}")
     public void deleteCody(@PathVariable Long codyId,
                            @AuthenticationPrincipal UserDetailsImpl userDetails) {

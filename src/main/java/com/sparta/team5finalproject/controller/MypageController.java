@@ -1,6 +1,8 @@
 package com.sparta.team5finalproject.controller;
 
 
+import com.sparta.team5finalproject.dto.CodyResponseDto;
+import com.sparta.team5finalproject.dto.pageDto.MyCodyResponseDto;
 import com.sparta.team5finalproject.dto.pageDto.MyLikeResponseDto;
 import com.sparta.team5finalproject.dto.pageDto.MypageResponseDto;
 import com.sparta.team5finalproject.dto.pageDto.MypageUpdateRequestDto;
@@ -50,12 +52,13 @@ public class MypageController {
         return mypageService.getMyLike(userDetails);
     }
 
-//    // 내가 올린 코디 전체 보기
-//    @GetMapping("/api/user/cody")
-//    public List<MyLikeResponseDto> myWriteCody(@RequestBody CodyResponseDto codyResponseDto) {
-//        Long codyId = codyResponseDto.getCodyId();
-//        List<MyLikeResponseDto> writeCody = mypageService.getMyCody(codyId);
-//        return writeCody;
-//    }
+
+
+    // 내가 올린 코디 전체 보기
+    @GetMapping("/api/user/cody")
+    public List<MyCodyResponseDto> myWriteCody(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        System.out.println("들어온 유저 아이디 : "+userDetails.getUser().getUsername());
+        return mypageService.getMyCody(userDetails);
+    }
 
 }

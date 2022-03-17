@@ -12,6 +12,7 @@ import com.sparta.team5finalproject.model.User;
 import com.sparta.team5finalproject.repository.CodyRepository;
 import com.sparta.team5finalproject.repository.CommentRepository;
 
+import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import com.sparta.team5finalproject.util.S3Uploader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,10 +43,10 @@ public class CodyService {
 
     //코디 글 생성
     @Transactional
-    public void createCody(CodyRequestDto codyRequestDto, User user, MultipartFile multipartFile) throws IOException {
+    public void createCody(CodyRequestDto codyRequestDto, UserDetailsImpl userDetails, MultipartFile multipartFile) throws IOException {
         System.out.println("코디서비스 코디리퀘스트DTO의타이틀="+codyRequestDto.getCodyTitle());
 
-        if (user != null) {
+        if (userDetails != null) {
             System.out.println("44444444444444444444444");
             String imgUrl = "";
             if (multipartFile.getSize() != 0) {
@@ -61,10 +63,9 @@ public class CodyService {
             cody.setCodyContent(codyRequestDto.getCodyContent());
             cody.setImageUrl(imgUrl);
             cody.setStar(codyRequestDto.getStar());
-            cody.setUser(user);
+            cody.setUser(userDetails.getUser());
 
             System.out.println("55555555555555555555555555="+cody.getCodyTitle());
-
 
             // DB 저장
             codyRepository.save(cody);
@@ -77,7 +78,7 @@ public class CodyService {
 
     // 코디 상세 조회
     @Transactional
-    public CodyResponseDto readDetailCody(Long codyId, User user){
+    public CodyResponseDto readDetailCody(Long codyId){
         Cody cody = codyRepository.findById(codyId).orElseThrow(
                 () -> new NullPointerException("존재하지 않는 글입니다."));
 
@@ -86,13 +87,14 @@ public class CodyService {
         for(Comment oneComment : codyCommentList) {
             commentResponseDtoList.add(CommentResponseDto.builder()
                     .commentId(oneComment.getId())
-                    .commentUser(user.getUsername())
+                    .commentUser(oneComment.getUser().getUsername())
                     .commentContent(oneComment.getCommentContent())
                     .createdAt(oneComment.getCreatedAt())
                     .build());
         }
 
         CodyResponseDto codyResponseDto = new CodyResponseDto();
+        codyResponseDto.setCodyId(cody.getId());
         codyResponseDto.setCodyTitle(cody.getCodyTitle());
         codyResponseDto.setWatchBrand(cody.getWatchBrand());
         codyResponseDto.setCodyContent(cody.getCodyContent());
@@ -105,9 +107,9 @@ public class CodyService {
 
 
 
-    // 코디 목록 조회
+//    // 코디 목록 조회
     @Transactional
-    public List<CodyResponseDto> getIntCody(Pageable pageable, User user) {
+    public List<CodyResponseDto> getIntCody(Pageable pageable) {
 
         // 태그(관심사명), page, size, 내림차순으로 페이징한 게시글 리스트
         List<Cody> codyList = codyRepository.findAllByOrderByCreatedAtDesc(pageable).getContent();
@@ -122,7 +124,7 @@ public class CodyService {
             for (Comment oneComment : commentList) {
                 commentResponseDtoList.add(CommentResponseDto.builder()
                         .commentId(oneComment.getId())
-                        .commentUser(user.getUsername())
+                        .commentUser(oneComment.getUser().getUsername())
                         .commentContent(oneComment.getCommentContent())
                         .createdAt(oneComment.getCreatedAt())
                         .build());
@@ -149,7 +151,7 @@ public class CodyService {
 
     // 코디 상세글 수정
     @Transactional
-    public void updateCody(Long codyId, User user, CodyRequestDto codyRequestDto) {
+    public void updateCody(Long codyId, User user, CodyRequestDto codyRequestDto, MultipartFile multipartFile) throws IOException {
         // 코디 상세글 조회
         Cody cody = codyRepository.findById(codyId).orElseThrow(
                 () -> new NullPointerException("해당 코디글이 존재하지 않습니다.")
@@ -159,9 +161,17 @@ public class CodyService {
             throw new IllegalArgumentException("해당 코디글의 작성자만 수정 가능합니다.");
         }
 
+        //getSize() : 파일 사이즈
+        String imgUrl = cody.getImageUrl();
+        if (multipartFile != null) {
+            String source = URLDecoder.decode(cody.getImageUrl().replace("https://hanghae99-week07.s3.ap-northeast-2.amazonaws.com/cody/", ""), "UTF-8");
+            s3Uploader.deleteFromS3(source);
+            imgUrl = s3Uploader.upload(multipartFile, imageDirName);
+        }
+
         // 해당 게시글 객체 정보 업데이트
         cody.update(codyRequestDto);
-
+        cody.setImageUrl(imgUrl);
         // DB 저장
         codyRepository.save(cody);
     }

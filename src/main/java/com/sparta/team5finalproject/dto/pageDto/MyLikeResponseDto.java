@@ -1,6 +1,7 @@
 package com.sparta.team5finalproject.dto.pageDto;
 
 
+import com.sparta.team5finalproject.model.Cody;
 import com.sparta.team5finalproject.model.Watch;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,30 +30,4 @@ public class MyLikeResponseDto {
     }
 
 
-//    public MyLikeResponseDto(Long watchId, Long likeCount) {
-//        this.watchId = watchId;
-//        this.likeCount = likeCount;
-//    }
-
-//    public MyLikeResponseDto(Long watchId, Long likeCount) {
-//        this.watchId = watchId;
-//        this.likeCount = likeCount;
-//    }
-
-
-//    public MyLikeResponseDto(Cody cody) {
-//        this.user = user;
-//        this.codyTitle = codyTitle;
-//        this.watchBrand = watchBrand;
-//        this.codyContent = codyContent;
-//        this.imageUrl = imageUrl;
-//        this.star = star;
-//
-//    }
-
-//    public MyLikeResponseDto(Long watchId, Long likeCount) {
-//        this.watchId = watchId;
-//        //카운트
-//
-//    }
 }

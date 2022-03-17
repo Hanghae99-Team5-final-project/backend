@@ -2,6 +2,7 @@ package com.sparta.team5finalproject.util;
 
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,6 +46,12 @@ public class S3Uploader {
         amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, uploadFile).withCannedAcl(CannedAccessControlList.PublicRead));
         return amazonS3Client.getUrl(bucket, fileName).toString();
     }
+
+    // s3에서 파일 삭제
+    public void deleteFromS3(String source) {
+        amazonS3Client.deleteObject(new DeleteObjectRequest(bucket, source));
+    }
+
 
     // 로컬에 저장된 이미지 지우기
     private void removeNewFile(File targetFile) {
