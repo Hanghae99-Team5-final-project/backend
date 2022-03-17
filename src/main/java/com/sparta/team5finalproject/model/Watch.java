@@ -1,5 +1,6 @@
 package com.sparta.team5finalproject.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -36,10 +37,12 @@ public class Watch {
     @Enumerated(value = EnumType.STRING)
     private WatchCategory watchCategory;
 
+    @JsonBackReference // 얘도 바꿔준거 11:57
     @OneToMany(mappedBy = "watch", cascade = CascadeType.ALL)    // 게시글 삭제 => 해당 게시글 댓글 모두 삭제
     private List<WatchComment> watchCommentLists = new ArrayList<>();
 
-    @OneToMany(mappedBy = "watch", cascade = CascadeType.ALL)    // 게시글 삭제 => 해당 좋아요 모두 삭제
+    @OneToMany(mappedBy = "watch", cascade = CascadeType.ALL)// 게시글 삭제 => 해당 좋아요 모두 삭제
+    @JsonBackReference
     private List<Likes> likesList = new ArrayList<>();
 
     public Watch(String s, String s1, String s2, WatchCategory watchCategory) {

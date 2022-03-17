@@ -18,7 +18,4 @@ public class WatchDetailResponseDto {
     private String lowestPrice;
     private String likeCount;
     private List<CommentResponseDto> commentResponseDtoList;
-
-    @JsonFormat(pattern = "yyyy-mm-dd HH:mm:ss", timezone = "Asia/Seoul")
-    private LocalDateTime createdAt;
 }

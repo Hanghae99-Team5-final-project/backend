@@ -1,6 +1,7 @@
 package com.sparta.team5finalproject.model;
 
 import com.sparta.team5finalproject.dto.SignupRequestDto;
+import com.sparta.team5finalproject.dto.pageDto.MypageUpdateRequestDto;
 import com.sparta.team5finalproject.util.Timestamped;
 import lombok.*;
 
@@ -75,6 +76,10 @@ public class User extends Timestamped {
             this.kakaoId = null;
             this.naverId = naverId;
         }
+    }
+
+    public void update(MypageUpdateRequestDto mypageUpdateRequestDto){
+        this.email = mypageUpdateRequestDto.getEmail();
     }
 
 }
