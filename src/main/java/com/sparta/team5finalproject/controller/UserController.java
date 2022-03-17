@@ -59,7 +59,9 @@ public class UserController {
     }
 
     @DeleteMapping("/user/delete")
-    public void deleteUser(@RequestBody DeleteUserRequestDto deleteUserRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails, HttpServletResponse response) throws JsonProcessingException {
+    public void deleteUser(@RequestBody DeleteUserRequestDto deleteUserRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails, HttpServletResponse response)
+            throws JsonProcessingException
+    {
         userService.deleteUser(deleteUserRequestDto, userDetails, response);
     }
 }

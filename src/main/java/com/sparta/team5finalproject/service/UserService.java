@@ -58,7 +58,9 @@ public class UserService {
     }
 
 
-    public void deleteUser(DeleteUserRequestDto deleteUserRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails, HttpServletResponse response) throws IOException {
+    public void deleteUser(DeleteUserRequestDto deleteUserRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails, HttpServletResponse response)
+//            throws IOException
+    {
         // 삭제할 유저 찾기
         String inputPassword = deleteUserRequestDto.getPassword();
         Optional<User> found = userRepository.findByUsername(userDetails.getUsername());
