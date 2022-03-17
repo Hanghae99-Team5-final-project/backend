@@ -1,14 +1,19 @@
 package com.sparta.team5finalproject.service;
 
+import com.sparta.team5finalproject.dto.DeleteUserRequestDto;
 import com.sparta.team5finalproject.dto.SignupRequestDto;
 import com.sparta.team5finalproject.model.User;
 import com.sparta.team5finalproject.model.UserRoleEnum;
 import com.sparta.team5finalproject.repository.UserRepository;
+import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -49,6 +54,22 @@ public class UserService {
         User user = new User(username, password, email, role);
         userRepository.save(user);
 
+//        return user;
+    }
+
+
+    public void deleteUser(DeleteUserRequestDto deleteUserRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails, HttpServletResponse response) throws IOException {
+        // 삭제할 유저 찾기
+        String inputPassword = deleteUserRequestDto.getPassword();
+        Optional<User> found = userRepository.findByUsername(userDetails.getUsername());
+
+        // 입력받은 패스워드 암호화
+        String password = passwordEncoder.encode(deleteUserRequestDto.getPassword());
+
+        // 입력받은 패스워드와 DB의 패스워드 비교
+        if(found.get().getPassword()==password){
+            userRepository.delete(found.get());
+        }
 //        return user;
     }
 }
