@@ -1,6 +1,7 @@
 package com.sparta.team5finalproject.service;
 
 
+import com.sparta.team5finalproject.dto.pageDto.MyCodyResponseDto;
 import com.sparta.team5finalproject.dto.pageDto.MyLikeResponseDto;
 import com.sparta.team5finalproject.dto.pageDto.MypageResponseDto;
 import com.sparta.team5finalproject.dto.pageDto.MypageUpdateRequestDto;
@@ -101,16 +102,20 @@ public class MypageService {
 
 
 
-//    // 내가 올린 코디 전체 보기
-//    public List<MyLikeResponseDto> getMyCody (Long codyId) {
-//        List<Cody> codyList = codyRepository.findAllByCodyId(codyId);
-//
-//        List<MyLikeResponseDto> myLikeResponseDtoList = new ArrayList<>();
-//        for (Cody cody : codyList) {
-//            MyLikeResponseDto myLikeResponseDto = new MyLikeResponseDto(cody);
-//            myLikeResponseDtoList.add(myLikeResponseDto);
-//        }
-//        return myLikeResponseDtoList;
-//    }
+    // 내가 올린 코디 전체 보기
+    public List<MyCodyResponseDto> getMyCody (UserDetailsImpl userDetails) {
+        List<Cody> codyList = codyRepository.findAllByUserId(userDetails.getUser().getId());
+        System.out.println("내가 올린 코디 글들을 모아 줬을까? :" + codyList);
+        List<MyCodyResponseDto> myCodyResponseDtoList = new ArrayList<>();
+        for (Cody cody : codyList) {
+            MyCodyResponseDto myCodyResponseDto = new MyCodyResponseDto();
+            myCodyResponseDto.setCodyId(cody.getId());
+            myCodyResponseDto.setCodyTitle(cody.getCodyTitle());
+            myCodyResponseDto.setImageUrl(cody.getImageUrl());
+            myCodyResponseDtoList.add(myCodyResponseDto);
+        }
+        System.out.println("내가 올린 코디 글 리스트 :"+myCodyResponseDtoList);
+        return myCodyResponseDtoList;
+    }
 
 }

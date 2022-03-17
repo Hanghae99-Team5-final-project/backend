@@ -35,7 +35,7 @@ public class WatchController {
         coupleWatchService.msWatchCrawling();
     }
 
-    //    //시계 상세 페이지
+    //시계 상세 페이지
     @GetMapping("/api/detail/{watchId}")
     public WatchDetailResponseDto readDetailWatch(@PathVariable Long watchId) {
         return watchService.readDetailWatch(watchId);
