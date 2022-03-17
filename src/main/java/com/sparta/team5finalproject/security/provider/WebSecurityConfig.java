@@ -149,17 +149,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        skipPathList.add("POST,/user/signup");
 //        skipPathList.add("POST,/user/login");
 
-
+        // 회원가입
         skipPathList.add("POST,/user/signup");
 
+        // 메인페이지
+        skipPathList.add("GET,/main/**");
 
-        skipPathList.add("GET,/");
-        skipPathList.add("POST,/");
-        skipPathList.add("GET,/basic.js");
+        //카테고리페이지
+        skipPathList.add("GET,/api/watch/category/**");
+
+        //시계상세페이지
+        skipPathList.add("GET,/api/detail/**");
+
+        //마이페이지
+
 
         //크롤링
         skipPathList.add("POST,/cpWatch/**");
         skipPathList.add("POST,/msWatch/**");
+
+        skipPathList.add("GET,/basic.js");
 
         skipPathList.add("GET,/favicon.ico");
 

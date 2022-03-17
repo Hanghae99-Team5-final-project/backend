@@ -1,5 +1,6 @@
 package com.sparta.team5finalproject.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,7 @@ import javax.persistence.*;
 public class WatchComment extends Comment{
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonManagedReference //11:57
     @JoinColumn(name = "watch_id", nullable = true) // name = watch_id
     private Watch watch;
 

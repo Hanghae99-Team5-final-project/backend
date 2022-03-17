@@ -1,5 +1,6 @@
 package com.sparta.team5finalproject.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,6 +20,7 @@ public class Likes {
     private User user;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "watchId")
     private Watch watch;
 
