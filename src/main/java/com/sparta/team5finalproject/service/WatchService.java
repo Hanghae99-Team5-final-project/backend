@@ -1,5 +1,6 @@
 package com.sparta.team5finalproject.service;
 
+import com.sparta.team5finalproject.dto.WatchDetailLikeResponseDto;
 import com.sparta.team5finalproject.dto.WatchDetailResponseDto;
 import com.sparta.team5finalproject.dto.commentDto.CommentResponseDto;
 import com.sparta.team5finalproject.model.*;
@@ -7,7 +8,7 @@ import com.sparta.team5finalproject.repository.CommentRepository;
 import com.sparta.team5finalproject.repository.LikesRepository;
 import com.sparta.team5finalproject.repository.WatchRepository;
 import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
-import com.sun.org.apache.xpath.internal.operations.Bool;
+//import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -26,6 +28,7 @@ public class WatchService {
 
     private final WatchRepository watchRepository;
     private final CommentRepository commentRepository;
+    private final LikesRepository likesRepository;
 
     // 모바일 쿠팡에서 손목시계로 검색 결과
     private static String cpWatchUrl1 = "https://m.coupang.com/nm/search?q=%EC%86%90%EB%AA%A9%EC%8B%9C%EA%B3%84&page=1";
@@ -131,8 +134,11 @@ public class WatchService {
 
     }
 
-    //    // 시계상세 페이지 조회
+
+
+    // 시계상세 페이지 조회
     public WatchDetailResponseDto readDetailWatch(Long watchId) {
+        WatchDetailResponseDto watchDetailResponseDto = new WatchDetailResponseDto();
         Watch watch = watchRepository.findById(watchId).orElseThrow(
                 () -> new NullPointerException("존재하지 않는 시계입니다."));
 
@@ -148,18 +154,33 @@ public class WatchService {
                     .build());
         }
 
-        WatchDetailResponseDto watchDetailResponseDto = new WatchDetailResponseDto();
-        watchDetailResponseDto.setWatchId(watch.getWatchId());
+        watchDetailResponseDto.setWatchId(watch.getId());
         watchDetailResponseDto.setWatchImage(watch.getWatchImageUrl());
         watchDetailResponseDto.setWatchBrand(watch.getWatchBrand());
         watchDetailResponseDto.setLowestPrice(watch.getLowestPrice());
         watchDetailResponseDto.setLikeCount(String.valueOf(watch.getLikeCount()));
+
         watchDetailResponseDto.setCommentResponseDtoList(commentResponseDtoList);
         return watchDetailResponseDto;
 
     }
 
 
+    // 시계상세 페이지 조회
+    public WatchDetailLikeResponseDto readDetailWatchLike(Long watchId, UserDetailsImpl userDetails) {
+        WatchDetailLikeResponseDto watchDetailLikeResponseDto = new WatchDetailLikeResponseDto();
+        Watch watch = watchRepository.findById(watchId).orElseThrow(
+                () -> new NullPointerException("존재하지 않는 시계입니다."));
 
+        if(userDetails.getUser() != null){
+            Optional<Likes> optLikes = likesRepository.findByWatchAndUser(watch, userDetails.getUser());
+            if(optLikes.isPresent()){
+                watchDetailLikeResponseDto.setExistLikes(true);
+            } else {
+                watchDetailLikeResponseDto.setExistLikes(false);
+            }
+        }
+        return watchDetailLikeResponseDto;
+    }
 
 }

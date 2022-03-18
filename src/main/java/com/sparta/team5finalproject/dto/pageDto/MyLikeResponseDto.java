@@ -21,7 +21,7 @@ public class MyLikeResponseDto {
 
 
     public MyLikeResponseDto(Watch watch, Long likeCount) {
-        this.watchId = watch.getWatchId();
+        this.watchId = watch.getId();
         this.watchImageUrl = watch.getWatchImageUrl();
         this.watchBrand = watch.getWatchBrand();
         this.lowestPrice = watch.getLowestPrice();

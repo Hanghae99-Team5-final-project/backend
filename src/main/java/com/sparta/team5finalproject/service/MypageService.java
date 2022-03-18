@@ -89,7 +89,7 @@ public class MypageService {
         List<Likes> myLikeList = likesRepository.findAllByUserId(userDetails.getUser().getId());
         List<MyLikeResponseDto> myLikeResponseDtoList = new ArrayList<>();
         for (Likes like : myLikeList) {
-            Long watchId = like.getWatch().getWatchId();
+            Long watchId = like.getWatch().getId();
             Watch watch = watchRepository.findById(watchId).orElseThrow(()-> new IllegalArgumentException("해당 시계글이 존재하지 않습니다."));
             Long likeCount = watch.getLikeCount();
             MyLikeResponseDto myLikeResponseDto = new MyLikeResponseDto(watch,likeCount);

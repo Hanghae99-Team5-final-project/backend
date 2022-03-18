@@ -19,7 +19,7 @@ public class Watch {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long watchId;
+    private Long Id;
 
     @Column(nullable = false)
     private String watchImageUrl; // 이미지
