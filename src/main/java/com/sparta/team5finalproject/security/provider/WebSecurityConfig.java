@@ -7,6 +7,7 @@ import com.sparta.team5finalproject.security.filter.JwtAuthFilter;
 import com.sparta.team5finalproject.security.jwt.HeaderTokenExtractor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -97,6 +98,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         http.authorizeRequests()
+//                .antMatchers(HttpMethod.GET, "/api/detail/**").permitAll()
+//                .antMatchers("/api/detail/**").anonymous()
                 .anyRequest()
                 .permitAll()
                 .and()
@@ -160,6 +163,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         //시계상세페이지
         skipPathList.add("GET,/api/detail/**");
+//        skipPathList.add("GET,/api/detail/like/**");
 
         //코디 목록
         skipPathList.add("GET,/api/cody/**");

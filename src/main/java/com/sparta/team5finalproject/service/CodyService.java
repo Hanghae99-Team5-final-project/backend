@@ -33,7 +33,6 @@ public class CodyService {
     private final CodyRepository codyRepository;
     private final S3Uploader s3Uploader;
     private final CommentRepository commentRepository;
-
     private final String imageDirName = "cody";   // S3 폴더 경로
 
 //    @Autowired
@@ -49,9 +48,9 @@ public class CodyService {
         if (userDetails != null) {
             System.out.println("44444444444444444444444");
             String imgUrl = "";
-            if (multipartFile.getSize() != 0) {
-                imgUrl = s3Uploader.upload(multipartFile, imageDirName);
-            }
+//            if (multipartFile.getSize() != 0) {
+//                imgUrl = s3Uploader.upload(multipartFile, imageDirName);
+//            }
 
             System.out.println("4444444444444444422222222222222");
 

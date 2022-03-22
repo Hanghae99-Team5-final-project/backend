@@ -15,10 +15,10 @@ import java.time.format.DateTimeParseException;
 @RestControllerAdvice
 public class GlobalController {
 
-//    @ExceptionHandler
-//    public ResponseEntity<ErrorResponseDto> FollowExceptionHandler(FollowException exception) {
-//        return new ResponseEntity<>(ErrorResponseDto.badRequest(exception.getMessage()), HttpStatus.BAD_REQUEST);
-//    }
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponseDto> unmatchedUserExceptionHandler(UnmatchedUserException exception) {
+        return new ResponseEntity<>(ErrorResponseDto.badRequest(exception.getMessage()), HttpStatus.BAD_REQUEST);
+    }
 //
 //    @ExceptionHandler
 //    public ResponseEntity<ErrorResponseDto> PreSetNotFoundExceptionHandler(PreSetNotFoundException exception) {

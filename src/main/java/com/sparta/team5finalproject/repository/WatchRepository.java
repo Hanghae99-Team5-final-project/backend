@@ -11,9 +11,8 @@ public interface WatchRepository extends JpaRepository<Watch,Long> {
 
     List<Watch> findAllByWatchCategory(WatchCategory watchCategory);
     List<Watch> findTop5ByWatchCategoryOrderByLikeCountDesc(WatchCategory category);
-    Optional<Watch> findByWatchId(Long watchId);
-    Optional<Watch> findByWatchIdAndAndLikeCount(Long watchId , Long LikeId);
 
-
+//    Optional<Watch> findByWatchId(Long watchId);
+//    Optional<Watch> findByWatchIdAndAndLikeCount(Long watchId , Long LikeId);
 
 }

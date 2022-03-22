@@ -1,5 +1,6 @@
 package com.sparta.team5finalproject.controller;
 
+import com.sparta.team5finalproject.dto.WatchDetailLikeResponseDto;
 import com.sparta.team5finalproject.dto.WatchDetailResponseDto;
 import com.sparta.team5finalproject.model.User;
 import com.sparta.team5finalproject.model.Watch;
@@ -39,6 +40,12 @@ public class WatchController {
     @GetMapping("/api/detail/{watchId}")
     public WatchDetailResponseDto readDetailWatch(@PathVariable Long watchId) {
         return watchService.readDetailWatch(watchId);
+    }
+
+    //시계 상세 페이지
+    @GetMapping("/api/detail/like/{watchId}")
+    public WatchDetailLikeResponseDto readDetailWatchLike(@PathVariable Long watchId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return watchService.readDetailWatchLike(watchId, userDetails);
     }
 
 //    @PostMapping("/couple")
