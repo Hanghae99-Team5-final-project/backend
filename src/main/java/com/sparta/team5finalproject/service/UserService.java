@@ -2,6 +2,7 @@ package com.sparta.team5finalproject.service;
 
 import com.sparta.team5finalproject.dto.DeleteUserRequestDto;
 import com.sparta.team5finalproject.dto.SignupRequestDto;
+import com.sparta.team5finalproject.dto.UserCheckDto;
 import com.sparta.team5finalproject.model.User;
 import com.sparta.team5finalproject.model.UserRoleEnum;
 import com.sparta.team5finalproject.repository.UserRepository;
@@ -74,4 +75,27 @@ public class UserService {
         }
 //        return user;
     }
+
+    // 로그인 확인
+    public UserCheckDto getUserCheck(UserDetailsImpl userDetails) {
+
+
+        if (userDetails != null) {
+            boolean check = true;
+            return new UserCheckDto(userDetails.getUser().getId(),
+                    userDetails.getUser().getUsername(),
+                    userDetails.getUser().getEmail(),
+                    check);
+
+        } else {
+            Long userId = 0L;
+            String username = "null";
+            String email = "null";
+            boolean check = false;
+            return new UserCheckDto(userId,username,email,check);
+
+        }
+
+    }
+
 }

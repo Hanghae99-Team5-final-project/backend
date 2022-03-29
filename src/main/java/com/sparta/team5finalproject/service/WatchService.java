@@ -154,7 +154,7 @@ public class WatchService {
                     .build());
         }
         WatchDetailResponseDto watchDetailResponseDto = new WatchDetailResponseDto();
-        watchDetailResponseDto.setWatchId(watch.getId());
+        watchDetailResponseDto.setWatchId(watch.getWatchId());
         watchDetailResponseDto.setWatchImage(watch.getWatchImageUrl());
         watchDetailResponseDto.setWatchBrand(watch.getWatchBrand());
         watchDetailResponseDto.setLowestPrice(watch.getLowestPrice());
@@ -169,15 +169,18 @@ public class WatchService {
         WatchDetailLikeResponseDto watchDetailLikeResponseDto = new WatchDetailLikeResponseDto();
         Watch watch = watchRepository.findById(watchId).orElseThrow(
                 () -> new NullPointerException("존재하지 않는 시계입니다."));
-
+        System.out.println("시계상세페이지 시계 아이디"+ watch);
         if(userDetails != null){
             Optional<Likes> optLikes = likesRepository.findByWatchAndUser(watch, userDetails.getUser());
             if(optLikes.isPresent()){
                 watchDetailLikeResponseDto.setExistLikes(true);
+                Long likeId = optLikes.get().getId();
+                watchDetailLikeResponseDto.setLikeId(likeId);
             } else {
                 watchDetailLikeResponseDto.setExistLikes(false);
             }
         }
+        System.out.println("라이크 조회 잘되고 있냐?"+watchDetailLikeResponseDto);
         return watchDetailLikeResponseDto;
     }
 

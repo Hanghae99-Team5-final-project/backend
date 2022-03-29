@@ -163,7 +163,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         //시계상세페이지
         skipPathList.add("GET,/api/detail/**");
-//        skipPathList.add("GET,/api/detail/like/**");
 
         //코디 목록
         skipPathList.add("GET,/api/cody/**");

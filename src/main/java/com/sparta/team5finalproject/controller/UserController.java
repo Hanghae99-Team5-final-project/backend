@@ -2,6 +2,7 @@ package com.sparta.team5finalproject.controller;
 
 import com.sparta.team5finalproject.dto.DeleteUserRequestDto;
 import com.sparta.team5finalproject.dto.KakaoUserInfoDto;
+import com.sparta.team5finalproject.dto.UserCheckDto;
 import com.sparta.team5finalproject.model.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sparta.team5finalproject.dto.SignupRequestDto;
@@ -64,4 +65,11 @@ public class UserController {
     {
         userService.deleteUser(deleteUserRequestDto, userDetails, response);
     }
+
+    //로그인 확인
+    @GetMapping("/check/user")
+    public UserCheckDto getUserCheck(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return userService.getUserCheck(userDetails);
+    }
+
 }
