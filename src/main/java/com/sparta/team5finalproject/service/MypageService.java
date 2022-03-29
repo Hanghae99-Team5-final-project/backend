@@ -53,32 +53,23 @@ public class MypageService {
 
         return mypageResponseDto;
     }
+
     //마이페이지에서 개인정보 수정
     @Transactional
     public MypageResponseDto updateUserInfo(UserDetailsImpl userDetails, MypageUpdateRequestDto mypageUpdateRequestDto) {
         User user = userDetails.getUser();
-//        System.out.println("로그인한 사람의 비밀번호 :" + userDetails.getPassword());
-//        System.out.println("확인하기 위한 비밀번호 :" + mypageUpdateRequestDto.getPassword() );
-//        if (!userDetails.getPassword().equals(mypageUpdateRequestDto.getPassword())){
-//            throw new IllegalArgumentException("비밀번호가 틀립니다.");
-//        }
-//        if (mypageUpdateRequestDto.getPassword().isEmpty()){
-//            throw new IllegalArgumentException("비밀번호를 입력해주세요");
-//        }
         System.out.println("회원정보"+user.getEmail());
-
         System.out.println("바꾸려는 이메일 : " + mypageUpdateRequestDto.getEmail());
         user.update(mypageUpdateRequestDto);
-
         System.out.println("바뀐 회원 정보"+user.getEmail()); // null
         userRepository.save(user);
-
         MypageResponseDto mypageResponseDto = new MypageResponseDto();
         mypageResponseDto.setResult("success");
         mypageResponseDto.setUsername(user.getUsername());
         mypageResponseDto.setEmail(user.getEmail());
         System.out.println("회원정보있냐? : "+user.getUsername());
         System.out.println("이메일정보 있나? : "+user.getEmail());
+
         return mypageResponseDto;
     }
 
@@ -89,7 +80,7 @@ public class MypageService {
         List<Likes> myLikeList = likesRepository.findAllByUserId(userDetails.getUser().getId());
         List<MyLikeResponseDto> myLikeResponseDtoList = new ArrayList<>();
         for (Likes like : myLikeList) {
-            Long watchId = like.getWatch().getId();
+            Long watchId = like.getWatch().getWatchId();
             Watch watch = watchRepository.findById(watchId).orElseThrow(()-> new IllegalArgumentException("해당 시계글이 존재하지 않습니다."));
             Long likeCount = watch.getLikeCount();
             MyLikeResponseDto myLikeResponseDto = new MyLikeResponseDto(watch,likeCount);

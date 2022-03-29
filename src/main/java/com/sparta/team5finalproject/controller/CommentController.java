@@ -1,6 +1,7 @@
 package com.sparta.team5finalproject.controller;
 
 import com.sparta.team5finalproject.dto.commentDto.CommentRequestDto;
+import com.sparta.team5finalproject.dto.commentDto.CommentResponseDto;
 import com.sparta.team5finalproject.model.User;
 import com.sparta.team5finalproject.repository.UserRepository;
 import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
@@ -16,24 +17,23 @@ import java.util.Optional;
 public class CommentController {
 
     private final CommentService commentService;
-    private final UserRepository userRepository;
 
     //댓글 생성 - cody
     @PostMapping("/comment/write/cody/{codyId}")
-    public void createCodyComment(
+    public CommentResponseDto createCodyComment(
             @PathVariable Long codyId,
             @RequestBody CommentRequestDto commentRequestDto,
             @AuthenticationPrincipal UserDetailsImpl userDetails){
-            commentService.createCodyComment(codyId,commentRequestDto, userDetails);
+        return commentService.createCodyComment(codyId,commentRequestDto, userDetails);
     }
 
     //댓글 생성 - watch
     @PostMapping("/comment/write/watch/{watchId}")
-    public void createWatchComment(
+    public CommentResponseDto createWatchComment(
             @PathVariable Long watchId,
             @RequestBody CommentRequestDto commentRequestDto,
             @AuthenticationPrincipal UserDetailsImpl userDetails){
-        commentService.createWatchComment(watchId,commentRequestDto, userDetails);
+        return commentService.createWatchComment(watchId,commentRequestDto, userDetails);
     }
 
 
@@ -56,10 +56,10 @@ public class CommentController {
 
     //댓글 수정
     @PutMapping("/comment/update/{commentId}")
-    public void updateComment(@PathVariable Long commentId,
+    public CommentResponseDto updateComment(@PathVariable Long commentId,
                               @RequestBody CommentRequestDto commentRequestDto,
-                              @AuthenticationPrincipal UserDetailsImpl userDetails){
-        commentService.updateComment(commentId, commentRequestDto,userDetails);
+                              @AuthenticationPrincipal UserDetailsImpl userDetails) throws Exception {
+        return commentService.updateComment(commentId, commentRequestDto,userDetails);
     }
 
     //댓글 삭제
