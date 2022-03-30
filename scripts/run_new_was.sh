@@ -18,6 +18,6 @@ if [ ! -z ${TARGET_PID} ]; then
   sudo kill ${TARGET_PID}
 fi
 
-sudo nohup java -jar -Dserver.port=${TARGET_PORT} -Dspring.config.location=/home/ubuntu/springwatch-project/build/libs/application-aws.properties /home/ubuntu/springwatch-project/build/libs/RoomEscape-0.0.1-SNAPSHOT.jar > /home/ubuntu/springwatch-project/build/libs/nohup$(date +%Y)-$(date +%m)-$(date +%d)-$(date +%H):$(date +%M).out 2>&1 &
+sudo nohup java -jar -Dserver.port=${TARGET_PORT} -Dspring.config.location=/home/ubuntu/springwatch-project/build/libs/application-aws.properties /home/ubuntu/springwatch-project/build/libs/team5FinalProject-0.0.1-SNAPSHOT.jar > /home/ubuntu/springwatch-project/build/libs/nohup$(date +%Y)-$(date +%m)-$(date +%d)-$(date +%H):$(date +%M).out 2>&1 &
 echo "> Now new WAS runs at ${TARGET_PORT}."
 exit 0
