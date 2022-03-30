@@ -167,6 +167,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //코디 목록
         skipPathList.add("GET,/api/cody/**");
 
+        skipPathList.add("GET,/health/**");
+
+
         //코디 상세
 //        skipPathList.add("GET,/api/cody/detail/**");
 
