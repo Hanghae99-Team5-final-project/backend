@@ -6,8 +6,7 @@ build/
 !**/src/test/**/build/
 
 aws.yml
-application properties
-**/application.properties
+
 
 ### STS ###
 .apt_generated
@@ -39,3 +38,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### application.properties ###
+application-aws.properties
