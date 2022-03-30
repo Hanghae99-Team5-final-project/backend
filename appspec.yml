@@ -1,0 +1,17 @@
+# appspec.yml
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/springwatch-project
+    overwrite: yes
+
+
+
+
+
+permissions:
+  - object: /
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
