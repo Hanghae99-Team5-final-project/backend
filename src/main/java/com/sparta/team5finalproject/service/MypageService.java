@@ -15,10 +15,10 @@ import com.sparta.team5finalproject.repository.UserRepository;
 import com.sparta.team5finalproject.repository.WatchRepository;
 import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,17 +58,15 @@ public class MypageService {
     @Transactional
     public MypageResponseDto updateUserInfo(UserDetailsImpl userDetails, MypageUpdateRequestDto mypageUpdateRequestDto) {
         User user = userDetails.getUser();
-        System.out.println("회원정보"+user.getEmail());
-        System.out.println("바꾸려는 이메일 : " + mypageUpdateRequestDto.getEmail());
+
         user.update(mypageUpdateRequestDto);
-        System.out.println("바뀐 회원 정보"+user.getEmail()); // null
+
         userRepository.save(user);
         MypageResponseDto mypageResponseDto = new MypageResponseDto();
         mypageResponseDto.setResult("success");
         mypageResponseDto.setUsername(user.getUsername());
         mypageResponseDto.setEmail(user.getEmail());
-        System.out.println("회원정보있냐? : "+user.getUsername());
-        System.out.println("이메일정보 있나? : "+user.getEmail());
+
 
         return mypageResponseDto;
     }
@@ -96,7 +94,7 @@ public class MypageService {
     // 내가 올린 코디 전체 보기
     public List<MyCodyResponseDto> getMyCody (UserDetailsImpl userDetails) {
         List<Cody> codyList = codyRepository.findAllByUserId(userDetails.getUser().getId());
-        System.out.println("내가 올린 코디 글들을 모아 줬을까? :" + codyList);
+
         List<MyCodyResponseDto> myCodyResponseDtoList = new ArrayList<>();
         for (Cody cody : codyList) {
             MyCodyResponseDto myCodyResponseDto = new MyCodyResponseDto();
@@ -105,7 +103,7 @@ public class MypageService {
             myCodyResponseDto.setImageUrl(cody.getImageUrl());
             myCodyResponseDtoList.add(myCodyResponseDto);
         }
-        System.out.println("내가 올린 코디 글 리스트 :"+myCodyResponseDtoList);
+
         return myCodyResponseDtoList;
     }
 

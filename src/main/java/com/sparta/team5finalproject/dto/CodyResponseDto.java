@@ -15,8 +15,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CodyResponseDto {
-    private Long codyId;            // 코디글 ID
-//    private Long userId;            // 작성자 ID
+    private Long codyId;
+    private Long userId;
+    private String userName;
     private String codyTitle;
     private String watchBrand;
     private String watchModel;

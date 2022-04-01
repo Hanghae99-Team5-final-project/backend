@@ -19,7 +19,6 @@ public class MainPageController {
     //메인페이지 상품 조회
     @GetMapping("/main")
     public MainPageResponseDto getMainPageWatchList() {
-        System.out.println("111111111111111111111111111111111111");
         return mainPageService.getMainPageWatchList();
 
     }

@@ -34,12 +34,10 @@ public class LikesService {
                 () -> new NullPointerException("해당 상품이 존재하지 않습니다."));
         Likes likes = new Likes(userDetails.getUser(), watch);
         likesRepository.save(likes);
-        System.out.println("라이크 저장" + likes);
         Long likeCnt = watch.getLikeCount();
         likeCnt++;
         watch.setLikeCount(likeCnt);
         watchRepository.save(watch);
-        System.out.println("라이크 카운트 잘 저장되고 있냐?" + likeCnt + watch);
         return "{\"result\":\"true\"}";
     }
 
@@ -47,7 +45,6 @@ public class LikesService {
     //찜 삭제 (이 메소드 필요없을듯)
     @Transactional
     public String deleteLikes(Long likesId, UserDetailsImpl userDetails) {
-        System.out.println("에러냐? " + likesId);
         Likes likes = likesRepository.findById(likesId).orElseThrow(
                 () -> new NullPointerException("deleteLike 내부 findByLikesId 오류"));
         Watch watch = watchRepository.findById(likes.getWatch().getWatchId()).orElseThrow(
@@ -61,14 +58,11 @@ public class LikesService {
         System.out.println("에러냐2? " + userId);
 
         if (userId.equals(userDetails.getUser().getId())) {
-            System.out.println("likes의 userid? " + likes.getUser().getId());
             likesRepository.deleteById(likesId);
-            System.out.println("라이크 잘지워지고 있냐?" + likes);
             Long likeCnt = watch.getLikeCount();
             likeCnt--;
             watch.setLikeCount(likeCnt);
             watchRepository.save(watch);
-            System.out.println("라이크 카운트 잘 취소되고있냐?" + likeCnt + watch);
         }
 
         return "{\"result\":\"false\"}";

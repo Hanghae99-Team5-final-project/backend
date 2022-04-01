@@ -40,14 +40,12 @@ public class CoupleWatchService {
 
         ArrayList<String> watchImage = new ArrayList<>(); // 썸네일 담을 그릇용
         for (Element thumnail : classLazy){
-//            System.out.println(thumnail.attr("abs:data-original"));
             watchImage.add(thumnail.attr("abs:data-original"));
         }
 
         ArrayList<String> watchBrand = new ArrayList<>();
         //제목
         for (Element title : classLazy){
-//            System.out.println("제목 : "+ title.attr("alt"));
             watchBrand.add(title.attr("alt"));
         }
 
@@ -58,10 +56,8 @@ public class CoupleWatchService {
         for (int i = 1; i < classPrice.size(); i++) {
             String price = classPrice.get(i).text();
             String realPrice = removeSpace(price);
-
             String intStr = realPrice.replaceAll("[^0-9]", "");
-//            System.out.println("가격 : " + intStr);
-            lowestPrice.add(intStr);
+            lowestPrice.add(intStr + "원");
         }
 
         //워치 객체에 저장 하기 위한 로직

@@ -21,9 +21,6 @@ public class CommentService {
 
     //댓글 생성 - cody
     public CommentResponseDto createCodyComment(Long codyId, CommentRequestDto commentRequestDto, UserDetailsImpl userDetails) {
-        System.out.println("받은 Watch Id 값 : " + codyId);
-        System.out.println("등록하려는 댓글 내용 : " + commentRequestDto.getCommentContent());
-        System.out.println("로그인한 유저정보 " + userDetails.getUsername());
         Cody cody = codyRepository.findById(codyId).orElseThrow(
                 () -> new NullPointerException("존재하지 않는 게시글 입니다."));
         CodyComment codyComment = new CodyComment();
@@ -31,8 +28,6 @@ public class CommentService {
         codyComment.setUser(userDetails.getUser());
         codyComment.setCommentUsername(userDetails.getUsername());
         codyComment.setCody(cody);
-
-        System.out.println("댓글 내용 나와라 ? 아? " + codyComment);
         commentRepository.save(codyComment);
 
         CommentResponseDto commentResponseDto = new CommentResponseDto();
@@ -46,19 +41,16 @@ public class CommentService {
 
     //댓글 생성 - watch
     public CommentResponseDto createWatchComment(Long watchId, CommentRequestDto commentRequestDto, UserDetailsImpl userDetails) {
-        System.out.println("등록하려는 댓글 내용 : " + commentRequestDto.getCommentContent());
-        System.out.println("로그인한 유저정보 " + userDetails.getUsername());
+
         Watch watch = watchRepository.findById(watchId).orElseThrow(
                 () -> new NullPointerException("존재하지 않는 게시글 입니다."));
-        System.out.println("찾은 시계 ID : " + watch);
+
 
         WatchComment watchComment = new WatchComment();
         watchComment.setCommentContent(commentRequestDto.getCommentContent());
         watchComment.setUser(userDetails.getUser());
         watchComment.setCommentUsername(userDetails.getUsername());
         watchComment.setWatch(watch);
-
-        System.out.println("댓글 내용 나와라 ? 아? " + watchComment);
         commentRepository.save(watchComment);
 
         CommentResponseDto commentResponseDto = new CommentResponseDto();

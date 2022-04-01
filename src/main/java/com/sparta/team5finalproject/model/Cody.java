@@ -52,7 +52,6 @@ public class Cody extends Timestamped {
         this.watchBrand = codyRequestDto.getWatchBrand();
         this.watchModel = codyRequestDto.getWatchModel();
         this.codyContent = codyRequestDto.getCodyContent();
-//        this.imageUrl = codyRequestDto.getImageUrl();
         this.star = codyRequestDto.getStar();
     }
 

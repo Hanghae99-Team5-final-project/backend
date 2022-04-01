@@ -42,17 +42,15 @@ public class CodyService {
 
     //코디 글 생성
     @Transactional
-    public void createCody(CodyRequestDto codyRequestDto, UserDetailsImpl userDetails, MultipartFile multipartFile) throws IOException {
+    public CodyResponseDto createCody(CodyRequestDto codyRequestDto, UserDetailsImpl userDetails, MultipartFile multipartFile) throws IOException {
         System.out.println("코디서비스 코디리퀘스트DTO의타이틀="+codyRequestDto.getCodyTitle());
 
         if (userDetails != null) {
-            System.out.println("44444444444444444444444");
             String imgUrl = "";
-//            if (multipartFile.getSize() != 0) {
-//                imgUrl = s3Uploader.upload(multipartFile, imageDirName);
-//            }
+            if (multipartFile != null) {
+                imgUrl = s3Uploader.upload(multipartFile, imageDirName);
+            }
 
-            System.out.println("4444444444444444422222222222222");
 
             // 요청한 정보로 코디 객체 생성
             Cody cody = new Cody();
@@ -64,10 +62,23 @@ public class CodyService {
             cody.setStar(codyRequestDto.getStar());
             cody.setUser(userDetails.getUser());
 
-            System.out.println("55555555555555555555555555="+cody.getCodyTitle());
 
             // DB 저장
             codyRepository.save(cody);
+
+            CodyResponseDto codyResponseDto = new CodyResponseDto();
+            codyResponseDto.setCodyId(cody.getId());
+            codyResponseDto.setUserId(userDetails.getUser().getId());
+            codyResponseDto.setUserName(userDetails.getUser().getUsername());
+            codyResponseDto.setCodyTitle(cody.getCodyTitle());
+            codyResponseDto.setWatchBrand(cody.getWatchBrand());
+            codyResponseDto.setWatchModel(cody.getWatchModel());
+            codyResponseDto.setCodyContent(cody.getCodyContent());
+            codyResponseDto.setImageUrl(cody.getImageUrl());
+            codyResponseDto.setStar(cody.getStar());
+            codyResponseDto.setCreatedAt(cody.getCreatedAt());
+
+            return codyResponseDto;
 
         } else {
             throw new NullPointerException("로그인하지 않았습니다.");
@@ -94,12 +105,15 @@ public class CodyService {
 
         CodyResponseDto codyResponseDto = new CodyResponseDto();
         codyResponseDto.setCodyId(cody.getId());
+        codyResponseDto.setUserId(cody.getUser().getId());
+        codyResponseDto.setUserName(cody.getUser().getUsername());
         codyResponseDto.setCodyTitle(cody.getCodyTitle());
         codyResponseDto.setWatchBrand(cody.getWatchBrand());
         codyResponseDto.setCodyContent(cody.getCodyContent());
         codyResponseDto.setWatchModel(cody.getWatchModel());
         codyResponseDto.setImageUrl(cody.getImageUrl());
         codyResponseDto.setStar(cody.getStar());
+        codyResponseDto.setCreatedAt(cody.getCreatedAt());
         codyResponseDto.setCommentResponseDtoList(commentResponseDtoList);
         return codyResponseDto;
     }
@@ -131,7 +145,8 @@ public class CodyService {
 
             codyResponseDtoList.add(CodyResponseDto.builder()
                     .codyId(oneCody.getId())
-//                    .userId(user.getId())
+                    .userName(oneCody.getUser().getUsername())
+                    .userId(oneCody.getUser().getId())
                     .codyTitle(oneCody.getCodyTitle())
                     .watchBrand(oneCody.getWatchBrand())
                     .watchModel(oneCody.getWatchModel())
@@ -150,7 +165,7 @@ public class CodyService {
 
     // 코디 상세글 수정
     @Transactional
-    public void updateCody(Long codyId, User user, CodyRequestDto codyRequestDto, MultipartFile multipartFile) throws IOException {
+    public CodyResponseDto updateCody(Long codyId, User user, CodyRequestDto codyRequestDto, MultipartFile multipartFile) throws IOException {
         // 코디 상세글 조회
         Cody cody = codyRepository.findById(codyId).orElseThrow(
                 () -> new NullPointerException("해당 코디글이 존재하지 않습니다.")
@@ -173,6 +188,19 @@ public class CodyService {
         cody.setImageUrl(imgUrl);
         // DB 저장
         codyRepository.save(cody);
+
+        CodyResponseDto codyResponseDto =new CodyResponseDto();
+        codyResponseDto.setCodyId(cody.getId());
+        codyResponseDto.setUserId(user.getId());
+        codyResponseDto.setCodyTitle(cody.getCodyTitle());
+        codyResponseDto.setWatchBrand(cody.getWatchBrand());
+        codyResponseDto.setWatchModel(cody.getWatchModel());
+        codyResponseDto.setCodyContent(cody.getCodyContent());
+        codyResponseDto.setImageUrl(cody.getImageUrl());
+        codyResponseDto.setStar(cody.getStar());
+        codyResponseDto.setCreatedAt(cody.getCreatedAt());
+
+        return codyResponseDto;
     }
 
 

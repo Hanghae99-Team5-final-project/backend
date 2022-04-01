@@ -2,10 +2,10 @@ package com.sparta.team5finalproject.service;
 
 
 import com.sparta.team5finalproject.dto.pageDto.CategoryPageResponesDto;
+import com.sparta.team5finalproject.dto.pageDto.CodyListResponseDto;
 import com.sparta.team5finalproject.dto.pageDto.MainPageResponseDto;
 import com.sparta.team5finalproject.model.*;
 import com.sparta.team5finalproject.repository.CodyRepository;
-import com.sparta.team5finalproject.repository.CommentRepository;
 import com.sparta.team5finalproject.repository.WatchRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,14 +18,14 @@ import java.util.List;
 public class MainPageService {
     private final CodyRepository codyRepository;
     private final WatchRepository watchRepository;
-    private final CommentRepository commentRepository;
+
 
     // 메인페이지 조회
     public MainPageResponseDto getMainPageWatchList() {
 
         // 인기 상품
         MainPageResponseDto mainPageResponseDto = new MainPageResponseDto();
-        List<Watch> bestWatchList = watchRepository.findTop5ByWatchCategoryOrderByLikeCountDesc(WatchCategory.DIGITAL);
+        List<Watch> bestWatchList = watchRepository.findTop4ByWatchCategoryOrderByLikeCountDesc(WatchCategory.DIGITAL);
 
 //        List<Watch> TopWatchList = new ArrayList<>();
 //        for (Watch digital : bestWatchList) {
@@ -42,7 +42,7 @@ public class MainPageService {
 
 
         // 커플 인기 상품
-        List<Watch> bestCoupleWatchList = watchRepository.findTop5ByWatchCategoryOrderByLikeCountDesc(WatchCategory.COUPLE);
+        List<Watch> bestCoupleWatchList = watchRepository.findTop4ByWatchCategoryOrderByLikeCountDesc(WatchCategory.COUPLE);
 
 //        for (Watch couple : bestCoupleWatchList){
 //            String category = couple.getWatchCategory().getCategory();
@@ -59,15 +59,30 @@ public class MainPageService {
 //            }
 //       }
 
-        mainPageResponseDto.setBestList(bestWatchList);
-        mainPageResponseDto.setCoupleList(bestCoupleWatchList);
+
 
 
         // 코디글
-//        List<Cody> bestCodyList = codyRepository.findTop5ByOrderByIdDesc();
-//        mainPageResponseDto.setCodyList(bestCodyList);
-//
-//        mainPageResponseDto.setCodyList(bestCodyList);
+
+        List<Cody> bestCodyList = codyRepository.findTop5ByOrderByIdDesc();
+        List<CodyListResponseDto> codyListResponseDtos = new ArrayList<>();
+        for (int i = 0; i <bestCodyList.size(); i++) {
+            CodyListResponseDto codyListResponseDto = new CodyListResponseDto();
+            codyListResponseDto.setCodyId(bestCodyList.get(i).getId());
+            codyListResponseDto.setCodyTitle(bestCodyList.get(i).getCodyTitle());
+            codyListResponseDto.setCodyContent(bestCodyList.get(i).getCodyContent());
+            codyListResponseDto.setWatchModel(bestCodyList.get(i).getWatchModel());
+            codyListResponseDto.setWatchBrand(bestCodyList.get(i).getWatchBrand());
+            codyListResponseDto.setStar(bestCodyList.get(i).getStar());
+            codyListResponseDto.setImageUrl(bestCodyList.get(i).getImageUrl());
+            codyListResponseDtos.add(codyListResponseDto);
+        }
+
+
+        mainPageResponseDto.setBestList(bestWatchList);
+        mainPageResponseDto.setCoupleList(bestCoupleWatchList);
+        mainPageResponseDto.setCodyList(bestCodyList);
+
         return mainPageResponseDto;
     }
 
@@ -81,8 +96,6 @@ public class MainPageService {
         categoryPageResponesDto.setCoupleList(coupleCategoryWatch);
         return categoryPageResponesDto;
     }
-
-//
 
 
 }
