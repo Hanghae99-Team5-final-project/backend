@@ -98,4 +98,13 @@ public class UserService {
 
     }
 
+    // 회원가입 아이디 중복확인
+    public String signupUsernameCheck (String username) {
+        if(userRepository.findByUsername(username).isPresent()) {
+            return "false";
+        } else {
+            return "true";
+        }
+    }
+
 }

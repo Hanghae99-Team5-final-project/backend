@@ -72,4 +72,13 @@ public class UserController {
         return userService.getUserCheck(userDetails);
     }
 
+    // 회원가입 중복체크
+    @PostMapping("/user/redunancy")
+    public String checkName(@RequestBody SignupRequestDto signupRequestDto) {
+        String username = signupRequestDto.getUsername();
+        String check = userService.signupUsernameCheck(username);
+        return check;
+    }
+
+
 }
