@@ -15,13 +15,12 @@ import com.sparta.team5finalproject.repository.UserRepository;
 import com.sparta.team5finalproject.repository.WatchRepository;
 import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
-<<<<<<< HEAD
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
-=======
 
->>>>>>> f5ca9e0a95665bb5130b0012912a795c19fbf47e
+
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -66,7 +65,7 @@ public class MypageService {
     @Transactional
     public MypageResponseDto updateUserInfo(UserDetailsImpl userDetails, MypageUpdateRequestDto mypageUpdateRequestDto) {
         User user = userDetails.getUser();
-<<<<<<< HEAD
+
 //        System.out.println("로그인한 사람의 비밀번호 :" + userDetails.getPassword());
 //        System.out.println("확인하기 위한 비밀번호 :" + mypageUpdateRequestDto.getPassword() );
 
@@ -89,12 +88,11 @@ public class MypageService {
             throw new IllegalArgumentException(detailMessage);
         }
 
-=======
+
 
         user.update(mypageUpdateRequestDto);
 
         userRepository.save(user);
->>>>>>> f5ca9e0a95665bb5130b0012912a795c19fbf47e
         MypageResponseDto mypageResponseDto = new MypageResponseDto();
         mypageResponseDto.setResult("success");
         mypageResponseDto.setUsername(user.getUsername());

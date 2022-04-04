@@ -73,7 +73,7 @@ public class CoupleWatchService {
                 watchRepository.save(watch);
             } catch(IllegalArgumentException e){
                 // 예외처리, 로깅
-                String detailMessage = String.format("커플시계 DB에 create 실패, Input: %s", watch.getId());
+                String detailMessage = String.format("커플시계 DB에 create 실패, Input: %s", watch.getWatchId());
                 logger.info(detailMessage);
                 throw new IllegalArgumentException(detailMessage);
             }

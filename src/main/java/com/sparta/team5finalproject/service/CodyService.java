@@ -180,8 +180,7 @@ public class CodyService {
     public CodyResponseDto updateCody(Long codyId, User user, CodyRequestDto codyRequestDto, MultipartFile multipartFile) throws IOException {
         // 코디 상세글 조회
         Cody cody = codyRepository.findById(codyId).orElseThrow(
-                () -> new NullPointerException("해당 코디글이 존재하지 않습니다.")
-        );
+                () -> new NullPointerException("해당 코디글이 존재하지 않습니다."));
 
         if (!user.getId().equals(cody.getUser().getId())) {
             throw new IllegalArgumentException("해당 코디글의 작성자만 수정 가능합니다.");
@@ -199,31 +198,29 @@ public class CodyService {
         cody.update(codyRequestDto);
         cody.setImageUrl(imgUrl);
         // DB 저장
-<<<<<<< HEAD
+
         try{
             codyRepository.save(cody);
+            CodyResponseDto codyResponseDto =new CodyResponseDto();
+            codyResponseDto.setCodyId(cody.getId());
+            codyResponseDto.setUserId(user.getId());
+            codyResponseDto.setCodyTitle(cody.getCodyTitle());
+            codyResponseDto.setWatchBrand(cody.getWatchBrand());
+            codyResponseDto.setWatchModel(cody.getWatchModel());
+            codyResponseDto.setCodyContent(cody.getCodyContent());
+            codyResponseDto.setImageUrl(cody.getImageUrl());
+            codyResponseDto.setStar(cody.getStar());
+            codyResponseDto.setCreatedAt(cody.getCreatedAt());
+
+            return codyResponseDto;
         } catch(IllegalArgumentException e){
             // 예외처리, 로깅
             String detailMessage = String.format("코디 DB에 update 실패, Input: %s", cody.getCodyTitle());
             logger.info(detailMessage);
             throw new IllegalArgumentException(detailMessage);
         }
-=======
-        codyRepository.save(cody);
 
-        CodyResponseDto codyResponseDto =new CodyResponseDto();
-        codyResponseDto.setCodyId(cody.getId());
-        codyResponseDto.setUserId(user.getId());
-        codyResponseDto.setCodyTitle(cody.getCodyTitle());
-        codyResponseDto.setWatchBrand(cody.getWatchBrand());
-        codyResponseDto.setWatchModel(cody.getWatchModel());
-        codyResponseDto.setCodyContent(cody.getCodyContent());
-        codyResponseDto.setImageUrl(cody.getImageUrl());
-        codyResponseDto.setStar(cody.getStar());
-        codyResponseDto.setCreatedAt(cody.getCreatedAt());
 
-        return codyResponseDto;
->>>>>>> f5ca9e0a95665bb5130b0012912a795c19fbf47e
     }
 
 
