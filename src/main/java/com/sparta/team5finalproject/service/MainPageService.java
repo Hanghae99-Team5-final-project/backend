@@ -8,6 +8,8 @@ import com.sparta.team5finalproject.model.*;
 import com.sparta.team5finalproject.repository.CodyRepository;
 import com.sparta.team5finalproject.repository.WatchRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,9 +21,14 @@ public class MainPageService {
     private final CodyRepository codyRepository;
     private final WatchRepository watchRepository;
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     // 메인페이지 조회
     public MainPageResponseDto getMainPageWatchList() {
+
+        logger.info("Info");
+        logger.warn("Warn");
+        logger.error("Error");
 
         // 인기 상품
         MainPageResponseDto mainPageResponseDto = new MainPageResponseDto();
