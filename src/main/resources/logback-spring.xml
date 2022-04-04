@@ -31,13 +31,15 @@
         <!--        <include resource="file-info-appender.xml"/>-->
         <!--        <include resource="file-warn-appender.xml"/>-->
 <!--        <include resource="console-appender.xml"/>-->
+
 <!--        <include file="src/main/java/resources/console-appender.xml"/>-->
-        <include file="src/main/java/resources/file-info-to-error-appender.xml"/>
-        <include file="src/main/java/resources/file-error-appender.xml"/>
-        <include file="src/main/java/resources/slack-appender.xml"/>
-<!--        <include resource="file-info-to-error-appender.xml"/>-->
-<!--        <include resource="file-error-appender.xml"/>-->
-<!--        <include resource="slack-appender.xml"/>-->
+<!--        <include file="src/main/java/resources/file-info-to-error-appender.xml"/>-->
+<!--        <include file="src/main/java/resources/file-error-appender.xml"/>-->
+<!--        <include file="src/main/java/resources/slack-appender.xml"/>-->
+
+        <include resource="file-info-to-error-appender.xml"/>
+        <include resource="file-error-appender.xml"/>
+        <include resource="slack-appender.xml"/>
 
         <root level="INFO">
             <appender-ref ref="FILE-INFOTOERROR"/>
