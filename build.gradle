@@ -46,6 +46,18 @@ dependencies {
 //    implementation 'org.springframework.boot:spring-boot-configuration-processor:2.6.4'
     // json
     implementation group: 'org.json', name: 'json', version: '20160810'
+    // Slack logback
+    implementation 'com.github.maricn:logback-slack-appender:1.4.0'
+    // 프로퍼티 암호화 jasypt
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.3'
+
+    // logback 취약점 조치
+    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.2.9'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.9'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.32'
+    implementation group: 'org.slf4j', name: 'jul-to-slf4j', version: '1.7.32'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: '2.16.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.16.0'
 
 }
 

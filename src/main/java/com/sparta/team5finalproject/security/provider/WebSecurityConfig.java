@@ -171,11 +171,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //코디 상세
 //        skipPathList.add("GET,/api/cody/detail/**");
 
-
-
         //크롤링
         skipPathList.add("POST,/cpWatch/**");
         skipPathList.add("POST,/msWatch/**");
+
+        // 로깅 테스트
+        skipPathList.add("GET,/log");
+
+
 
         skipPathList.add("GET,/basic.js");
 

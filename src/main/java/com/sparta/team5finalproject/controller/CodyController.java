@@ -45,27 +45,6 @@ public class CodyController {
     }
 
 
-
-//////////////////////////////////////시큐리티 없이 테스트용///////////////////////////////////////////////////////////
-//    // 신규 코디 글 등록
-//    @PostMapping("/api/cody")
-//    public void createCody(@RequestBody CodyRequestDto codyRequestDto,
-//                           @RequestPart(value = "multipartFile", required = false) MultipartFile multipartFile) throws IOException {
-//        System.out.println("11111111111111111111111");
-//        User userDetails;
-//        Optional<User> optUser = userRepository.findByUsername("bbb");
-//        userDetails = optUser.get();
-//        System.out.println("222222222222222222222="+userDetails.getUsername());
-//        codyService.createCody(codyRequestDto, userDetails, multipartFile);
-//    }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
 //    // 코디 상세게시글 조회
     @GetMapping("/api/cody/detail/{codyId}")
     public CodyResponseDto readDetailCody(@PathVariable Long codyId) {

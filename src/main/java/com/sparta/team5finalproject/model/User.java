@@ -54,6 +54,7 @@ public class User extends Timestamped {
 
 
     public User(String username, String password, String email, UserRoleEnum role){
+
         this.username = username;
         this.password = password;
         this.email = email;

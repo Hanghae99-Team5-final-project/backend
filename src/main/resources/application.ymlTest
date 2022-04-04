@@ -1,0 +1,37 @@
+cloud:
+  aws:
+    s3:
+      bucket: myspringwatch
+      url: https://s3.ap-northeast-2.amazonaws.com/myspringwatch
+    credentials:
+      accessKey: ACCESS KEY
+      secretKey: SECRETKEY
+      instanceProfile: 'true'
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: 'false'
+
+spring:
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  h2:
+    console:
+      enabled: 'true'
+  datasource:
+    url: jdbc:h2:mem:springcoredb
+
+logging:
+  config:
+    classpath: logback-${spring.profiles.active}.xml
+  slack:
+    webhook-uri: ENC(Gjv+g49dQUOEO0nOVdSHXaZz9zlyKvxdmmO4voZp5l/zAfos0RDDvDAwabgrpbRI0tHBuHmcAnvKJTf7aH6H4tTLxhFIGOyYTuJsdka5kFKZEnt+iEJzP5/uu30IAz9j)
+
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+#    password: ${jasypt.encryptor.password}
