@@ -5878,3 +5878,39 @@ java.lang.IllegalArgumentException: 유효한 토큰이 아닙니다.
 [2022-04-04 21:02:01:742686] [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 [2022-04-04 21:02:01:742688] [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 [2022-04-04 21:02:01:742690] [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2022-04-04 22:22:59:538 ] [main] INFO  c.s.t.Team5FinalProjectApplication - Starting Team5FinalProjectApplication using Java 1.8.0_322 on DESKTOP-B2VO446 with PID 8524 (C:\Users\각성구\Desktop\각성구\항해\Chapter 8\project\build\classes\java\main started by 각성구 in C:\Users\각성구\Desktop\각성구\항해\Chapter 8\project)
+[2022-04-04 22:22:59:540 ] [main] INFO  c.s.t.Team5FinalProjectApplication - The following profiles are active: aws,prod
+[2022-04-04 22:23:03:4210] [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2022-04-04 22:23:03:4274] [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 58 ms. Found 5 JPA repository interfaces.
+[2022-04-04 22:23:03:4493] [main] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[2022-04-04 22:23:03:4513] [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+[2022-04-04 22:23:03:4514] [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+[2022-04-04 22:23:03:4514] [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+[2022-04-04 22:23:03:4515] [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[2022-04-04 22:23:03:4515] [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[2022-04-04 22:23:03:4515] [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[2022-04-04 22:23:03:4516] [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-aws.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[2022-04-04 22:23:03:4516] [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[2022-04-04 22:23:03:4556] [main] INFO  c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[2022-04-04 22:23:03:4741] [main] INFO  c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[2022-04-04 22:23:03:4744] [main] INFO  c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[2022-04-04 22:23:04:4834] [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[2022-04-04 22:23:04:4842] [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2022-04-04 22:23:04:4843] [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2022-04-04 22:23:04:4843] [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+[2022-04-04 22:23:04:4927] [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2022-04-04 22:23:04:4927] [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4351 ms
+[2022-04-04 22:23:04:5138] [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2022-04-04 22:23:04:5173] [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.4.Final
+[2022-04-04 22:23:04:5283] [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[2022-04-04 22:23:04:5361] [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2022-04-04 22:23:04:5755] [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2022-04-04 22:23:04:5773] [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[2022-04-04 22:23:05:6645] [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[2022-04-04 22:23:05:6655] [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2022-04-04 22:23:06:6907] [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2022-04-04 22:23:06:7635] [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4654e373, org.springframework.security.web.context.SecurityContextPersistenceFilter@2b1d1a5, org.springframework.security.web.header.HeaderWriterFilter@1fa18f87, org.springframework.web.filter.CorsFilter@2474df51, org.springframework.security.web.authentication.logout.LogoutFilter@36cf16a6, com.sparta.team5finalproject.security.filter.FormLoginFilter@63262071, com.sparta.team5finalproject.security.filter.JwtAuthFilter@2864d34d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3b66ac74, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2375a976, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5fb514c2, org.springframework.security.web.session.SessionManagementFilter@18ac4af6, org.springframework.security.web.access.ExceptionTranslationFilter@79445efb, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@71f29d91]
+[2022-04-04 22:23:07:7859] [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+[2022-04-04 22:23:07:7956] [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[2022-04-04 22:23:07:7969] [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[2022-04-04 22:23:07:7979] [main] INFO  c.s.t.Team5FinalProjectApplication - Started Team5FinalProjectApplication in 7.848 seconds (JVM running for 8.532)
