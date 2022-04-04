@@ -13,8 +13,8 @@ public class LikesController {
 
     private final LikesService likesService;
 
-    @GetMapping("/api/like/operate/{watchId}")
-    public String operateLikes(@PathVariable Long watchId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    @PostMapping("/api/like/create/{watchId}")
+    public String createLikes(@PathVariable Long watchId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return likesService.createLikes(watchId, userDetails);
     }
 
