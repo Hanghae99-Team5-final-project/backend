@@ -14,4 +14,5 @@ import java.util.List;
 @NoArgsConstructor
 public class WatchDetailLikeResponseDto {
     private boolean existLikes;
+    private Long likeId;
 }

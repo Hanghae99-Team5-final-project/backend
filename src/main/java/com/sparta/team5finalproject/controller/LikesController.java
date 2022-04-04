@@ -13,13 +13,13 @@ public class LikesController {
 
     private final LikesService likesService;
 
-    @PutMapping("/api/like/operate/{watchId}")
+    @GetMapping("/api/like/operate/{watchId}")
     public String operateLikes(@PathVariable Long watchId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return likesService.operateLikes(watchId, userDetails);
+        return likesService.createLikes(watchId, userDetails);
     }
 
-//    @DeleteMapping("/api/like/delete/{likesId}")
-//    public String deleteLikes(@PathVariable Long likesId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-//        return likesService.deleteLikes(likesId, userDetails);
-//    }
+    @DeleteMapping("/api/like/delete/{likesId}")
+    public String deleteLikes(@PathVariable Long likesId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return likesService.deleteLikes(likesId, userDetails);
+    }
 }

@@ -32,10 +32,10 @@ public class LikesService {
 
     //찜 생성
     @Transactional
-    public String operateLikes(Long watchId, UserDetailsImpl userDetails) {
-        // watch 상풍이 있는지 확인
+    public String createLikes(Long watchId, UserDetailsImpl userDetails) {
         Watch watch = watchRepository.findById(watchId).orElseThrow(
                 () -> new NullPointerException("해당 상품이 존재하지 않습니다."));
+<<<<<<< HEAD
         User user = userDetails.getUser();
         // 로그인한 유저가 해당 시계 상품에 좋아요를 했는지 여부
         Optional<Likes> optLikes = likesRepository.findByWatchAndUser(watch, userDetails.getUser());
@@ -111,6 +111,14 @@ public class LikesService {
                 throw new IllegalArgumentException(detailMessage);
             }
         }
+=======
+        Likes likes = new Likes(userDetails.getUser(), watch);
+        likesRepository.save(likes);
+        Long likeCnt = watch.getLikeCount();
+        likeCnt++;
+        watch.setLikeCount(likeCnt);
+        watchRepository.save(watch);
+>>>>>>> f5ca9e0a95665bb5130b0012912a795c19fbf47e
         return "{\"result\":\"true\"}";
     }
 
@@ -118,11 +126,69 @@ public class LikesService {
     //찜 삭제 (이 메소드 필요없을듯)
     @Transactional
     public String deleteLikes(Long likesId, UserDetailsImpl userDetails) {
+<<<<<<< HEAD
         User user = userDetails.getUser();
         Likes likes = likesRepository.findById(likesId).orElseThrow(
                 ()->new NullPointerException("deleteLike 내부 findByLikesId 오류"));
         Watch watch = watchRepository.findById(likes.getWatch().getId()).orElseThrow(
                 () -> new NullPointerException("해당 상품이 존재하지 않습니다."));
+=======
+        Likes likes = likesRepository.findById(likesId).orElseThrow(
+                () -> new NullPointerException("deleteLike 내부 findByLikesId 오류"));
+        Watch watch = watchRepository.findById(likes.getWatch().getWatchId()).orElseThrow(
+                () -> new NullPointerException("해당 상품이 존재하지 않습니다."));
+        Optional<Likes> optLikes = likesRepository.findByWatchAndUser(watch, userDetails.getUser());
+        Long userId = 0L;
+        if (optLikes.isPresent()) {
+            userId = optLikes.get().getUser().getId();
+        }
+
+        System.out.println("에러냐2? " + userId);
+
+        if (userId.equals(userDetails.getUser().getId())) {
+            likesRepository.deleteById(likesId);
+            Long likeCnt = watch.getLikeCount();
+            likeCnt--;
+            watch.setLikeCount(likeCnt);
+            watchRepository.save(watch);
+        }
+
+        return "{\"result\":\"false\"}";
+    }
+
+}
+
+
+
+//    public String deleteLikes(Long likesId, UserDetailsImpl userDetails) {
+//        System.out.println("에러냐? "+likesId);
+//        User user = userDetails.getUser();
+//        Likes likes = likesRepository.findById(likesId).orElseThrow(
+//                ()->new NullPointerException("deleteLike 내부 findByLikesId 오류"));
+//        Watch watch = watchRepository.findById(likes.getWatch().getId()).orElseThrow(
+//                () -> new NullPointerException("해당 상품이 존재하지 않습니다."));
+//
+//        System.out.println("1111="+user.equals(likes.getUser()));
+//        System.out.println("2222="+(user==likes.getUser()));
+//        System.out.println("3333="+"a="+user.getId()+"b="+likes.getUser().getId()+"true="+(user.getId()==likes.getUser().getId()));
+//        System.out.println("4444="+"a="+user.getId()+"b="+likes.getUser().getId()+"true="+(user.getId().equals(likes.getUser().getId())));
+//
+//        if(user==null){
+//            new NullPointerException("로그인이 필요합니다.");
+//        } else if (user.getId().equals(likes.getUser().getId())){
+//            System.out.println("좋아요 삭제");
+//            likesRepository.delete(likes);
+//            // watch 테이블의 좋아요 갯수 설정
+//            Long likeCnt = watch.getLikeCount();
+//            likeCnt--;
+//            watch.setLikeCount(likeCnt);
+//            watchRepository.save(watch);
+//        } else {
+//            throw new UnmatchedUserException("해당 유저가 아닙니다.");
+//        }
+//        return "{\"result\":\"true\"}";
+//    }
+>>>>>>> f5ca9e0a95665bb5130b0012912a795c19fbf47e
 
         if(user==null){
             new NullPointerException("로그인이 필요합니다.");
@@ -164,5 +230,5 @@ public class LikesService {
         }
     }
 
-}
+
 

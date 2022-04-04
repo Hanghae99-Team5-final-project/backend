@@ -18,6 +18,6 @@ public class WatchDetailResponseDto {
     private String watchBrand;
     private String lowestPrice;
     private String likeCount;
-    private boolean existLikes;
+//    private boolean existLikes;
     private List<CommentResponseDto> commentResponseDtoList;
 }

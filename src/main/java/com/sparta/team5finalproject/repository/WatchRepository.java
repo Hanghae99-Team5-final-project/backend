@@ -8,10 +8,8 @@ import java.util.Optional;
 
 public interface WatchRepository extends JpaRepository<Watch,Long> {
 
-
     List<Watch> findAllByWatchCategory(WatchCategory watchCategory);
-    List<Watch> findTop5ByWatchCategoryOrderByLikeCountDesc(WatchCategory category);
-    Optional<Watch> findById(Long watchId);
+    List<Watch> findTop4ByWatchCategoryOrderByLikeCountDesc(WatchCategory category);
 
 
 

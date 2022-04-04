@@ -15,12 +15,16 @@ import com.sparta.team5finalproject.repository.UserRepository;
 import com.sparta.team5finalproject.repository.WatchRepository;
 import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
+<<<<<<< HEAD
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
+=======
+
+>>>>>>> f5ca9e0a95665bb5130b0012912a795c19fbf47e
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,10 +61,12 @@ public class MypageService {
 
         return mypageResponseDto;
     }
+
     //마이페이지에서 개인정보 수정
     @Transactional
     public MypageResponseDto updateUserInfo(UserDetailsImpl userDetails, MypageUpdateRequestDto mypageUpdateRequestDto) {
         User user = userDetails.getUser();
+<<<<<<< HEAD
 //        System.out.println("로그인한 사람의 비밀번호 :" + userDetails.getPassword());
 //        System.out.println("확인하기 위한 비밀번호 :" + mypageUpdateRequestDto.getPassword() );
 
@@ -83,12 +89,18 @@ public class MypageService {
             throw new IllegalArgumentException(detailMessage);
         }
 
+=======
+
+        user.update(mypageUpdateRequestDto);
+
+        userRepository.save(user);
+>>>>>>> f5ca9e0a95665bb5130b0012912a795c19fbf47e
         MypageResponseDto mypageResponseDto = new MypageResponseDto();
         mypageResponseDto.setResult("success");
         mypageResponseDto.setUsername(user.getUsername());
         mypageResponseDto.setEmail(user.getEmail());
-        System.out.println("회원정보있냐? : "+user.getUsername());
-        System.out.println("이메일정보 있나? : "+user.getEmail());
+
+
         return mypageResponseDto;
     }
 
@@ -99,7 +111,7 @@ public class MypageService {
         List<Likes> myLikeList = likesRepository.findAllByUserId(userDetails.getUser().getId());
         List<MyLikeResponseDto> myLikeResponseDtoList = new ArrayList<>();
         for (Likes like : myLikeList) {
-            Long watchId = like.getWatch().getId();
+            Long watchId = like.getWatch().getWatchId();
             Watch watch = watchRepository.findById(watchId).orElseThrow(()-> new IllegalArgumentException("해당 시계글이 존재하지 않습니다."));
             Long likeCount = watch.getLikeCount();
             MyLikeResponseDto myLikeResponseDto = new MyLikeResponseDto(watch,likeCount);
@@ -112,7 +124,7 @@ public class MypageService {
     // 내가 올린 코디 전체 보기
     public List<MyCodyResponseDto> getMyCody (UserDetailsImpl userDetails) {
         List<Cody> codyList = codyRepository.findAllByUserId(userDetails.getUser().getId());
-        System.out.println("내가 올린 코디 글들을 모아 줬을까? :" + codyList);
+
         List<MyCodyResponseDto> myCodyResponseDtoList = new ArrayList<>();
         for (Cody cody : codyList) {
             MyCodyResponseDto myCodyResponseDto = new MyCodyResponseDto();
@@ -121,7 +133,7 @@ public class MypageService {
             myCodyResponseDto.setImageUrl(cody.getImageUrl());
             myCodyResponseDtoList.add(myCodyResponseDto);
         }
-        System.out.println("내가 올린 코디 글 리스트 :"+myCodyResponseDtoList);
+
         return myCodyResponseDtoList;
     }
 

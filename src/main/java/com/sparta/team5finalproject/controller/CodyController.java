@@ -36,12 +36,10 @@ public class CodyController {
 
     // 신규 코디 글 등록
     @PostMapping("/api/cody")
-    public void createCody(@ModelAttribute CodyRequestDto codyRequestDto,
+    public CodyResponseDto createCody(@ModelAttribute CodyRequestDto codyRequestDto,
                            @AuthenticationPrincipal UserDetailsImpl userDetails,
                            @RequestPart(value = "multipartFile", required = false) MultipartFile multipartFile) throws IOException {
-        System.out.println("코디컨트롤의유저="+userDetails.getUser().getUsername());
-        System.out.println("코디컨트롤 코디리퀘스트DTO의타이틀="+codyRequestDto.getCodyTitle());
-        codyService.createCody(codyRequestDto, userDetails, multipartFile);
+       return codyService.createCody(codyRequestDto, userDetails, multipartFile);
     }
 
 
@@ -54,11 +52,11 @@ public class CodyController {
 
     // 시계 코디 게시글 수정 성원
     @PutMapping("/api/cody/{codyId}")
-    public void updateCody(@PathVariable Long codyId,
+    public CodyResponseDto updateCody(@PathVariable Long codyId,
                            @AuthenticationPrincipal UserDetailsImpl userDetails,
                            @ModelAttribute CodyRequestDto codyRequestDto,
                            @RequestPart(value = "multipartFile", required = false) MultipartFile multipartFile) throws IOException {
-        codyService.updateCody(codyId, userDetails.getUser(), codyRequestDto, multipartFile);
+        return codyService.updateCody(codyId, userDetails.getUser(), codyRequestDto, multipartFile);
     }
 
 

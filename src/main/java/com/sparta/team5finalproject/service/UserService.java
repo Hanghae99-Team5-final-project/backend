@@ -2,7 +2,11 @@ package com.sparta.team5finalproject.service;
 
 import com.sparta.team5finalproject.dto.DeleteUserRequestDto;
 import com.sparta.team5finalproject.dto.SignupRequestDto;
+<<<<<<< HEAD
 import com.sparta.team5finalproject.exception.DuplicateUserException;
+=======
+import com.sparta.team5finalproject.dto.UserCheckDto;
+>>>>>>> f5ca9e0a95665bb5130b0012912a795c19fbf47e
 import com.sparta.team5finalproject.model.User;
 import com.sparta.team5finalproject.model.UserRoleEnum;
 import com.sparta.team5finalproject.repository.UserRepository;
@@ -98,4 +102,36 @@ public class UserService {
         }
 //        return user;
     }
+
+    // 로그인 확인
+    public UserCheckDto getUserCheck(UserDetailsImpl userDetails) {
+
+
+        if (userDetails != null) {
+            boolean check = true;
+            return new UserCheckDto(userDetails.getUser().getId(),
+                    userDetails.getUser().getUsername(),
+                    userDetails.getUser().getEmail(),
+                    check);
+
+        } else {
+            Long userId = 0L;
+            String username = "null";
+            String email = "null";
+            boolean check = false;
+            return new UserCheckDto(userId,username,email,check);
+
+        }
+
+    }
+
+    // 회원가입 아이디 중복확인
+    public String signupUsernameCheck (String username) {
+        if(userRepository.findByUsername(username).isPresent()) {
+            return "false";
+        } else {
+            return "true";
+        }
+    }
+
 }

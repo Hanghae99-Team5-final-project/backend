@@ -19,7 +19,7 @@ public class Watch {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long watchId;
 
     @Column(nullable = false)
     private String watchImageUrl; // 이미지
@@ -41,7 +41,8 @@ public class Watch {
     @OneToMany(mappedBy = "watch", cascade = CascadeType.ALL)    // 게시글 삭제 => 해당 게시글 댓글 모두 삭제
     private List<WatchComment> watchCommentLists = new ArrayList<>();
 
-    @OneToMany(mappedBy = "watch", cascade = CascadeType.ALL)// 게시글 삭제 => 해당 좋아요 모두 삭제
+//    @OneToMany(mappedBy = "watch", cascade = CascadeType.ALL)// 게시글 삭제 => 해당 좋아요 모두 삭제
+    @OneToMany(mappedBy = "watch")// 게시글 삭제 => 해당 좋아요 모두 삭제
     @JsonBackReference
     private List<Likes> likesList = new ArrayList<>();
 

@@ -9,12 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface CodyRepository extends JpaRepository<Cody, Long> {
-//    Page<Cody> findAllByUserId(Long userId, Pageable pageable);
     Page<Cody> findAllByOrderByCreatedAtDesc(Pageable pageable);
-     List<Cody> findAllByUserId(Long codyId);
-//    Page<Cody> findAllByUserIdAndFolderList_Id(Long userId, Long folderId, Pageable pageable);
-//    Page<Cody> findByUserId(Long userId);
-    
-
-
+    List<Cody> findAllByUserId(Long codyId);
+    List<Cody> findTop5ByOrderByIdDesc();
 }
