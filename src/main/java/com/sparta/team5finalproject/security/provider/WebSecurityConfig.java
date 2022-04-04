@@ -183,6 +183,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // 로깅 테스트
         skipPathList.add("GET,/log");
 
+        skipPathList.add("GET,/health");
+
 
 
         skipPathList.add("GET,/basic.js");
