@@ -29,8 +29,6 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController // JSON으로 데이터를 주고받음을 선언합니다.
-
-
 public class CodyController {
     private final CodyService codyService;
 
@@ -62,10 +60,8 @@ public class CodyController {
 
     // 코디 목록 불러오기
     @GetMapping("/api/cody") //localhost:8080/?page==0&size==5
-    public List<CodyResponseDto> getIntCody(@RequestParam int page,
-                                            @RequestParam int size) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
-        return codyService.getIntCody(pageable);
+    public List<CodyResponseDto> getIntCody() {
+        return codyService.getIntCody();
     }
 
 //    // 코디글 삭제

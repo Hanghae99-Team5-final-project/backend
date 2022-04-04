@@ -134,10 +134,10 @@ public class CodyService {
 
 //    // 코디 목록 조회
     @Transactional
-    public List<CodyResponseDto> getIntCody(Pageable pageable) {
+    public List<CodyResponseDto> getIntCody() {
 
         // 태그(관심사명), page, size, 내림차순으로 페이징한 게시글 리스트
-        List<Cody> codyList = codyRepository.findAllByOrderByCreatedAtDesc(pageable).getContent();
+        List<Cody> codyList = codyRepository.findAllByOrderByCreatedAtDesc();
 
         // 반환할 게시글 리스트 설정
         List<CodyResponseDto> codyResponseDtoList = new ArrayList<>();
