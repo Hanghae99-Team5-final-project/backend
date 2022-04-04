@@ -181,7 +181,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         skipPathList.add("POST,/msWatch/**");
 
         // 로깅 테스트
-        skipPathList.add("GET,/log/");
+        skipPathList.add("GET,/log");
 
 
 
