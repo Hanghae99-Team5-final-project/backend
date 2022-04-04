@@ -40,8 +40,8 @@ public class WatchController {
         return watchService.readDetailWatch(watchId);
     }
 
-    //시계 상세 페이지
-    @GetMapping("/api/detail/like/{watchId}")
+    //시계 상세 페이지 좋아요 조회
+    @GetMapping("/api/like/{watchId}")
     public WatchDetailLikeResponseDto readDetailWatchLike(@PathVariable Long watchId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return watchService.readDetailWatchLike(watchId, userDetails);
     }

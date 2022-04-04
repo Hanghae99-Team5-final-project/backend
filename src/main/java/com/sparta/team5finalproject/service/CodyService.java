@@ -188,9 +188,12 @@ public class CodyService {
 
         //getSize() : 파일 사이즈
         String imgUrl = cody.getImageUrl();
+        System.out.println("imgUrl 입니다="+imgUrl);
         if (multipartFile != null) {
-            String source = URLDecoder.decode(cody.getImageUrl().replace("https://hanghae99-week07.s3.ap-northeast-2.amazonaws.com/cody/", ""), "UTF-8");
-            s3Uploader.deleteFromS3(source);
+            String source = URLDecoder.decode(cody.getImageUrl().replace("https://myspringwatch.s3.ap-northeast-2.amazonaws.com/cody/", ""), "UTF-8");
+            if(imgUrl.equals(null)) {
+                s3Uploader.deleteFromS3(source);
+            }
             imgUrl = s3Uploader.upload(multipartFile, imageDirName);
         }
 
