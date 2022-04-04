@@ -5,7 +5,7 @@
     <!-- 로그 파일 패턴 -->
     <property name="LOG_PATTERN"
               value="[%d{yyyy-MM-dd HH:mm:ss}:%-4relative] %green([%thread]) %highlight(%-5level) %boldWhite([%C.%M:%yellow(%L)]) - %msg%n"/>
-    <property name="LOG_PATH" value="/home/ubuntu/springwatch-project/log"/>
+    <property name="LOG_PATH" value="/tmp/log"/>
 
     <!-- 개발환경 로깅-->
     <springProfile name="dev">
