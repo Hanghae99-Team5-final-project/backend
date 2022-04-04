@@ -74,7 +74,6 @@ public class CommentService {
         }
 
         comment.update(commentRequestDto);
-        comment.setId(commentRequestDto.getCommentId());
         comment.setCommentContent(commentRequestDto.getCommentContent());
         commentRepository.save(comment);
 
