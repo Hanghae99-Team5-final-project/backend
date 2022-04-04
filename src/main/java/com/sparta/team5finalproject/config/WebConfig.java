@@ -11,10 +11,10 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://springwatch.shop")
-                .allowedMethods("")
-                .allowedHeaders("")
-                .exposedHeaders("")
+                .allowedOrigins("http://localhost:3000", "https://springwatch.shop")
+                .allowedMethods("GET", "POST", "DELETE", "PATCH")
+                .allowedHeaders("*")
+                .exposedHeaders("Authorization")
                 .allowCredentials(true);
     }
 }

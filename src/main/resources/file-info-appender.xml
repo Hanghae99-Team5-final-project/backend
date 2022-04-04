@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
     <appender name="FILE-INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>./log/info-${BY_DATE}.log</file>
+        <file>${LOG_PATH}/info-${BY_DATE}.log</file>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>INFO</level>
             <onMatch>ACCEPT</onMatch>
@@ -11,7 +11,7 @@
             <pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-4relative] [%t] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>./backup/info/info-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/backup/info/info-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxFileSize>10MB</maxFileSize>
             <maxHistory>10</maxHistory>
             <totalSizeCap>200MB</totalSizeCap>
