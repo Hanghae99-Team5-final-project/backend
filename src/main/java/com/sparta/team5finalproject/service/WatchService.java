@@ -30,7 +30,7 @@ public class WatchService {
     private final CommentRepository commentRepository;
     private final LikesRepository likesRepository;
 
-    // 모바일 쿠팡에서 손목시계로 검색 결과 adasdadsdasd
+    // 모바일 쿠팡에서 손목시계로 검색 결과
     private static String cpWatchUrl1 = "https://m.coupang.com/nm/search?q=%EC%86%90%EB%AA%A9%EC%8B%9C%EA%B3%84&page=1";
 //    private static String cpWatchUrl2 = "https://m.coupang.com/nm/search?q=%EC%86%90%EB%AA%A9%EC%8B%9C%EA%B3%84&page=2";
 //    private static String cpWatchUrl3 = "https://m.coupang.com/nm/search?q=%EC%86%90%EB%AA%A9%EC%8B%9C%EA%B3%84&page=3";
