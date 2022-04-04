@@ -21,14 +21,10 @@ public class MainPageService {
     private final CodyRepository codyRepository;
     private final WatchRepository watchRepository;
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     // 메인페이지 조회
     public MainPageResponseDto getMainPageWatchList() {
 
-        logger.info("Info");
-        logger.warn("Warn");
-        logger.error("Error");
 
         // 인기 상품
         MainPageResponseDto mainPageResponseDto = new MainPageResponseDto();
@@ -67,13 +63,10 @@ public class MainPageService {
 //       }
 
 
-
-
         // 코디글
-
         List<Cody> bestCodyList = codyRepository.findTop5ByOrderByIdDesc();
         List<CodyListResponseDto> codyListResponseDtos = new ArrayList<>();
-        for (int i = 0; i <bestCodyList.size(); i++) {
+        for (int i = 0; i < bestCodyList.size(); i++) {
             CodyListResponseDto codyListResponseDto = new CodyListResponseDto();
             codyListResponseDto.setCodyId(bestCodyList.get(i).getId());
             codyListResponseDto.setCodyTitle(bestCodyList.get(i).getCodyTitle());
@@ -88,13 +81,13 @@ public class MainPageService {
 
         mainPageResponseDto.setBestList(bestWatchList);
         mainPageResponseDto.setCoupleList(bestCoupleWatchList);
-        mainPageResponseDto.setCodyList(bestCodyList);
+        mainPageResponseDto.setCodyList(codyListResponseDtos);
 
         return mainPageResponseDto;
     }
 
 
-//    //카테고리별 페이지 조회
+    //    //카테고리별 페이지 조회
     public CategoryPageResponesDto getCategoryWatch() {
         CategoryPageResponesDto categoryPageResponesDto = new CategoryPageResponesDto(); //그릇
         List<Watch> digitalCategoryWatch = watchRepository.findAllByWatchCategory(WatchCategory.DIGITAL);

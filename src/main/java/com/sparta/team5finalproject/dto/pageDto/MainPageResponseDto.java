@@ -14,8 +14,7 @@ public class MainPageResponseDto {
 
     private List<Watch> bestList;
     private List<Watch> coupleList;
-    private List<Watch> digitalList;
-    private List<Cody> codyList;
+    private List<CodyListResponseDto> codyList;
 
 
 
