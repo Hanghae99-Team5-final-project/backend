@@ -1,13 +1,15 @@
 package com.sparta.team5finalproject.exception;
 
-
 import io.jsonwebtoken.JwtException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.json.JsonParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.format.DateTimeParseException;
@@ -15,35 +17,65 @@ import java.time.format.DateTimeParseException;
 @RestControllerAdvice
 public class GlobalController {
 
+    private Logger logger = LoggerFactory.getLogger(GlobalController.class);
+
+    // Handler설정 방법1
     @ExceptionHandler
-    public ResponseEntity<ErrorResponseDto> unmatchedUserExceptionHandler(UnmatchedUserException exception) {
+    public ResponseEntity<ErrorResponseDto> unmatchUserExceptionHandler(UnmatchUserException exception) {
+        logger.error("UnmatchUserException: {}", exception.getMessage());
         return new ResponseEntity<>(ErrorResponseDto.badRequest(exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
-//
+
+//    // Handler설정 방법2
+//    @ExceptionHandler(UnmatchUserException.class)
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    public String unmatchUserException(UnmatchUserException exception) {
+//        logger.error("UnmatchUserException: {}", exception.getMessage());
+//        return exception.getMessage();
+//    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponseDto> duplicateUserExceptionHandler(DuplicateUserException exception) {
+        logger.error("DuplicateUserException: {}", exception.getMessage());
+        return new ResponseEntity<>(ErrorResponseDto.badRequest(exception.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
 //    @ExceptionHandler
 //    public ResponseEntity<ErrorResponseDto> PreSetNotFoundExceptionHandler(PreSetNotFoundException exception) {
 //        return new ResponseEntity<>(ErrorResponseDto.badRequest(exception.getMessage()), HttpStatus.BAD_REQUEST);
 //    }
 
+
     @ExceptionHandler
-    public ResponseEntity<ErrorResponseDto> MethodArgumentNotValidExceptionHandler(MethodArgumentNotValidException exception) {
+    public ResponseEntity<ErrorResponseDto> jsonParseExceptionHandler(JsonParseException exception) {
+        logger.error("JsonParseException: {}", exception.getMessage());
+        return new ResponseEntity<>(ErrorResponseDto.badRequest(exception.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponseDto> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException exception) {
+        logger.error("MethodArgumentNotValidException: {}", exception.getMessage());
         return new ResponseEntity<>(ErrorResponseDto.badRequest("ValidException"), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
     public ResponseEntity<ErrorResponseDto> globalDateTimeParseExceptionHandler(DateTimeParseException exception) {
+        logger.error("DateTimeParseException: {}", exception.getMessage());
         return new ResponseEntity<>(ErrorResponseDto.badRequest("Date Type Error"), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponseDto> globalJwtExceptionHandler(JwtException exception) {
+        logger.error("JwtException: {}", exception.getMessage());
+        return new ResponseEntity<>(ErrorResponseDto.unauthorized(exception.getMessage()), HttpStatus.UNAUTHORIZED);
+    }
+
 
 //    @ExceptionHandler
 //    public ResponseEntity<ErrorResponseDto> globalRedisConnectionExceptionHandler(RedisConnectionException exception) {
 //        return new ResponseEntity<>(ErrorResponseDto.badRequest("Redis Connection Error"), HttpStatus.BAD_REQUEST);
 //    }
 
-    @ExceptionHandler
-    public ResponseEntity<ErrorResponseDto> globalJwtExceptionHandler(JwtException exception) {
-        return new ResponseEntity<>(ErrorResponseDto.unauthorized(exception.getMessage()), HttpStatus.UNAUTHORIZED);
-    }
 
 //    @ExceptionHandler
 //    public ResponseEntity<ErrorResponseDto> oAuthProviderMissMatchExceptionHandler(OAuthProviderMissMatchException exception) {
@@ -100,8 +132,4 @@ public class GlobalController {
 //        return new ResponseEntity<>(ErrorResponseDto.badRequest(exception.getMessage()), HttpStatus.BAD_REQUEST);
 //    }
 
-    @ExceptionHandler
-    public ResponseEntity<ErrorResponseDto> jsonParseExceptionHandler(JsonParseException exception) {
-        return new ResponseEntity<>(ErrorResponseDto.badRequest(exception.getMessage()), HttpStatus.BAD_REQUEST);
-    }
 }

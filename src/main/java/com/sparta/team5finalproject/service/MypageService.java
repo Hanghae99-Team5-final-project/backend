@@ -15,7 +15,13 @@ import com.sparta.team5finalproject.repository.UserRepository;
 import com.sparta.team5finalproject.repository.WatchRepository;
 import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
+<<<<<<< HEAD
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
+=======
 
+>>>>>>> f5ca9e0a95665bb5130b0012912a795c19fbf47e
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +32,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class MypageService {
+
+    private Logger logger = LoggerFactory.getLogger(MypageService.class);
     private final UserRepository userRepository;
     private final CodyRepository codyRepository;
     private final WatchRepository watchRepository;
@@ -58,10 +66,35 @@ public class MypageService {
     @Transactional
     public MypageResponseDto updateUserInfo(UserDetailsImpl userDetails, MypageUpdateRequestDto mypageUpdateRequestDto) {
         User user = userDetails.getUser();
+<<<<<<< HEAD
+//        System.out.println("로그인한 사람의 비밀번호 :" + userDetails.getPassword());
+//        System.out.println("확인하기 위한 비밀번호 :" + mypageUpdateRequestDto.getPassword() );
+
+//        if (!userDetails.getPassword().equals(mypageUpdateRequestDto.getPassword())){
+//            throw new IllegalArgumentException("비밀번호가 틀립니다.");
+//        }
+//        if (mypageUpdateRequestDto.getPassword().isEmpty()){
+//            throw new IllegalArgumentException("비밀번호를 입력해주세요");
+//        }
+
+//        System.out.println("회원정보"+user.getEmail());
+//        System.out.println("바꾸려는 이메일 : " + mypageUpdateRequestDto.getEmail());
+        user.update(mypageUpdateRequestDto);
+//        System.out.println("바뀐 회원 정보"+user.getEmail()); // null
+        try{
+            userRepository.save(user);
+        } catch(IllegalArgumentException e){
+            String detailMessage = String.format("유저 DB에 update 실패, Input: %s", userDetails.getUsername());
+            logger.info(detailMessage);
+            throw new IllegalArgumentException(detailMessage);
+        }
+
+=======
 
         user.update(mypageUpdateRequestDto);
 
         userRepository.save(user);
+>>>>>>> f5ca9e0a95665bb5130b0012912a795c19fbf47e
         MypageResponseDto mypageResponseDto = new MypageResponseDto();
         mypageResponseDto.setResult("success");
         mypageResponseDto.setUsername(user.getUsername());
@@ -85,10 +118,7 @@ public class MypageService {
             myLikeResponseDtoList.add(myLikeResponseDto);
         }
         return myLikeResponseDtoList;
-
     }
-
-
 
 
     // 내가 올린 코디 전체 보기

@@ -9,7 +9,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.io.IOException;
@@ -19,6 +22,8 @@ import java.util.ArrayList;
 @RequiredArgsConstructor
 @Service
 public class CoupleWatchService {
+
+    private Logger logger = LoggerFactory.getLogger(CoupleWatchService.class);
 
     private final WatchRepository watchRepository;
     //무신사
@@ -32,6 +37,7 @@ public class CoupleWatchService {
     }
 
 
+    @Transactional
     public void getCoupleWatchDatas(String urlList) throws IOException {
         Document doc = Jsoup.connect(urlList).get();
 
@@ -49,7 +55,6 @@ public class CoupleWatchService {
             watchBrand.add(title.attr("alt"));
         }
 
-
         ArrayList<String> lowestPrice = new ArrayList<>();
         //가격
         Elements classPrice = doc.getElementsByClass("price");
@@ -64,7 +69,14 @@ public class CoupleWatchService {
         for (int i=0; i<watchImage.size(); i++){
             Watch watch = new Watch(watchImage.get(i),watchBrand.get(i),lowestPrice.get(i),WatchCategory.COUPLE);
             watch.setLikeCount(0L);
-            watchRepository.save(watch);
+            try{
+                watchRepository.save(watch);
+            } catch(IllegalArgumentException e){
+                // 예외처리, 로깅
+                String detailMessage = String.format("커플시계 DB에 create 실패, Input: %s", watch.getId());
+                logger.info(detailMessage);
+                throw new IllegalArgumentException(detailMessage);
+            }
         }
     }
 
@@ -72,5 +84,4 @@ public class CoupleWatchService {
         final String[] pricesArray = price.split(" ");
         return (pricesArray.length == 1) ? price : pricesArray[1];
     }
-
 }

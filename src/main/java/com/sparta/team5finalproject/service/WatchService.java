@@ -127,7 +127,11 @@ public class WatchService {
         for (int i=0; i<watchImage.size(); i++){
             Watch watch =new Watch(watchImage.get(i),watchTitle.get(i),watchPrice.get(i), WatchCategory.DIGITAL);
             watch.setLikeCount(0L);
-            watchRepository.save(watch);
+            try{
+                watchRepository.save(watch);
+            } catch(IllegalArgumentException e){
+                throw new IllegalArgumentException("시계 DB에 create 실패");
+            }
         }
 
     }

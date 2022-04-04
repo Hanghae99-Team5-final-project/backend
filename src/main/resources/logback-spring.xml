@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 30초마다 파일 변화를 체크하여 갱신시킨다. -->
+<configuration scan="true" scanPeriod="30 seconds">
+    <timestamp key="BY_DATE" datePattern="yyyy-MM-dd"/>
+    <!-- 로그 파일 패턴 -->
+    <property name="LOG_PATTERN"
+              value="[%d{yyyy-MM-dd HH:mm:ss}:%-4relative] %green([%thread]) %highlight(%-5level) %boldWhite([%C.%M:%yellow(%L)]) - %msg%n"/>
+    <!-- 개발환경 로깅-->
+    <springProfile name="dev">
+    <!--        <include resource="file-info-appender.xml"/>-->
+    <!--        <include resource="file-warn-appender.xml"/>-->
+        <include resource="console-appender.xml"/>
+<!--        <include resource="file-info-to-error-appender.xml"/>-->
+<!--        <include resource="file-error-appender.xml"/>-->
+<!--        <include resource="slack-appender.xml"/>-->
+
+        <root level="INFO">
+<!--            <appender-ref ref="FILE-INFOTOERROR"/>-->
+<!--            <appender-ref ref="FILE-ERROR"/>-->
+<!--            <appender-ref ref="SLACK"/>-->
+<!--            <appender-ref ref="ASYNC_SLACK"/>-->
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <!-- 운영환경 로깅-->
+    <springProfile name="prod">
+        <!--        <include resource="file-info-appender.xml"/>-->
+        <!--        <include resource="file-warn-appender.xml"/>-->
+        <include resource="console-appender.xml"/>
+        <include resource="file-info-to-error-appender.xml"/>
+        <include resource="file-error-appender.xml"/>
+        <include resource="slack-appender.xml"/>
+
+        <root level="INFO">
+            <appender-ref ref="FILE-INFOTOERROR"/>
+            <appender-ref ref="FILE-ERROR"/>
+            <appender-ref ref="SLACK"/>
+            <appender-ref ref="ASYNC_SLACK"/>
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+</configuration>

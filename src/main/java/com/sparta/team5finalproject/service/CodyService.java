@@ -15,6 +15,8 @@ import com.sparta.team5finalproject.repository.CommentRepository;
 import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import com.sparta.team5finalproject.util.S3Uploader;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class CodyService {
+
+    private Logger logger = LoggerFactory.getLogger(CodyService.class);
+
     private final CodyRepository codyRepository;
     private final S3Uploader s3Uploader;
     private final CommentRepository commentRepository;
@@ -64,7 +69,14 @@ public class CodyService {
 
 
             // DB 저장
-            codyRepository.save(cody);
+            try{
+                codyRepository.save(cody);
+            } catch(IllegalArgumentException e){
+                // 예외처리, 로깅
+                String detailMessage = String.format("코디 DB에 create 실패, Input: %s", cody.getCodyTitle());
+                logger.info(detailMessage);
+                throw new IllegalArgumentException(detailMessage);
+            }
 
             CodyResponseDto codyResponseDto = new CodyResponseDto();
             codyResponseDto.setCodyId(cody.getId());
@@ -187,6 +199,16 @@ public class CodyService {
         cody.update(codyRequestDto);
         cody.setImageUrl(imgUrl);
         // DB 저장
+<<<<<<< HEAD
+        try{
+            codyRepository.save(cody);
+        } catch(IllegalArgumentException e){
+            // 예외처리, 로깅
+            String detailMessage = String.format("코디 DB에 update 실패, Input: %s", cody.getCodyTitle());
+            logger.info(detailMessage);
+            throw new IllegalArgumentException(detailMessage);
+        }
+=======
         codyRepository.save(cody);
 
         CodyResponseDto codyResponseDto =new CodyResponseDto();
@@ -201,6 +223,7 @@ public class CodyService {
         codyResponseDto.setCreatedAt(cody.getCreatedAt());
 
         return codyResponseDto;
+>>>>>>> f5ca9e0a95665bb5130b0012912a795c19fbf47e
     }
 
 
@@ -211,15 +234,22 @@ public class CodyService {
     public void deleteCody(Long codyId, User user) {
         // 코디글 조회
         Cody cody = codyRepository.findById(codyId).orElseThrow(
-                () -> new NullPointerException("해당 게시글이 존재하지 않습니다.")
+                () -> new NullPointerException("해당 코디글이 존재하지 않습니다.")
         );
 
         if (!user.getId().equals(cody.getUser().getId())) {
-            throw new IllegalArgumentException("해당 게시글의 작성자만 삭제 가능합니다.");
+            throw new IllegalArgumentException("해당 코디글의 작성자만 삭제 가능합니다.");
         }
 
         // DB 삭제
-        codyRepository.deleteById(codyId);
+        try{
+            codyRepository.deleteById(codyId);
+        } catch(IllegalArgumentException e){
+            // 예외처리, 로깅
+            String detailMessage = String.format("코디 DB에 delete 실패, Input: %s", cody.getCodyTitle());
+            logger.info(detailMessage);
+            throw new IllegalArgumentException(detailMessage);
+        }
     }
 
 }

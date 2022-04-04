@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+   <appender name="FILE-INFOTOERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+       <file>./log/info_to_error-${BY_DATE}.log</file>
+       <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+           <level>INFO</level>
+       </filter>
+       <encoder>
+           <pattern>${LOG_PATTERN}</pattern>
+       </encoder>
+       <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>./backup/infotoerror/info-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>200MB</totalSizeCap>
+       </rollingPolicy>
+   </appender>
+</included>

@@ -32,24 +32,10 @@ public class UserController {
 //        this.kakaoUserService = kakaoUserService;
 //    }
 
-    // 회원 로그인 페이지
-    @GetMapping("/user/login")
-    public String login() {
-        return "login";
-    }
-
-    // 회원 가입 페이지
-    @GetMapping("/user/signup")
-    public String signup() {
-        System.out.println("회원가입");
-        return "signup";
-    }
-
 
     // 회원 가입 요청 처리
     @PostMapping("/user/signup")
     public void registerUser(@RequestBody SignupRequestDto requestDto) {
-        System.out.println("---------------------");
         userService.registerUser(requestDto);
     }
 
@@ -58,6 +44,7 @@ public class UserController {
     public KakaoUserInfoDto kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
         return kakaoUserService.kakaoLogin(code, response);
     }
+
 
     @DeleteMapping("/user/delete")
     public void deleteUser(@RequestBody DeleteUserRequestDto deleteUserRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails, HttpServletResponse response)
