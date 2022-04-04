@@ -21,14 +21,14 @@ public class MainPageService {
     private final CodyRepository codyRepository;
     private final WatchRepository watchRepository;
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
+//    private final Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     // 메인페이지 조회
     public MainPageResponseDto getMainPageWatchList() {
 
-        logger.info("Info");
-        logger.warn("Warn");
-        logger.error("Error");
+//        logger.info("Info");
+//        logger.warn("Warn");
+//        logger.error("Error");
 
         // 인기 상품
         MainPageResponseDto mainPageResponseDto = new MainPageResponseDto();

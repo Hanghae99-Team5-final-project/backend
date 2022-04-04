@@ -6731,3 +6731,6 @@ java.util.NoSuchElementException: 올바른 JWT 정보가 아닙니다.
 [2022-04-04 23:56:47:8015] [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
 [2022-04-04 23:56:47:8033] [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
 [2022-04-04 23:56:47:8046] [main] INFO  c.s.t.Team5FinalProjectApplication - Started Team5FinalProjectApplication in 7.927 seconds (JVM running for 8.553)
+[2022-04-04 23:58:01:82290] [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2022-04-04 23:58:01:82292] [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2022-04-04 23:58:01:82298] [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
