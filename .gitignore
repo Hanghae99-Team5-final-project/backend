@@ -7,7 +7,7 @@ build/
 
 ### application.properties ###
 application-aws.properties
-
+log/
 
 
 ### STS ###
