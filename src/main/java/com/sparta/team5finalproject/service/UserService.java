@@ -2,11 +2,8 @@ package com.sparta.team5finalproject.service;
 
 import com.sparta.team5finalproject.dto.DeleteUserRequestDto;
 import com.sparta.team5finalproject.dto.SignupRequestDto;
-<<<<<<< HEAD
 import com.sparta.team5finalproject.exception.DuplicateUserException;
-=======
 import com.sparta.team5finalproject.dto.UserCheckDto;
->>>>>>> f5ca9e0a95665bb5130b0012912a795c19fbf47e
 import com.sparta.team5finalproject.model.User;
 import com.sparta.team5finalproject.model.UserRoleEnum;
 import com.sparta.team5finalproject.repository.UserRepository;
@@ -14,14 +11,13 @@ import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
 import java.util.Optional;
 
 @RequiredArgsConstructor

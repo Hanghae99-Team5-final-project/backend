@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 30초마다 파일 변화를 체크하여 갱신시킨다. -->
+<configuration scan="true" scanPeriod="30 seconds">
+    <springProperty name="SLACK_WEBHOOK_URI" source="logging.slack.webhook-uri"/>
+    <timestamp key="BY_DATE" datePattern="yyyy-MM-dd"/>
+    <property name="LOG_PATTERN"
+              value="[%d{yyyy-MM-dd HH:mm:ss}:%-4relative] %green([%thread]) %highlight(%-5level) %boldWhite([%C.%M:%yellow(%L)]) - %msg%n"/>
+
+
+    <included>
+        <include resource="file-info-appender.xml"/>
+        <include resource="file-warn-appender.xml"/>
+        <include resource="file-error-appender.xml"/>
+        <include resource="slack-appender.xml"/>
+
+        <root level="INFO">
+            <appender-ref ref="FILE-FILE-INFOTOERROR"/>
+            <appender-ref ref="FILE-ERROR"/>
+            <appender-ref ref="SLACK"/>
+            <appender-ref ref="ASYNC_SLACK"/>
+        </root>
+    </included>
+
+</configuration>

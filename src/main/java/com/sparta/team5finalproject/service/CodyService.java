@@ -180,8 +180,7 @@ public class CodyService {
     public CodyResponseDto updateCody(Long codyId, User user, CodyRequestDto codyRequestDto, MultipartFile multipartFile) throws IOException {
         // 코디 상세글 조회
         Cody cody = codyRepository.findById(codyId).orElseThrow(
-                () -> new NullPointerException("해당 코디글이 존재하지 않습니다.")
-        );
+                () -> new NullPointerException("해당 코디글이 존재하지 않습니다."));
 
         if (!user.getId().equals(cody.getUser().getId())) {
             throw new IllegalArgumentException("해당 코디글의 작성자만 수정 가능합니다.");
@@ -219,6 +218,7 @@ public class CodyService {
             logger.info(detailMessage);
             throw new IllegalArgumentException(detailMessage);
         }
+
     }
 
 
