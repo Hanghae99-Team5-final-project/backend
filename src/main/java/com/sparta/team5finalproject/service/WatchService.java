@@ -115,7 +115,7 @@ public class WatchService {
             watchTitle.add(title.text());
         }
 
-        // 손목시계 가격
+        // 손목시계 가격 aaa
         Elements classDiscountPrice = doc.getElementsByClass("discount-price");
         ArrayList<String> watchPrice = new ArrayList<>();
         for (Element discountPrice : classDiscountPrice) {
