@@ -5,6 +5,8 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+### application.properties ###
+application-aws.properties
 
 
 
@@ -39,5 +41,5 @@ out/
 ### VS Code ###
 .vscode/
 
-### application.properties ###
-application-aws.properties
+
+
