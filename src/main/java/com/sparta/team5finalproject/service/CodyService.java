@@ -199,31 +199,26 @@ public class CodyService {
         cody.update(codyRequestDto);
         cody.setImageUrl(imgUrl);
         // DB 저장
-<<<<<<< HEAD
         try{
             codyRepository.save(cody);
+            CodyResponseDto codyResponseDto =new CodyResponseDto();
+            codyResponseDto.setCodyId(cody.getId());
+            codyResponseDto.setUserId(user.getId());
+            codyResponseDto.setCodyTitle(cody.getCodyTitle());
+            codyResponseDto.setWatchBrand(cody.getWatchBrand());
+            codyResponseDto.setWatchModel(cody.getWatchModel());
+            codyResponseDto.setCodyContent(cody.getCodyContent());
+            codyResponseDto.setImageUrl(cody.getImageUrl());
+            codyResponseDto.setStar(cody.getStar());
+            codyResponseDto.setCreatedAt(cody.getCreatedAt());
+
+            return codyResponseDto;
         } catch(IllegalArgumentException e){
             // 예외처리, 로깅
             String detailMessage = String.format("코디 DB에 update 실패, Input: %s", cody.getCodyTitle());
             logger.info(detailMessage);
             throw new IllegalArgumentException(detailMessage);
         }
-=======
-        codyRepository.save(cody);
-
-        CodyResponseDto codyResponseDto =new CodyResponseDto();
-        codyResponseDto.setCodyId(cody.getId());
-        codyResponseDto.setUserId(user.getId());
-        codyResponseDto.setCodyTitle(cody.getCodyTitle());
-        codyResponseDto.setWatchBrand(cody.getWatchBrand());
-        codyResponseDto.setWatchModel(cody.getWatchModel());
-        codyResponseDto.setCodyContent(cody.getCodyContent());
-        codyResponseDto.setImageUrl(cody.getImageUrl());
-        codyResponseDto.setStar(cody.getStar());
-        codyResponseDto.setCreatedAt(cody.getCreatedAt());
-
-        return codyResponseDto;
->>>>>>> f5ca9e0a95665bb5130b0012912a795c19fbf47e
     }
 
 
