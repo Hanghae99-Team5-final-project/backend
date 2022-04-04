@@ -6692,3 +6692,42 @@ java.util.NoSuchElementException: 올바른 JWT 정보가 아닙니다.
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:750)
+[2022-04-04 23:56:34:839581] [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2022-04-04 23:56:34:839583] [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2022-04-04 23:56:34:839590] [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2022-04-04 23:56:39:510 ] [main] INFO  c.s.t.Team5FinalProjectApplication - Starting Team5FinalProjectApplication using Java 1.8.0_322 on DESKTOP-B2VO446 with PID 10268 (C:\Users\각성구\Desktop\각성구\항해\Chapter 8\project\build\classes\java\main started by 각성구 in C:\Users\각성구\Desktop\각성구\항해\Chapter 8\project)
+[2022-04-04 23:56:39:513 ] [main] INFO  c.s.t.Team5FinalProjectApplication - The following profiles are active: aws,prod
+[2022-04-04 23:56:43:4122] [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2022-04-04 23:56:43:4185] [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 58 ms. Found 5 JPA repository interfaces.
+[2022-04-04 23:56:43:4408] [main] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[2022-04-04 23:56:43:4429] [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+[2022-04-04 23:56:43:4431] [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+[2022-04-04 23:56:43:4431] [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+[2022-04-04 23:56:43:4431] [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[2022-04-04 23:56:43:4432] [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[2022-04-04 23:56:43:4432] [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[2022-04-04 23:56:43:4432] [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-aws.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[2022-04-04 23:56:43:4432] [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[2022-04-04 23:56:43:4473] [main] INFO  c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[2022-04-04 23:56:43:4659] [main] INFO  c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[2022-04-04 23:56:43:4662] [main] INFO  c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[2022-04-04 23:56:43:4735] [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[2022-04-04 23:56:43:4742] [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2022-04-04 23:56:43:4742] [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2022-04-04 23:56:43:4742] [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+[2022-04-04 23:56:43:4828] [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2022-04-04 23:56:43:4828] [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4280 ms
+[2022-04-04 23:56:44:5030] [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2022-04-04 23:56:44:5070] [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.4.Final
+[2022-04-04 23:56:44:5189] [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[2022-04-04 23:56:44:5264] [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2022-04-04 23:56:44:5661] [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2022-04-04 23:56:44:5678] [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[2022-04-04 23:56:45:6549] [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[2022-04-04 23:56:45:6558] [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2022-04-04 23:56:45:6810] [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2022-04-04 23:56:46:7557] [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@78fb72cb, org.springframework.security.web.context.SecurityContextPersistenceFilter@2a6dbb7c, org.springframework.security.web.header.HeaderWriterFilter@5eee3da9, org.springframework.web.filter.CorsFilter@398694a6, org.springframework.security.web.authentication.logout.LogoutFilter@103e7c7c, com.sparta.team5finalproject.security.filter.FormLoginFilter@2d4f67e, com.sparta.team5finalproject.security.filter.JwtAuthFilter@653e7b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7b2d58e6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7eefaca0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6b64429e, org.springframework.security.web.session.SessionManagementFilter@3573e19d, org.springframework.security.web.access.ExceptionTranslationFilter@4bc21e34, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@32e7b78d]
+[2022-04-04 23:56:47:7884] [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+[2022-04-04 23:56:47:8015] [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[2022-04-04 23:56:47:8033] [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[2022-04-04 23:56:47:8046] [main] INFO  c.s.t.Team5FinalProjectApplication - Started Team5FinalProjectApplication in 7.927 seconds (JVM running for 8.553)

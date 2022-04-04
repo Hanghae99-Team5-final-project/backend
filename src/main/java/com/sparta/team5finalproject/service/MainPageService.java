@@ -34,7 +34,7 @@ public class MainPageService {
         MainPageResponseDto mainPageResponseDto = new MainPageResponseDto();
         List<Watch> bestWatchList = watchRepository.findTop4ByWatchCategoryOrderByLikeCountDesc(WatchCategory.DIGITAL);
 
-//        List<Watch> TopWatchList = new ArrayList<>();
+//        List<Watch> TopWatchList = new ArrayList<>();  aasdasd
 //        for (Watch digital : bestWatchList) {
 //            String category = digital.getWatchCategory().getCategory();
 //
