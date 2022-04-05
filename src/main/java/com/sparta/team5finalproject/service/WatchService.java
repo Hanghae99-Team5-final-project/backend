@@ -30,7 +30,7 @@ public class WatchService {
     private final LikesRepository likesRepository;
 
     // 모바일 쿠팡 크롤링
-    private static String cpWatchUrl = "https://m.coupang.com/nm/search?q=%EC%86%90%EB%AA%A9%EC%8B%9C%EA%B3%84&page=1";
+    private static String cpWatchUrl = "https://m.coupang.com/nm/search?q=%EC%86%90%EB%AA%A9%EC%8B%9C%EA%B3%84&page=8";
 
 
     public void cpWatchCrawling() throws IOException {
