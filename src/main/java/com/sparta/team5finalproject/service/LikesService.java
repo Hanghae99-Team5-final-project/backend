@@ -2,22 +2,18 @@ package com.sparta.team5finalproject.service;
 
 
 import com.sparta.team5finalproject.exception.UnmatchUserException;
-import com.sparta.team5finalproject.exception.GlobalController;
 import com.sparta.team5finalproject.model.Likes;
 import com.sparta.team5finalproject.model.User;
 import com.sparta.team5finalproject.model.Watch;
 import com.sparta.team5finalproject.repository.LikesRepository;
-import com.sparta.team5finalproject.repository.UserRepository;
 import com.sparta.team5finalproject.repository.WatchRepository;
 import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -27,7 +23,6 @@ public class LikesService {
     private Logger logger = LoggerFactory.getLogger(LikesService.class);
 
     private final LikesRepository likesRepository;
-    //쿠팡
     private final WatchRepository watchRepository;
 
     //찜 생성
@@ -113,7 +108,6 @@ public class LikesService {
             new NullPointerException("로그인이 필요합니다.");
         } else if (user.getId().equals(likes.getUser().getId())) {
             deleteLikes(likes);
-//            likesRepository.delete(likes);
             // watch 테이블의 좋아요 갯수 설정
             Long likeCnt = watch.getLikeCount();
             likeCnt--;
@@ -131,7 +125,6 @@ public class LikesService {
         }
         return "{\"result\":\"true\"}";
     }
-
 
     // Cascade 테스트용 delete 메소드
     public void deleteLikes(Likes likes) {

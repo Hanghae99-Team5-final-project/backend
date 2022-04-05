@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class FormLoginFilter extends UsernamePasswordAuthenticationFilter {
+
     final private ObjectMapper objectMapper;
 
     public FormLoginFilter(final AuthenticationManager authenticationManager) {
@@ -28,9 +29,6 @@ public class FormLoginFilter extends UsernamePasswordAuthenticationFilter {
             JsonNode requestBody = objectMapper.readTree(request.getInputStream());
             String username = requestBody.get("username").asText();
             String password = requestBody.get("password").asText();
-
-//            System.out.println(username + "변수타입 : " +username.getClass().getName());
-//            System.out.println(username + "변수타입 : " +username.getClass().getName());
 
             authRequest = new UsernamePasswordAuthenticationToken(username, password);
         } catch (Exception e) {

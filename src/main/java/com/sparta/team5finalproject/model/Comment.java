@@ -7,35 +7,32 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
-@Setter
-@Getter // get 함수를 일괄적으로 만들어줍니다.
-@NoArgsConstructor // 기본 생성자를 만들어줍니다.
-@Entity // DB 테이블 역할을 합니다.
+@Setter @Getter
+@NoArgsConstructor
+@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="CommentCategory")
 public abstract class Comment extends Timestamped {
 
-    // ID가 자동으로 생성 및 증가합니다.
+    // 댓글 고유 아이디
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
 
+    // 댓글 쓴 유저 ID
     @Column(nullable = false)
     private String commentUsername;
 
+    // 댓글 내용
     @Column(nullable = false)
     private String commentContent;
 
+    // 댓글 쓴 유저 고유 아이디 정보
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-//    public Comment(String name, User user) {
-//        this.name = name;
-//        this.user = user;
-//    }
 
     public void update(CommentRequestDto commentRequestDto){
         this.commentContent = commentRequestDto.getCommentContent();

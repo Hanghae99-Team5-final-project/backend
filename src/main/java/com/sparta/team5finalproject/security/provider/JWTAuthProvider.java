@@ -1,4 +1,4 @@
-package com.sparta.team5finalproject.security;
+package com.sparta.team5finalproject.security.provider;
 
 
 import com.sparta.team5finalproject.model.User;

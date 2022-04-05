@@ -17,13 +17,8 @@ import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
-
-
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +33,20 @@ public class MypageService {
     private final WatchRepository watchRepository;
     private final LikesRepository likesRepository;
 
+    // 내가 찜한 목록 보기
+    @Transactional
+    public List<MyLikeResponseDto> getMyLike(UserDetailsImpl userDetails){
+        List<Likes> myLikeList = likesRepository.findAllByUserId(userDetails.getUser().getId());
+        List<MyLikeResponseDto> myLikeResponseDtoList = new ArrayList<>();
+        for (Likes like : myLikeList) {
+            Long watchId = like.getWatch().getWatchId();
+            Watch watch = watchRepository.findById(watchId).orElseThrow(()-> new IllegalArgumentException("해당 시계글이 존재하지 않습니다."));
+            Long likeCount = watch.getLikeCount();
+            MyLikeResponseDto myLikeResponseDto = new MyLikeResponseDto(watch,likeCount);
+            myLikeResponseDtoList.add(myLikeResponseDto);
+        }
+        return myLikeResponseDtoList;
+    }
 
     //로그인 된 유저의 마이 페이지
     public MypageResponseDto mypageUserInfo (UserDetailsImpl userDetails) {
@@ -65,21 +74,7 @@ public class MypageService {
     @Transactional
     public MypageResponseDto updateUserInfo(UserDetailsImpl userDetails, MypageUpdateRequestDto mypageUpdateRequestDto) {
         User user = userDetails.getUser();
-
-//        System.out.println("로그인한 사람의 비밀번호 :" + userDetails.getPassword());
-//        System.out.println("확인하기 위한 비밀번호 :" + mypageUpdateRequestDto.getPassword() );
-
-//        if (!userDetails.getPassword().equals(mypageUpdateRequestDto.getPassword())){
-//            throw new IllegalArgumentException("비밀번호가 틀립니다.");
-//        }
-//        if (mypageUpdateRequestDto.getPassword().isEmpty()){
-//            throw new IllegalArgumentException("비밀번호를 입력해주세요");
-//        }
-
-//        System.out.println("회원정보"+user.getEmail());
-//        System.out.println("바꾸려는 이메일 : " + mypageUpdateRequestDto.getEmail());
         user.update(mypageUpdateRequestDto);
-//        System.out.println("바뀐 회원 정보"+user.getEmail()); // null
         try{
             userRepository.save(user);
         } catch(IllegalArgumentException e){
@@ -87,37 +82,14 @@ public class MypageService {
             logger.info(detailMessage);
             throw new IllegalArgumentException(detailMessage);
         }
-
-
-
         user.update(mypageUpdateRequestDto);
-
         userRepository.save(user);
         MypageResponseDto mypageResponseDto = new MypageResponseDto();
         mypageResponseDto.setResult("success");
         mypageResponseDto.setUsername(user.getUsername());
         mypageResponseDto.setEmail(user.getEmail());
-
-
         return mypageResponseDto;
     }
-
-
-    // 내가 찜한 목록 보기
-    @Transactional
-    public List<MyLikeResponseDto> getMyLike(UserDetailsImpl userDetails){
-        List<Likes> myLikeList = likesRepository.findAllByUserId(userDetails.getUser().getId());
-        List<MyLikeResponseDto> myLikeResponseDtoList = new ArrayList<>();
-        for (Likes like : myLikeList) {
-            Long watchId = like.getWatch().getWatchId();
-            Watch watch = watchRepository.findById(watchId).orElseThrow(()-> new IllegalArgumentException("해당 시계글이 존재하지 않습니다."));
-            Long likeCount = watch.getLikeCount();
-            MyLikeResponseDto myLikeResponseDto = new MyLikeResponseDto(watch,likeCount);
-            myLikeResponseDtoList.add(myLikeResponseDto);
-        }
-        return myLikeResponseDtoList;
-    }
-
 
     // 내가 올린 코디 전체 보기
     public List<MyCodyResponseDto> getMyCody (UserDetailsImpl userDetails) {
@@ -131,7 +103,6 @@ public class MypageService {
             myCodyResponseDto.setImageUrl(cody.getImageUrl());
             myCodyResponseDtoList.add(myCodyResponseDto);
         }
-
         return myCodyResponseDtoList;
     }
 

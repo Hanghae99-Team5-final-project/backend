@@ -3,14 +3,13 @@ package com.sparta.team5finalproject.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sparta.team5finalproject.dto.KakaoUserInfoDto;
+import com.sparta.team5finalproject.dto.userDto.KakaoUserInfoDto;
 import com.sparta.team5finalproject.model.User;
 import com.sparta.team5finalproject.model.UserRoleEnum;
 import com.sparta.team5finalproject.repository.UserRepository;
 import com.sparta.team5finalproject.security.jwt.JwtTokenUtils;
 import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -148,9 +147,7 @@ public class KakaoUserService {
         // HTTP Body 생성
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
-//        body.add("client_id", "e2ce9cb8e91f8d054da9bbbe0857e0fc");
         body.add("client_id", "df4db68512904146e79531548886c6c0");
-//        body.add("redirect_uri", "http://localhost:8080/user/kakao/callback");
         body.add("redirect_uri", "http://localhost:3000/oauth/kakao/callback");
         body.add("code", code);
 
