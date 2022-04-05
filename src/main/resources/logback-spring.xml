@@ -5,28 +5,38 @@
     <!-- 로그 파일 패턴 -->
     <property name="LOG_PATTERN"
               value="[%d{yyyy-MM-dd HH:mm:ss}:%-4relative] %green([%thread]) %highlight(%-5level) %boldWhite([%C.%M:%yellow(%L)]) - %msg%n"/>
+    <property name="LOG_PATH" value="/tmp/log"/>
+
     <!-- 개발환경 로깅-->
     <springProfile name="dev">
-    <!--        <include resource="file-info-appender.xml"/>-->
-    <!--        <include resource="file-warn-appender.xml"/>-->
+        <!--        <include resource="file-info-appender.xml"/>-->
+        <!--        <include resource="file-warn-appender.xml"/>-->
         <include resource="console-appender.xml"/>
-<!--        <include resource="file-info-to-error-appender.xml"/>-->
-<!--        <include resource="file-error-appender.xml"/>-->
-<!--        <include resource="slack-appender.xml"/>-->
+        <include resource="file-info-to-error-appender.xml"/>
+        <include resource="file-error-appender.xml"/>
+        <include resource="slack-appender.xml"/>
 
         <root level="INFO">
-<!--            <appender-ref ref="FILE-INFOTOERROR"/>-->
-<!--            <appender-ref ref="FILE-ERROR"/>-->
-<!--            <appender-ref ref="SLACK"/>-->
-<!--            <appender-ref ref="ASYNC_SLACK"/>-->
+            <appender-ref ref="FILE-INFOTOERROR"/>
+            <appender-ref ref="FILE-ERROR"/>
+            <appender-ref ref="SLACK"/>
+            <appender-ref ref="ASYNC_SLACK"/>
             <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>
 
     <!-- 운영환경 로깅-->
     <springProfile name="prod">
+<!--        <include resource="org/springframework/boot/logging/logback/base.xml"/>-->
         <!--        <include resource="file-info-appender.xml"/>-->
         <!--        <include resource="file-warn-appender.xml"/>-->
+
+
+<!--        <include file="src/main/java/resources/console-appender.xml"/>-->
+<!--        <include file="src/main/java/resources/file-info-to-error-appender.xml"/>-->
+<!--        <include file="src/main/java/resources/file-error-appender.xml"/>-->
+<!--        <include file="src/main/java/resources/slack-appender.xml"/>-->
+
         <include resource="console-appender.xml"/>
         <include resource="file-info-to-error-appender.xml"/>
         <include resource="file-error-appender.xml"/>

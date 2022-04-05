@@ -115,7 +115,7 @@ public class WatchService {
             watchTitle.add(title.text());
         }
 
-        // 손목시계 가격
+        // 손목시계 가격 aaa
         Elements classDiscountPrice = doc.getElementsByClass("discount-price");
         ArrayList<String> watchPrice = new ArrayList<>();
         for (Element discountPrice : classDiscountPrice) {
@@ -165,7 +165,7 @@ public class WatchService {
 
     }
 
-    // 시계상세 페이지 조회
+    // 시계상세 페이지 라이크 조회
     public WatchDetailLikeResponseDto readDetailWatchLike(Long watchId, UserDetailsImpl userDetails) {
         WatchDetailLikeResponseDto watchDetailLikeResponseDto = new WatchDetailLikeResponseDto();
         Watch watch = watchRepository.findById(watchId).orElseThrow(

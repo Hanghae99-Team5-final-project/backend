@@ -134,10 +134,10 @@ public class CodyService {
 
 //    // 코디 목록 조회
     @Transactional
-    public List<CodyResponseDto> getIntCody(Pageable pageable) {
+    public List<CodyResponseDto> getIntCody() {
 
         // 태그(관심사명), page, size, 내림차순으로 페이징한 게시글 리스트
-        List<Cody> codyList = codyRepository.findAllByOrderByCreatedAtDesc(pageable).getContent();
+        List<Cody> codyList = codyRepository.findAllByOrderByCreatedAtDesc();
 
         // 반환할 게시글 리스트 설정
         List<CodyResponseDto> codyResponseDtoList = new ArrayList<>();
@@ -188,9 +188,12 @@ public class CodyService {
 
         //getSize() : 파일 사이즈
         String imgUrl = cody.getImageUrl();
+        System.out.println("imgUrl 입니다="+imgUrl);
         if (multipartFile != null) {
-            String source = URLDecoder.decode(cody.getImageUrl().replace("https://hanghae99-week07.s3.ap-northeast-2.amazonaws.com/cody/", ""), "UTF-8");
-            s3Uploader.deleteFromS3(source);
+            String source = URLDecoder.decode(cody.getImageUrl().replace("https://myspringwatch.s3.ap-northeast-2.amazonaws.com/cody/", ""), "UTF-8");
+            if(imgUrl.equals(null)) {
+                s3Uploader.deleteFromS3(source);
+            }
             imgUrl = s3Uploader.upload(multipartFile, imageDirName);
         }
 

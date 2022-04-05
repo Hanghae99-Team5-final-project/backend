@@ -8,6 +8,8 @@ import com.sparta.team5finalproject.model.*;
 import com.sparta.team5finalproject.repository.CodyRepository;
 import com.sparta.team5finalproject.repository.WatchRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,11 +25,12 @@ public class MainPageService {
     // 메인페이지 조회
     public MainPageResponseDto getMainPageWatchList() {
 
+
         // 인기 상품
         MainPageResponseDto mainPageResponseDto = new MainPageResponseDto();
         List<Watch> bestWatchList = watchRepository.findTop4ByWatchCategoryOrderByLikeCountDesc(WatchCategory.DIGITAL);
 
-//        List<Watch> TopWatchList = new ArrayList<>();
+//        List<Watch> TopWatchList = new ArrayList<>();  aasdasd
 //        for (Watch digital : bestWatchList) {
 //            String category = digital.getWatchCategory().getCategory();
 //
@@ -60,13 +63,10 @@ public class MainPageService {
 //       }
 
 
-
-
         // 코디글
-
         List<Cody> bestCodyList = codyRepository.findTop5ByOrderByIdDesc();
         List<CodyListResponseDto> codyListResponseDtos = new ArrayList<>();
-        for (int i = 0; i <bestCodyList.size(); i++) {
+        for (int i = 0; i < bestCodyList.size(); i++) {
             CodyListResponseDto codyListResponseDto = new CodyListResponseDto();
             codyListResponseDto.setCodyId(bestCodyList.get(i).getId());
             codyListResponseDto.setCodyTitle(bestCodyList.get(i).getCodyTitle());
@@ -81,13 +81,13 @@ public class MainPageService {
 
         mainPageResponseDto.setBestList(bestWatchList);
         mainPageResponseDto.setCoupleList(bestCoupleWatchList);
-        mainPageResponseDto.setCodyList(bestCodyList);
+        mainPageResponseDto.setCodyList(codyListResponseDtos);
 
         return mainPageResponseDto;
     }
 
 
-//    //카테고리별 페이지 조회
+    //    //카테고리별 페이지 조회
     public CategoryPageResponesDto getCategoryWatch() {
         CategoryPageResponesDto categoryPageResponesDto = new CategoryPageResponesDto(); //그릇
         List<Watch> digitalCategoryWatch = watchRepository.findAllByWatchCategory(WatchCategory.DIGITAL);
