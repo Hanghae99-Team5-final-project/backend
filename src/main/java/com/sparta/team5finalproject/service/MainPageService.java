@@ -4,12 +4,12 @@ package com.sparta.team5finalproject.service;
 import com.sparta.team5finalproject.dto.pageDto.CategoryPageResponesDto;
 import com.sparta.team5finalproject.dto.pageDto.CodyListResponseDto;
 import com.sparta.team5finalproject.dto.pageDto.MainPageResponseDto;
-import com.sparta.team5finalproject.model.*;
+import com.sparta.team5finalproject.model.Cody;
+import com.sparta.team5finalproject.model.Watch;
+import com.sparta.team5finalproject.model.WatchCategory;
 import com.sparta.team5finalproject.repository.CodyRepository;
 import com.sparta.team5finalproject.repository.WatchRepository;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,49 +21,17 @@ public class MainPageService {
     private final CodyRepository codyRepository;
     private final WatchRepository watchRepository;
 
-
     // 메인페이지 조회
     public MainPageResponseDto getMainPageWatchList() {
 
-
-        // 인기 상품
+        // 인기 4개의 상품들(찜 기준)
         MainPageResponseDto mainPageResponseDto = new MainPageResponseDto();
         List<Watch> bestWatchList = watchRepository.findTop4ByWatchCategoryOrderByLikeCountDesc(WatchCategory.DIGITAL);
 
-//        List<Watch> TopWatchList = new ArrayList<>();  aasdasd
-//        for (Watch digital : bestWatchList) {
-//            String category = digital.getWatchCategory().getCategory();
-//
-//            if (category == "digital") {
-//                TopWatchList.add(digital);
-//            }
-
-//            if (TopWatchList.size() == 5) {
-//                break;
-//            }
-//       }
-
-
-        // 커플 인기 상품
+        // 커플 인기 4개의 상품들(찜 기준)
         List<Watch> bestCoupleWatchList = watchRepository.findTop4ByWatchCategoryOrderByLikeCountDesc(WatchCategory.COUPLE);
 
-//        for (Watch couple : bestCoupleWatchList){
-//            String category = couple.getWatchCategory().getCategory();
-//            System.out.println("카테고리는 잘 찍히십니까? : " + category);
-
-//            if (category == "couple"){
-//                    TopCoupleWatchList.add(couple);
-//                    System.out.println();
-//                }
-//
-//                if (TopWatchList.size() == 5) {
-//                    System.out.println("잘 찍히나 테스트입니다. : "+TopCoupleWatchList);
-//                    break;
-//            }
-//       }
-
-
-        // 코디글
+        // 메인페이지에 보일 코디 글 5개(정렬)
         List<Cody> bestCodyList = codyRepository.findTop5ByOrderByIdDesc();
         List<CodyListResponseDto> codyListResponseDtos = new ArrayList<>();
         for (int i = 0; i < bestCodyList.size(); i++) {
@@ -78,7 +46,6 @@ public class MainPageService {
             codyListResponseDtos.add(codyListResponseDto);
         }
 
-
         mainPageResponseDto.setBestList(bestWatchList);
         mainPageResponseDto.setCoupleList(bestCoupleWatchList);
         mainPageResponseDto.setCodyList(codyListResponseDtos);
@@ -87,7 +54,7 @@ public class MainPageService {
     }
 
 
-    //    //카테고리별 페이지 조회
+    //카테고리별 페이지 조회
     public CategoryPageResponesDto getCategoryWatch() {
         CategoryPageResponesDto categoryPageResponesDto = new CategoryPageResponesDto(); //그릇
         List<Watch> digitalCategoryWatch = watchRepository.findAllByWatchCategory(WatchCategory.DIGITAL);
@@ -96,6 +63,5 @@ public class MainPageService {
         categoryPageResponesDto.setCoupleList(coupleCategoryWatch);
         return categoryPageResponesDto;
     }
-
 
 }

@@ -2,15 +2,11 @@ package com.sparta.team5finalproject.controller;
 
 import com.sparta.team5finalproject.dto.commentDto.CommentRequestDto;
 import com.sparta.team5finalproject.dto.commentDto.CommentResponseDto;
-import com.sparta.team5finalproject.model.User;
-import com.sparta.team5finalproject.repository.UserRepository;
 import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import com.sparta.team5finalproject.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -27,6 +23,7 @@ public class CommentController {
         return commentService.createCodyComment(codyId,commentRequestDto, userDetails);
     }
 
+
     //댓글 생성 - watch
     @PostMapping("/comment/write/watch/{watchId}")
     public CommentResponseDto createWatchComment(
@@ -37,23 +34,6 @@ public class CommentController {
     }
 
 
-//    ////////////////////////////////////시큐리티 없이 테스트용///////////////////////////////////////////////////////////
-//    //댓글 생성
-//    @PostMapping("/comment/write")
-//    public void createComment(
-//            @RequestBody CommentRequestDto commentRequestDto){
-//        System.out.println("11111111111111111111111");
-//        User userDetails;
-//        Optional<User> optUser = userRepository.findByUsername("bbb");
-//        userDetails = optUser.get();
-//        System.out.println("222222222222222222222="+userDetails.getUsername());
-//        commentService.createComment(commentRequestDto, userDetails);
-//    }
-//    ////////////////////////////////////시큐리티 없이 테스트용///////////////////////////////////////////////////////////
-
-
-
-
     //댓글 수정
     @PutMapping("/comment/update/{commentId}")
     public CommentResponseDto updateComment(@PathVariable Long commentId,
@@ -61,6 +41,7 @@ public class CommentController {
                               @AuthenticationPrincipal UserDetailsImpl userDetails) throws Exception {
         return commentService.updateComment(commentId, commentRequestDto,userDetails);
     }
+
 
     //댓글 삭제
     @DeleteMapping("/comment/delete/{commentId}")

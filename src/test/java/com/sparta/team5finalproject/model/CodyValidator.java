@@ -1,6 +1,6 @@
 //package com.sparta.team5finalproject.model;
 //
-//import com.sparta.team5finalproject.dto.CodyRequestDto;
+//import com.sparta.team5finalproject.dto.codyDto.CodyRequestDto;
 //import com.sparta.team5finalproject.validator.URLValidator;
 //import org.springframework.stereotype.Component;
 //

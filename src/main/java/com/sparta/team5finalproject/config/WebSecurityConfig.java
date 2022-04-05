@@ -1,13 +1,14 @@
-package com.sparta.team5finalproject.security.provider;
+package com.sparta.team5finalproject.config;
 
-import com.sparta.team5finalproject.security.FormLoginAuthProvider;
-import com.sparta.team5finalproject.security.JWTAuthProvider;
+import com.sparta.team5finalproject.security.provider.FormLoginAuthProvider;
+import com.sparta.team5finalproject.security.provider.JWTAuthProvider;
 import com.sparta.team5finalproject.security.filter.FormLoginFilter;
 import com.sparta.team5finalproject.security.filter.JwtAuthFilter;
 import com.sparta.team5finalproject.security.jwt.HeaderTokenExtractor;
+import com.sparta.team5finalproject.security.provider.FilterSkipMatcher;
+import com.sparta.team5finalproject.security.provider.FormLoginSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -103,7 +104,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .permitAll()
                 .and()
-                // [로그아웃 기능]
+                // 로그아웃 기능
                 .logout()
                 // 로그아웃 요청 처리 URL
                 .logoutUrl("/user/logout")
@@ -170,11 +171,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //코디 상세
         skipPathList.add("GET,/api/cody/detail/**");
 
-
+        // 회원가입 중복체크
         skipPathList.add("POST,/user/redunancy/**");
-
-
-
 
         //크롤링
         skipPathList.add("POST,/cpWatch/**");
@@ -183,9 +181,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // 로깅 테스트
         skipPathList.add("GET,/log");
 
+        // 무중단 배포를 위한 서버 헬스체크
         skipPathList.add("GET,/health");
-
-
 
         skipPathList.add("GET,/basic.js");
 
@@ -215,12 +212,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.addAllowedOriginPattern("*");
-//        configuration.addAllowedOrigin("http://localhost:3000"); // local 테스트 시
         configuration.setAllowCredentials(true);
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
         configuration.addExposedHeader("Authorization");
-//        configuration.addAllowedOriginPattern("*"); // 배포 전 모두 허용
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
