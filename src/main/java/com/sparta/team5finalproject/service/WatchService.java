@@ -77,7 +77,7 @@ public class WatchService {
     }
 
 
-    // 시계상세 페이지 조회
+    // 시계상세 페이지 조회 /
     public WatchDetailResponseDto readDetailWatch(Long watchId) {
 
         Watch watch = watchRepository.findById(watchId).orElseThrow(
