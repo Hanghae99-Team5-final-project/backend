@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 30초마다 파일 변화를 체크하여 갱신시킨다. -->
 <configuration debug="true" scan="true" scanPeriod="30 seconds">
-<!--    <include resource="org/springframework/boot/logging/logback/base.xml"/>-->
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
 <!--    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />-->
 
