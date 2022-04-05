@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 30초마다 파일 변화를 체크하여 갱신시킨다. -->
 <configuration debug="true" scan="true" scanPeriod="30 seconds">
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
 <!--    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />-->
 
     <timestamp key="BY_DATE" datePattern="yyyy-MM-dd"/>
@@ -8,6 +10,7 @@
     <property name="LOG_PATTERN"
               value="[%d{yyyy-MM-dd HH:mm:ss}:%-4relative] %green([%thread]) %highlight(%-5level) %boldWhite([%C.%M:%yellow(%L)]) - %msg%n"/>
     <property name="LOG_PATH" value="/tmp/log"/>
+
 
     <!-- 개발환경 로깅-->
     <springProfile name="dev">
@@ -29,6 +32,7 @@
 
     <!-- 운영환경 로깅-->
     <springProfile name="prod">
+        <logger name="org.springframework.*" level="info" />
 <!--        <include resource="org/springframework/boot/logging/logback/base.xml"/>-->
         <!--        <include resource="file-info-appender.xml"/>-->
         <!--        <include resource="file-warn-appender.xml"/>-->
