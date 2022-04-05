@@ -21,10 +21,10 @@ public class MainPageController {
     }
 
 
-//    //카테고리별 조회 페이지
-//    @GetMapping("/api/watch/category")
-//    public CategoryPageResponesDto getCoupleWatchPage() {
-//        return mainPageService.getCategoryWatch();
-//    }
+    //카테고리별 조회 페이지
+    @GetMapping("/api/watch/category")
+    public CategoryPageResponesDto getCoupleWatchPage() {
+        return mainPageService.getCategoryWatch();
+    }
 
 }
