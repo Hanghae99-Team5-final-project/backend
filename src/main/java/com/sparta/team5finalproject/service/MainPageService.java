@@ -26,10 +26,10 @@ public class MainPageService {
 
         // 인기 4개의 상품들(찜 기준)
         MainPageResponseDto mainPageResponseDto = new MainPageResponseDto();
-        List<Watch> bestWatchList = watchRepository.findTop8ByWatchCategoryOrderByLikeCountDesc(WatchCategory.DIGITAL);
+        List<Watch> bestWatchList = watchRepository.findTop4ByWatchCategoryOrderByLikeCountDesc(WatchCategory.DIGITAL);
 
         // 커플 인기 4개의 상품들(찜 기준)
-        List<Watch> bestCoupleWatchList = watchRepository.findTop8ByWatchCategoryOrderByLikeCountDesc(WatchCategory.COUPLE);
+        List<Watch> bestCoupleWatchList = watchRepository.findTop4ByWatchCategoryOrderByLikeCountDesc(WatchCategory.COUPLE);
 
         // 메인페이지에 보일 코디 글 5개(정렬)
         List<Cody> bestCodyList = codyRepository.findTop5ByOrderByIdDesc();
