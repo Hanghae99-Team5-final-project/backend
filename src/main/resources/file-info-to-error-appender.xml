@@ -2,6 +2,7 @@
 <included>
     <appender name="FILE-INFOTOERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_PATH}/info_to_error-${BY_DATE}.log</file>
+<!--        <file>log/info_to_error-${BY_DATE}.log</file>-->
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>INFO</level>
         </filter>
