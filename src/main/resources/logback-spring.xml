@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 30초마다 파일 변화를 체크하여 갱신시킨다. -->
 <configuration debug="true" scan="true" scanPeriod="30 seconds">
-    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+<!--    <include resource="org/springframework/boot/logging/logback/base.xml"/>-->
 
     <timestamp key="BY_DATE" datePattern="yyyy-MM-dd"/>
     <!-- 로그 파일 패턴 -->
     <property name="LOG_PATTERN"
               value="[%d{yyyy-MM-dd HH:mm:ss}:%-4relative] %green([%thread]) %highlight(%-5level) %boldWhite([%C.%M:%yellow(%L)]) - %msg%n"/>
-    <property name="LOG_PATH" value="/tmp/log"/>
+    <property name="LOG_PATH" value="./log"/>
 
 
     <!-- 개발환경 로깅-->
     <springProfile name="dev">
-        <root level="INFO">
-            <include resource="console-appender.xml"/>
-            <include resource="file-info-to-error-appender.xml"/>
-            <include resource="file-error-appender.xml"/>
-            <include resource="slack-appender.xml"/>
+        <include resource="console-appender.xml"/>
+        <include resource="file-info-to-error-appender.xml"/>
+        <include resource="file-error-appender.xml"/>
+        <include resource="slack-appender.xml"/>
 
+        <root level="INFO">
             <appender-ref ref="FILE-INFOTOERROR"/>
             <appender-ref ref="FILE-ERROR"/>
             <appender-ref ref="SLACK"/>

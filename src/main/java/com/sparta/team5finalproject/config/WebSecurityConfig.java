@@ -184,6 +184,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // 무중단 배포를 위한 서버 헬스체크
         skipPathList.add("GET,/health");
 
+        skipPathList.add("GET,/forbidden.html");
+
         skipPathList.add("GET,/basic.js");
 
         skipPathList.add("GET,/favicon.ico");

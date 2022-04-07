@@ -2,6 +2,7 @@
 <included>
     <appender name="FILE-WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_PATH}/warn-${BY_DATE}.log</file>
+<!--        <file>log/warn-${BY_DATE}.log</file>-->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>WARN</level>
             <onMatch>ACCEPT</onMatch>
