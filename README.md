@@ -1,6 +1,6 @@
 <!-- 서비스 간략설명  -->
 
-<h1 align="left"> 5조는 죽지않는다.<br/>5조 가즈아</h1>
+<h1 align="left"> SPRING WATCH<br/></h1>
 
 
 
@@ -8,15 +8,20 @@
 >2월24일 부터 4월9일 까지 ( 42일 )
 <br>
 
-# 팀 구성
+## 팀 구성
 | 이름     | 깃허브 주소                                                | 포지션     |
 |:--------:|:----------------------------------------------------------:|:-----------:|
+| 김재민 | [https://github.com/Hanghae99-Team5-final-project/Front-end](https://github.com/DevUncle1588)                     | 프론트     |
+| 최성원 | [https://github.com/DevUncle1588](https://github.com/DevUncle1588)                     | 백엔드     |
+| 이용만 | [https://github.com/DevUncle1588](https://github.com/DevUncle1588)                     | 백엔드     |
 | 이성민 | [https://github.com/DevUncle1588](https://github.com/DevUncle1588)                     | 백엔드     |
+| 서환희 | [https://github.com/DevUncle1588](https://github.com/DevUncle1588)                     | 디자인     |
+| 배규리 | [https://github.com/DevUncle1588](https://github.com/DevUncle1588)                     | 디자인     |
 
 
 <br>
 
-# 핵심 기능 Key Feature
+## 핵심 기능 Key Feature
 
 <details>
 <summary>📚 쇼핑</summary>
@@ -44,7 +49,7 @@
 
 <br>
 
-# 기술 스택
+## 기술 스택
 
 > ## 프론트엔드
 <p align="center">
@@ -81,21 +86,17 @@
 
 <br>
 
-# Links
+## Links
 
-- Project homepage: 
-- Repository: https://github.com/Hanghae99-Team5-final-project
-
+- Project homepage: https://springwatch.shop/
 - 프론트엔드 깃허브 주소 : https://github.com/Hanghae99-Team5-final-project
 - 백엔드 깃허브 주소 : https://github.com/Hanghae99-Team5-final-project
 
 <br>
 
-# more info
+## more info
 
 [시연 연상](https://youtu.be)
-
-[화면 설계서](https://docs.google.com/presentation/d/12mBOJ3qdnA5tRf_UqlA_nJANNIcfJNgknbsgitQzUrA/edit#slide=id.g11716dcbee3_1_5)
 
 [화면 설계서](https://www.figma.com/file/LN3ELSLElG8cokJ2vBIYLV/%EC%8B%A4%EC%A0%84-5%EC%A1%B0-%EC%8A%A4%ED%86%A0%EB%A6%AC%EB%B3%B4%EB%93%9C?node-id=0%3A1)
 
@@ -114,25 +115,6 @@ https://www.notion.so/5-API-d2ec887d838c43debb1d2cfca915c196
 </div>
 </details>
 
-<!-- 플로우 차트  -->
-<details>
-<summary>플로우 차트</summary>
-<div markdown="1">
-
-![flow_chart](링크넣기)
-
-</div>
-</details>
-
-<!-- 메뉴 스트럭쳐  -->
-<details>
-<summary>메뉴 스트럭쳐</summary>
-<div markdown="1">
-
-![Menu Structure](링크넣기)
-
-</div>
-</details>
 
 <!-- 아키텍쳐  -->
 <details>
