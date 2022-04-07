@@ -10,6 +10,9 @@ import java.util.List;
 @Setter
 @Getter
 public class CategoryPageResponesDto {
+    // 커플시계 리스트
     private List<Watch> coupleList;
+    // 아날로그 시계 리스트
     private List<Watch> digitalList;
+
 }

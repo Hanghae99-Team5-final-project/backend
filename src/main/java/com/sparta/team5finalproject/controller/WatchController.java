@@ -1,13 +1,9 @@
 package com.sparta.team5finalproject.controller;
 
-import com.sparta.team5finalproject.dto.WatchDetailLikeResponseDto;
-import com.sparta.team5finalproject.dto.WatchDetailResponseDto;
-import com.sparta.team5finalproject.model.User;
-import com.sparta.team5finalproject.model.Watch;
-import com.sparta.team5finalproject.repository.WatchRepository;
+import com.sparta.team5finalproject.dto.watchDto.WatchDetailLikeResponseDto;
+import com.sparta.team5finalproject.dto.watchDto.WatchDetailResponseDto;
 import com.sparta.team5finalproject.security.provider.UserDetailsImpl;
 import com.sparta.team5finalproject.service.CoupleWatchService;
-import com.sparta.team5finalproject.service.MainPageService;
 import com.sparta.team5finalproject.service.WatchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,17 +18,19 @@ public class WatchController {
     private final WatchService watchService;
     private final CoupleWatchService coupleWatchService;
 
-
-
+    // 쿠팡 크롤링
     @PostMapping("/cpWatch")
     public void createWatch() throws IOException {
         watchService.cpWatchCrawling();
     }
 
+
+    // 무신사 크롤링
     @PostMapping("/msWatch")
     public void msWatchCrawling() throws IOException {
         coupleWatchService.msWatchCrawling();
     }
+
 
     //시계 상세 페이지
     @GetMapping("/api/detail/{watchId}")
@@ -40,16 +38,11 @@ public class WatchController {
         return watchService.readDetailWatch(watchId);
     }
 
+
     //시계 상세 페이지 좋아요 조회
     @GetMapping("/api/like/{watchId}")
     public WatchDetailLikeResponseDto readDetailWatchLike(@PathVariable Long watchId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return watchService.readDetailWatchLike(watchId, userDetails);
     }
-
-//    @PostMapping("/couple")
-//    public void createCoupleWatch() throws IOException {
-//        System.out.println("안되면 안나온다 성원아 ? 정신차려라 아? 성원아 병재형님 말씀 단디 듣고 아?");
-//        coupleWatchService.total();
-//    }
 
 }

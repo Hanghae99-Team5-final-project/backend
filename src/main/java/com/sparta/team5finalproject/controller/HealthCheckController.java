@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HealthCheckController {
-    // Nginx health check
+
+    // 무중단 배포를 위한 Nginx health check
     @GetMapping("/health")
     public String checkHealth() {
         return "healthy"; }

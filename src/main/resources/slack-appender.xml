@@ -9,7 +9,7 @@
             <pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %-5level %logger{35} - %msg%n</pattern>
         </layout>
         <webhookUri>${SLACK_WEBHOOK_URI}</webhookUri>
-        <username>taggle bot</username>
+        <username>springwatch prod bot</username>
         <colorCoding>true</colorCoding>
     </appender>
     <appender name="ASYNC_SLACK" class="ch.qos.logback.classic.AsyncAppender">

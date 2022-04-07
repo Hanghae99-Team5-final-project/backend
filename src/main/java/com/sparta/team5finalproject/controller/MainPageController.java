@@ -14,24 +14,17 @@ public class MainPageController {
 
     private final MainPageService mainPageService;
 
-    //전체 상품 조회
-
     //메인페이지 상품 조회
     @GetMapping("/main")
     public MainPageResponseDto getMainPageWatchList() {
         return mainPageService.getMainPageWatchList();
-
     }
 
 
-//    //카테고리별 조회 페이지
+    //카테고리별 조회 페이지
     @GetMapping("/api/watch/category")
     public CategoryPageResponesDto getCoupleWatchPage() {
         return mainPageService.getCategoryWatch();
     }
-//
-//
 
-
-    //커플시계 상세 페이지지
 }

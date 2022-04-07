@@ -23,7 +23,7 @@ public class CommentService {
     private final CodyRepository codyRepository;
     private final WatchRepository watchRepository;
 
-
+    // 댓글 생성 - cody
     @Transactional
     public CommentResponseDto createCodyComment(Long codyId, CommentRequestDto commentRequestDto, UserDetailsImpl userDetails) {
         Cody cody = codyRepository.findById(codyId).orElseThrow(
@@ -33,9 +33,6 @@ public class CommentService {
         codyComment.setUser(userDetails.getUser());
         codyComment.setCommentUsername(userDetails.getUsername());
         codyComment.setCody(cody);
-
-
-        System.out.println("댓글 내용 나와라 ? 아? " + codyComment);
 
         try {
             commentRepository.save(codyComment);

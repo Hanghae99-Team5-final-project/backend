@@ -1,9 +1,9 @@
 package com.sparta.team5finalproject.service;
 
-import com.sparta.team5finalproject.dto.DeleteUserRequestDto;
-import com.sparta.team5finalproject.dto.SignupRequestDto;
+import com.sparta.team5finalproject.dto.userDto.DeleteUserRequestDto;
+import com.sparta.team5finalproject.dto.userDto.SignupRequestDto;
 import com.sparta.team5finalproject.exception.DuplicateUserException;
-import com.sparta.team5finalproject.dto.UserCheckDto;
+import com.sparta.team5finalproject.dto.userDto.UserCheckDto;
 import com.sparta.team5finalproject.model.User;
 import com.sparta.team5finalproject.model.UserRoleEnum;
 import com.sparta.team5finalproject.repository.UserRepository;
@@ -30,12 +30,8 @@ public class UserService {
     private final UserRepository userRepository;
     private static final String ADMIN_TOKEN = "AAABnv/xRVklrnYxKZ0aHgTBcXukeZygoC";
 
-//    @Autowired
-//    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-//        this.userRepository = userRepository;
-//        this.passwordEncoder = passwordEncoder;
-//    }
 
+    // 유저 회원가입
     @Transactional
     public void registerUser(SignupRequestDto requestDto) {
             // 회원 ID 중복 확인
@@ -49,7 +45,7 @@ public class UserService {
 
         // 패스워드 암호화
         String password = passwordEncoder.encode(requestDto.getPassword());
-//        String password = requestDto.getPassword();
+
         String email = requestDto.getEmail();
 
         // 사용자 ROLE 확인
@@ -71,8 +67,6 @@ public class UserService {
             logger.info(detailMessage);
             throw new IllegalArgumentException(detailMessage);
         }
-
-//        return user;
     }
 
 
@@ -96,7 +90,6 @@ public class UserService {
             }
 
         }
-//        return user;
     }
 
     // 로그인 확인
@@ -129,5 +122,4 @@ public class UserService {
             return "true";
         }
     }
-
 }

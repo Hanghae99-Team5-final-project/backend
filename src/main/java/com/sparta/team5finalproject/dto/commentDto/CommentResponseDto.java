@@ -12,12 +12,14 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentResponseDto { //CommentResponseDto
-    private Long commentId;             // 댓글 ID
-    private String commentUser;         // 댓글작성자
-    private String commentContent;      // 댓글
-
-
+public class CommentResponseDto {
+    // 댓글 아이디
+    private Long commentId;
+    // 댓글 작성한 유저
+    private String commentUser;
+    // 댓글 내용
+    private String commentContent;
+    // 댓글 생성날짜
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",  timezone = "Asia/Seoul")
-    private LocalDateTime createdAt;   // 생성날짜
+    private LocalDateTime createdAt;
 }
