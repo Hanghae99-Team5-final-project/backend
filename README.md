@@ -47,52 +47,36 @@
 
 ## 기술 스택
 
-> ## 프론트엔드
-<p align="center">
-<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
-<br>
-<img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white">
-<img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
-<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
-<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black">
-<img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white">
-<br>
-<img src="https://img.shields.io/badge/WebRTC-333333?style=for-the-badge&logo=WebRTC&logoColor=white">
-<img src="https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=Socket.io&logoColor=white">
-<img src="https://img.shields.io/badge/CloudFront-D05C4B?style=for-the-badge&logo=CloudFront&logoColor=white">
-<img src="https://img.shields.io/badge/Route53-E68B49?style=for-the-badge&logo=Route53s&logoColor=white">
-<img src="https://img.shields.io/badge/S3-569A31?style=for-the-badge&logo=S3&logoColor=white">
-<br>
-<br>
-<br>
 
 > ## 백엔드
 <p align="center">
 <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">
 <img src="https://img.shields.io/badge/Github%20Actions-449A1?style=for-the-badge&logo=GitHub%20Actions&logoColor=white">
 <br>
-<img src="https://img.shields.io/badge/WebRTC-333333?style=for-the-badge&logo=WebRTC&logoColor=white">
-<img src="https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=Socket.io&logoColor=white">
+<img src="https://img.shields.io/badge/Amazon%20S3-4495A1?style=for-the-badge&logo=Amazon%20S3&logoColor=white">
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
-<img src="https://img.shields.io/badge/bcrypt-555555?style=for-the-badge&logo=bcrypt&logoColor=white">
+<img src="https://img.shields.io/badge/Slack-FF00CC?style=for-the-badge&logo=Slack&logoColor=white">
+<img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=Spring%20Boot&logoColor=white">
 <br>
- <img src="https://img.shields.io/badge/cors-FF253F?style=for-the-badge&logo=cors&logoColor=white">
- <img src="https://img.shields.io/badge/jwt-FB015B?style=for-the-badge&logo=jwt&logoColor=white">
-<img src="https://img.shields.io/badge/AWS SDK-E68B49?style=for-the-badge&logo=AWS SDK&logoColor=white">
+<img src="https://img.shields.io/badge/cors-FF253F?style=for-the-badge&logo=cors&logoColor=white">
+<img src="https://img.shields.io/badge/jwt-FB015B?style=for-the-badge&logo=jwt&logoColor=white">
+<img src="https://img.shields.io/badge/AWS-E68B49?style=for-the-badge&logo=AWS SDK&logoColor=white">
+<img src="https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=NGINX&logoColor=white">
+
 
 <br>
 
 ## Links
 
 - Project homepage: https://springwatch.shop/
-- 프론트엔드 깃허브 주소 : https://github.com/Hanghae99-Team5-final-project
-- 백엔드 깃허브 주소 : https://github.com/Hanghae99-Team5-final-project
+- 프론트엔드 깃허브 주소 : https://github.com/Hanghae99-Team5-final-project/Front-end
+- 백엔드 깃허브 주소 : https://github.com/Hanghae99-Team5-final-project/backend
 
 <br>
 
 ## more info
 
-[시연 연상](https://youtu.be)
+[시연 연상](https://www.youtube.com/watch?v=BCv1n2lVHoI&t=1s)
 
 [화면 설계서](https://www.figma.com/file/ZOHbhiIBx8DVEhK9orLFs4/spring-watch?node-id=6%3A5)
 
@@ -106,7 +90,8 @@ https://www.notion.so/5-API-d2ec887d838c43debb1d2cfca915c196
 <details>
 <summary>ERD</summary>
 <div markdown="1">
- ![항해99 실전 프로젝트 5조 데이터베이스 ERD](https://user-images.githubusercontent.com/95603520/162182028-edb976a6-ddd2-43d5-9446-03d1bc239166.png)
+ 
+![항해99 실전 프로젝트 5조 데이터베이스 ERD](https://user-images.githubusercontent.com/95603520/162182028-edb976a6-ddd2-43d5-9446-03d1bc239166.png)
  
 </div>
 </details>
@@ -117,7 +102,7 @@ https://www.notion.so/5-API-d2ec887d838c43debb1d2cfca915c196
 <summary>서비스 아키텍쳐</summary>
 <div markdown="1">
 
-![아키텍쳐](링크넣기)
+![image](https://user-images.githubusercontent.com/95603520/162248377-bcdd126e-8d6a-469d-8bd1-1911db650a10.png)
 
 </div>
 </details>
