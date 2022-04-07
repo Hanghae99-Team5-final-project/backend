@@ -11,12 +11,12 @@
 ## 팀 구성
 | 이름     | 깃허브 주소                                                | 포지션     |
 |:--------:|:----------------------------------------------------------:|:-----------:|
-| 김재민 | [https://github.com/Hanghae99-Team5-final-project/Front-end](https://github.com/DevUncle1588)                     | 프론트     |
-| 최성원 | [https://github.com/DevUncle1588](https://github.com/DevUncle1588)                     | 백엔드     |
-| 이용만 | [https://github.com/DevUncle1588](https://github.com/DevUncle1588)                     | 백엔드     |
+| 김재민 | [https://github.com/suchan0](https://github.com/suchan0)                     | 프론트     |
+| 최성원 | [https://github.com/CSW7057](https://github.com/CSW7057)                     | 백엔드     |
+| 이용만 | [https://github.com/2yongman](https://github.com/2yongman)                     | 백엔드     |
 | 이성민 | [https://github.com/DevUncle1588](https://github.com/DevUncle1588)                     | 백엔드     |
-| 서환희 | [https://github.com/DevUncle1588](https://github.com/DevUncle1588)                     | 디자인     |
-| 배규리 | [https://github.com/DevUncle1588](https://github.com/DevUncle1588)                     | 디자인     |
+| 서환희 | []()                     | 디자인     |
+| 배규리 | [https://www.notion.so/ed5249169a5c408da7817feadb457e12](https://www.notion.so/ed5249169a5c408da7817feadb457e12)                     | 디자인     |
 
 
 <br>
@@ -24,27 +24,23 @@
 ## 핵심 기능 Key Feature
 
 <details>
-<summary>📚 쇼핑</summary>
+<summary>🛒 쇼핑</summary>
 <div markdown="1">
  <br>
-   시계 쇼핑몰
+⌚ 가성비 좋은 시계
+ 
+   꼭 명품시계가 아니더라도 고객의 취향과 멋 가성비 좋은 가격으로 구매할 수 있어요.
 </div>
 </details>
 
 <details>
-<summary>⏰ ????</summary>
+<summary>👨‍👨‍👧‍👦 커뮤니티</summary>
 <div markdown="1">
 <br>
-   ??????
-</div>
-</details>
-<details>
-<summary>🏆 ????</summary>
-<div markdown="1">
- <br>
-   ????
-</div>
+😎나의 시계 스타일 방법 공유
 
+옷, 신발, 모자 등 다양한 패션 아이템 스타일을 다양하게 꾸미고 공유가 되지만 시계 스타일 공유하는 곳은 많지 않기 때문에 나만의 시계 스타일을 공유할 수 있습니다.
+</div>
 </details>
 
 <br>
@@ -73,7 +69,7 @@
 > ## 백엔드
 <p align="center">
 <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">
-<img src="https://img.shields.io/badge/sequelize-52B0E7?style=for-the-badge&logo=sequelize&logoColor=white">
+<img src="https://img.shields.io/badge/Github%20Actions-449A1?style=for-the-badge&logo=GitHub%20Actions&logoColor=white">
 <br>
 <img src="https://img.shields.io/badge/WebRTC-333333?style=for-the-badge&logo=WebRTC&logoColor=white">
 <img src="https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=Socket.io&logoColor=white">
@@ -98,7 +94,7 @@
 
 [시연 연상](https://youtu.be)
 
-[화면 설계서](https://www.figma.com/file/LN3ELSLElG8cokJ2vBIYLV/%EC%8B%A4%EC%A0%84-5%EC%A1%B0-%EC%8A%A4%ED%86%A0%EB%A6%AC%EB%B3%B4%EB%93%9C?node-id=0%3A1)
+[화면 설계서](https://www.figma.com/file/ZOHbhiIBx8DVEhK9orLFs4/spring-watch?node-id=6%3A5)
 
 <details>
 <summary>API 명세서</summary>
@@ -110,8 +106,8 @@ https://www.notion.so/5-API-d2ec887d838c43debb1d2cfca915c196
 <details>
 <summary>ERD</summary>
 <div markdown="1">
-
-
+ ![항해99 실전 프로젝트 5조 데이터베이스 ERD](https://user-images.githubusercontent.com/95603520/162182028-edb976a6-ddd2-43d5-9446-03d1bc239166.png)
+ 
 </div>
 </details>
 
